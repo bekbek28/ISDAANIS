@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Roboto:wght@500&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+body {
+  background-image: url(../img/122155615_175479397542068_2300959587956042065_n.jpg);
+}
+
+
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Kanit', sans-serif;
+}
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 3px;
+}
+
+.wrapper{
+position: absolute;
+top: 55%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 340px;
+height: 340px;
+background-color: transparent;
+opacity: 90%;
+border: 2px solid rgba(255, 255, 255,.5);
+border-radius: 20px;
+backdrop-filter: blur(20px);
+box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+}
+
+.wrapper .form-box{
+  width: 100%;
+  padding: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+
+.wrapper .icon-back{
+position: absolute;
+top: 10px;
+right: 10px;  
+font-size: 1.5em;
+font-weight: 700;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+cursor: pointer;
+z-index: 1;
+}
+
+.form-box h2{
+  font-size: 2em;
+  color: black;
+  text-align: center;
+}
+
+.input-box{
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border-bottom: 2px solid black;
+  margin: 20px 0;
+}
+
+.input-box label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: black;
+  font-weight: 300;
+  pointer-events: none;
+  transition: .3s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+  top: -5px;
+  
+}
+
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+  padding: 0 35px 0 5px;
+
+}
+
+.input-box .icon{
+  position: absolute;
+  right: 8px;
+  top: 2px;
+  font-size: 1.2em;
+  color: black;
+  line-height: 40px;
+
+}
+
+.remember-forgot{
+  font-size: .9em;
+  color: black;
+margin: -15px 0 15px;
+display: flex;
+justify-content: space-between;
+}
+
+.remember-forgot label input{
+  accent-color: black;
+  margin-right: 3px;
+}
+
+.remember-forgot a{
+  color: black;
+  text-decoration: none;
+}
+
+.remember-forgot a:hover{
+  text-decoration: underline;
+}
+
+.btn{
+  width: 100%;
+  height: 45px;
+  background: #1C6DD0;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: black;
+  font-weight: 500;
+}
+
+.login-register{
+  font-size: .9em;
+  color: black;
+  text-align: center;
+  font-weight: 500;
+  margin: 15px 0 10px;
+
+}
+
+.login-register p a{
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+
+}
+
+.login-register p a:hover{
+  text-decoration: underline;
+}
+
