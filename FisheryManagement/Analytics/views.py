@@ -8,3 +8,6 @@ def  index(request):
 
 def  isforms(request):
     return render(request, 'MCforms.html' )
+
+def  isdashboard(request):
+    return render(request, 'dashboard.html' )
