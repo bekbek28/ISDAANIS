@@ -11,3 +11,6 @@ def  isforms(request):
 
 def  isdashboard(request):
     return render(request, 'dashboard.html' )
+
+def  isadmindashboard(request):
+    return render(request, 'admindash.html' )

@@ -6,4 +6,5 @@ urlpatterns = [
     path('homepage/', views.index),
     path('forms/', views.isforms),
     path('dashboard/', views.isdashboard),
+    path('admindashboard/', views.isadmindashboard),
     ]
