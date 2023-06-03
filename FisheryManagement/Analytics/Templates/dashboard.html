@@ -9,73 +9,21 @@
   <title>ISdaanIS</title>
 </head>
 <body>
-  <div class="container">
-    <div class="navigation">
-      <ul>
-        
-        <li>
-          <a href="#">
-            <h4>ISdaanIS</h4>
-            <h2>Dashboard</h2>
-          </a>
-        </li>
-        
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="fish-outline"></ion-icon></span>
-            <span class="title">Fish Type</span>
-          </a>
-        </li>
+  <div class="navigation">
+    <div class="menuToggle"></div>
+    <ul>
+      <li class="list">
 
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="boat-outline"></ion-icon></span>
-            <span class="title">Vessel</span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="globe-outline"></ion-icon></span>
-            <span class="title">place of catch</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="calendar-number-outline"></ion-icon></span>
-            <span class="title">quantity of fishes this day</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
-            <span class="title">quantity of fishes this month</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-            <span class="title">Settings</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-            <span class="title">Logout</span>
-          </a>
-        </li>
-
-
-      </ul>
-    </div>
+      </li>
+    </ul>
   </div>
+<script>
+ let menuToggle = document.querySelector('.menuToggle');
+ let navigation = document.querySelector('.navigation');
+ menuToggle.onclick = function(){
+  navigation.classList.toggle('active')
+ }
+</script>
 
-
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

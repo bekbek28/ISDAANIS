@@ -1,43 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 *{
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body{
-  background-color: cornsilk;
+  background-color: #FFEAD2;
   min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.container{
-  position: relative;
-  width: 100%;
 }
 
 .navigation{
   position: fixed;
-  width: 220px;
-  height: 400px;
-  background-color: aquamarine;
-  border-left: 10px solid cyan;
+  inset: 40px 0 40px 20px;
+  background-color: #19A7CE;
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: 0.5s;
-  overflow: hidden;
 }
 
-.navigation ul{
+.navigation.active{
+  width: 250px;
+}
+
+.menuToggle{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 60px;
+  padding: 0 23px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
 }
 
-.navigation ul li {
-  position: relative;
-  width: 200%;
-  list-style: none;
+.menuToggle::before{
+  content: ' ' ;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #333;
+  transform: translateY(-8px);
+  transition: 0.5s;
 }
 
-.navigation ul li:nth-child(1){
-  margin-bottom: 40px;
+.navigation.active .menuToggle::before{
+  transform: translateY(0) rotate(45deg);
+}
 
+.menuToggle::after{
+  content: ' ' ;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #333;
+  transform: translateY(8px);
+  box-shadow: 0 -8px 0 #333;
+  transition: 0.5s;
+}
+
+.navigation.active .menuToggle::after{
+  transform: translateY(0) rotate(-45deg);
+  box-shadow: 0 0 0 #333;
 }
