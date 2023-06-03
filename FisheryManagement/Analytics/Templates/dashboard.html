@@ -12,8 +12,54 @@
   <div class="navigation">
     <div class="menuToggle"></div>
     <ul>
-      <li class="list">
 
+      <li class="list active">
+        <a href="#">
+          <span class="icon"><ion-icon name="fish-outline"></ion-icon></span>
+          <span class="title">Fish Type</span>
+        </a>
+      </li>
+
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="boat-outline"></ion-icon></span>
+          <span class="title">Vessel</span>
+        </a>
+      </li>
+      
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="globe-outline"></ion-icon></span>
+          <span class="title">Place of catch</span>
+        </a>
+      </li>
+
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="calendar-number-outline"></ion-icon></span>
+          <span class="title">Daily</span>
+        </a>
+      </li>
+
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
+          <span class="title">Monthly</span>
+        </a>
+      </li>
+
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+          <span class="title">Settings</span>
+        </a>
+      </li>
+
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+          <span class="title">Logout</span>
+        </a>
       </li>
     </ul>
   </div>
@@ -23,7 +69,15 @@
  menuToggle.onclick = function(){
   navigation.classList.toggle('active')
  }
-</script>
 
+let list = document.querySelectorAll('.list');
+function activelink(){
+  list.forEach((item) => item.classList.remove('active'));
+  this.classList.add('active');
+}
+list.forEach((item) => item.addEventListener('click',activelink));
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

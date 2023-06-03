@@ -12,10 +12,10 @@ body{
 }
 
 .navigation{
-  position: fixed;
+  position: absolute;
   inset: 40px 0 40px 20px;
   background-color: #19A7CE;
-  width: 75px;
+  width: 105px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@ body{
 }
 
 .navigation.active{
-  width: 250px;
+  width: 200px;
 }
 
 .menuToggle{
@@ -69,3 +69,45 @@ body{
   transform: translateY(0) rotate(-45deg);
   box-shadow: 0 0 0 #333;
 }
+
+.navigation ul{
+  display: flex;
+flex-direction: column;
+  width: 80%;
+
+}
+
+.navigation ul li{
+  list-style: none;
+  position: relative;
+  margin-left: 0.5em;
+  margin-bottom: 1em;
+  width: 80%;
+  height: 30px;
+  font-size: 17px;
+  border-radius: 12px;
+  border: 6px solid #FFEAD2;
+  transition: 0.5s;
+}
+
+.navigation ul li.active{
+  transform: translateX(30px);
+  background: #FFEAD2 ;
+  width: 100%;
+}
+
+.navigation ul li::before{
+  content: ' ' ;
+  position: absolute;
+  top: -28px;
+  right: 22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+border-bottom-right-radius: 20px;
+box-shadow: 6px 5px 0 5px #FFEAD2;
+transform: scale(0);
+transform-origin: bottom right;
+transition: 0.5s;
+}
+
