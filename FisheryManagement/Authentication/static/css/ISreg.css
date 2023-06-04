@@ -35,7 +35,7 @@ top: 55%;
 left: 50%;
 transform: translate(-50%, -50%);
 width: 340px;
-height: 420px;
+height: 450px;
 background-color: transparent;
 opacity: 90%;
 border: 2px solid rgba(255, 255, 255,.10);
@@ -123,26 +123,8 @@ z-index: 1;
 
 }
 
-.remember-forgot{
-  font-size: .9em;
-  color: black;
-margin: -15px 0 15px;
-display: flex;
-justify-content: space-between;
-}
-
-.remember-forgot label input{
-  accent-color: black;
-  margin-right: 3px;
-}
-
-.remember-forgot a{
-  color: black;
-  text-decoration: none;
-}
-
-.remember-forgot a:hover{
-  text-decoration: underline;
+.check-box{
+  display: block;
 }
 
 .btn{

@@ -10,3 +10,9 @@ def  ishtml(request):
 
 def  isreghtml(request):
    return render(request, 'register.html')
+
+def  ispmloginhtml(request):
+   return render(request, 'PManager.html')
+
+def  ispmreghtml(request):
+   return render(request, 'PMregister.html')
