@@ -5,6 +5,9 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse('<h1>my first app</h1>')
 
+def usertype(request):
+   return render(request, 'usertype.html')
+
 def login(request):
    return render(request, 'index.html')
 

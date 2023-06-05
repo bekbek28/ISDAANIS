@@ -6,78 +6,83 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+  <link rel="stylesheet"href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
   <title>ISdaanIS</title>
 </head>
 <body>
-  <div class="navigation">
-    <div class="menuToggle"></div>
-    <ul>
+  <nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="{% static 'img/pfda.png' %}" alt="">
+        </div>
 
-      <li class="list active">
-        <a href="#">
-          <span class="icon"><ion-icon name="fish-outline"></ion-icon></span>
-          <span class="title">Fish Type</span>
-        </a>
-      </li>
+        <span class="logo_name">ISdaanIS</span>
+    </div>
 
-      <li class="list">
-        <a href="#">
-          <span class="icon"><ion-icon name="boat-outline"></ion-icon></span>
-          <span class="title">Vessel</span>
+    <div class="menu-items">
+        <ul class="nav-links">
+            <li>
+                <a href="#">
+                  <i class="uil uil-chart-bar"></i>
+                  <span class="link-name">Fish Type</span>
+              </a>
+            </li>
+            <li><a href="#">
+              <i class="uil uil-ship"></i>
+                <span class="link-name">Vessel</span>
+            </a></li>
+            <li><a href="#">
+              <i class="uil uil-globe"></i>
+                <span class="link-name">Place of catch</span>
+            </a>
+        </li>
+        <li><a href="#">
+          <i class="uil uil-calendar-alt"></i>
+            <span class="link-name">Daily Catch</span>
         </a>
-      </li>
-      
-      <li class="list">
-        <a href="#">
-          <span class="icon"><ion-icon name="globe-outline"></ion-icon></span>
-          <span class="title">Place of catch</span>
+    </li>
+        <li><a href="#">
+          <i class="uil uil-calendar-alt"></i>
+            <span class="link-name">Monthly Catch</span>
         </a>
-      </li>
+    </li>
+              
+          </ul>    
+  
+        <ul class="logout-mode">
+            <li><a href="#">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
 
-      <li class="list">
-        <a href="#">
-          <span class="icon"><ion-icon name="calendar-number-outline"></ion-icon></span>
-          <span class="title">Daily</span>
-        </a>
-      </li>
+            <li class="mode">
+                <a href="#">
+                    <i class="uil uil-moon"></i>
+                <span class="link-name">Dark Mode</span>
+            </a>
 
-      <li class="list">
-        <a href="#">
-          <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
-          <span class="title">Monthly</span>
-        </a>
-      </li>
+            <div class="mode-toggle">
+              <span class="switch"></span>
+            </div>
+        </li>
+        </ul>
+    </div>
+</nav>
 
-      <li class="list">
-        <a href="#">
-          <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-          <span class="title">Settings</span>
-        </a>
-      </li>
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+    </section>
 
-      <li class="list">
-        <a href="#">
-          <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-          <span class="title">Logout</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-<script>
- let menuToggle = document.querySelector('.menuToggle');
- let navigation = document.querySelector('.navigation');
- menuToggle.onclick = function(){
-  navigation.classList.toggle('active')
- }
+    <div class="dash-content">
+        
+    </div>
 
-let list = document.querySelectorAll('.list');
-function activelink(){
-  list.forEach((item) => item.classList.remove('active'));
-  this.classList.add('active');
-}
-list.forEach((item) => item.addEventListener('click',activelink));
-</script>
+
+
+<script src="{% static 'js/dashjs.js' %}"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>

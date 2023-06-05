@@ -82,6 +82,14 @@ z-index: 1;
   margin: 20px 0;
 }
 
+.input-box .close {
+  font-size: 45px;
+  font-weight: 600;
+  top: 0;
+  right: 0;
+
+}
+
 .input-box label{
   position: absolute;
   top: 50%;
