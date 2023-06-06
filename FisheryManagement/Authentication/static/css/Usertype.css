@@ -19,6 +19,7 @@ font-size: 30px;
   margin: 0 auto;
   text-align: center;
   padding: 30px;
+  border-radius: 50%;
 }
 .cards h2.header{
   font-size: 40px;

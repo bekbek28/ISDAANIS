@@ -232,3 +232,13 @@ nav.close ~ .dashboard .top{
     cursor: pointer;
 }
 
+.table-section{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 10vh;
+    top: 0%;
+    align-content: center;
+    color: black;
+}
+

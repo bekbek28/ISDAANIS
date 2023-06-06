@@ -39,7 +39,7 @@ height: 450px;
 background-color: transparent;
 opacity: 90%;
 border: 2px solid rgba(255, 255, 255,.10);
-border-radius: 20px;
+border-radius: 8%;
 backdrop-filter: blur(20px);
 box-shadow: 0 0 30px rgba(0, 0, 0, .5);
 }
@@ -82,12 +82,15 @@ z-index: 1;
   margin: 20px 0;
 }
 
-.input-box .close {
-  font-size: 45px;
-  font-weight: 600;
-  top: 0;
-  right: 0;
+.reg-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 80px;
+}
 
+.close-outline{
+  font-size: 30px;
+ color: black;
 }
 
 .input-box label{
