@@ -31,16 +31,17 @@
           <ion-icon name="close-outline" class="close-outline"></ion-icon></a></span>
         </div>
         </div>
-      <form action="#">
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
         <div class="input-box">
           <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-            <input type="username" name="username" required>
+            <input type="text" id="username" name="username" required>
             <label>Username</label>
         </div>
 
        <div class="input-box">
           <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-              <input type="password" name="password" required>
+              <input type="password" id="password" name="password" required>
                 <label>Password</label>
           </div>
               <div class="remember-forgot">

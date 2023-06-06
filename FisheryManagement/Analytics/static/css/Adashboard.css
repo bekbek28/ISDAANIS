@@ -232,7 +232,7 @@ nav.close ~ .dashboard .top{
     cursor: pointer;
 }
 
-.table-section{
+.table{
     display: flex;
     justify-content: center;
     align-items: flex-start;
