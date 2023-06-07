@@ -22,10 +22,10 @@
         <div class="menu-items">
             <ul class="nav-links">
                 <li>
-                    <a href="#">
-                    <i class="uil uil-user"></i>
-                      <span class="link-name">Users</span>
-                  </a>
+                    <a href="#user-table">
+                        <i class="uil uil-user"></i>
+                        <span class="link-name">Users</span>
+                    </a>
                 </li>
                 <li>
                     <a href="#">
@@ -42,21 +42,37 @@
                     <span class="link-name">Place of catch</span>
                 </a>
             </li>
-            <li><a href="#">
-              <i class="uil uil-calendar-alt"></i>
-                <span class="link-name">Daily Catch</span>
-            </a>
-        </li>
-            <li><a href="#">
-              <i class="uil uil-calendar-alt"></i>
-                <span class="link-name">Monthly Catch</span>
-            </a>
-        </li>
+            <li><a href="#" class="">
+                <i class="uil uil-calendar-alt"></i>
+                  <span class="link-name">Analysis <i class="uil uil-angle-down"></i> </span>
+              </a>
+
+              <ul class="sub-menu">
+                <li><a href="#">
+                    <i class="uil uil-calendar-alt"></i>
+                      <span class="link-name">Daily Catch</span>
+                  </a>
+              </li>
+                  <li><a href="#">
+                    <i class="uil uil-calendar-alt"></i>
+                      <span class="link-name">Monthly Catch</span>
+                  </a>
+              </li>
+              <li><a href="#">
+                <i class="uil uil-calendar-alt"></i>
+                  <span class="link-name">Yearly Catch</span>
+              </a>
+          </li>
+              </ul>
+          </li>
+           
+
                 <li><a href="#">
                   <i class="uil uil-file-graph"></i>
                     <span class="link-name">Reports</span>
                 </a>
             </li>
+            
                
               </ul>    
       
@@ -81,36 +97,53 @@
     </nav>
 
     <section class="dashboard">
+
+        <section class="table-container">
+            <table id="user-table">
+                <tr>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>E-mail</th>
+                    <th>Password</th>
+                </tr>
+                <tr>
+                    <td>Data 1</td>
+                    <td>Data 2</td>
+                    <td>Data 2</td>
+                    <td>Data 2</td>
+                </tr>
+                <tr>
+                    <td>Data 3</td>
+                    <td>Data 4</td>
+                    <td>Data 4</td>
+                    <td>Data 4</td>
+                </tr>
+                <tr>
+                    <td>Data 3</td>
+                    <td>Data 4</td>
+                    <td>Data 4</td>
+                    <td>Data 4</td>
+                </tr>
+                <tr>
+                    <td>Data 3</td>
+                    <td>Data 4</td>
+                    <td>Data 4</td>
+                    <td>Data 4</td>
+                </tr>
+                <tr>
+                    <td>Data 3</td>
+                    <td>Data 4</td>
+                    <td>Data 4</td>
+                    <td>Data 4</td>
+                </tr>
+            </table>
+           </section>
+        
+               
         <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-            
-        <div class="dash-content">
-   </section>
-
-   <section class="table">
-    <table id="user-table">
-        <tr>
-            <th>Full Name</th>
-            <th>Username</th>
-            <th>E-mail</th>
-            <th>Password</th>
-        </tr>
-        <tr>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 2</td>
-            <td>Data 2</td>
-        </tr>
-        <tr>
-            <td>Data 3</td>
-            <td>Data 4</td>
-            <td>Data 4</td>
-            <td>Data 4</td>
-        </tr>
-    </table>
-   </section>
-
-       
+            <i class="uil uil-bars sidebar-toggle"></i>          
+        </section>
+   
 
           
   

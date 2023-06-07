@@ -30,3 +30,7 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+
+$('.analysis_btn').click(function() {
+    $('nav ul .sub-menu').toggleClass("show");
+});

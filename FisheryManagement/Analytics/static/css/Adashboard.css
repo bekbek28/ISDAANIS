@@ -16,6 +16,8 @@
     --toggle-color: white;
     --hover-color: #85CDFD;
     --dashboard-color: #FFEEB3;
+    --table-color:#FFF8D6;
+    --th-td-hover-color:#5BC0F8;
     
     /*  Transition  */
     --tran-05: all 0.5s ease;
@@ -35,6 +37,8 @@ body.dark{
     --title-icon-color: #CCC;
     --panel-color: #1A120B;
     --dashboard-color: grey;
+    --table-color:grey;
+    --th-td-hover-color:white;
 }
 ::-webkit-scrollbar {
     width: 8px;
@@ -110,7 +114,7 @@ nav .menu-items{
 .menu-items li a{
     display: flex;
     align-items: center;
-    height: 50px;
+    height: 40px;
     text-decoration: none;
     position: relative;
 }
@@ -125,6 +129,25 @@ nav .menu-items{
 }
 body.dark li a:hover:before{
     background-color: var(--text-color);
+}
+
+.sub-menu {
+    display: none;
+  }
+  
+  .nav-links li:hover .sub-menu {
+    display: block;
+  }
+.nav-links li a span i{
+    position: absolute;
+    display: inline-block;
+    color: var(--text-color);
+    transform: translateY(50%);
+    bottom: 20px;
+}
+
+.nav-links li a span i:hover:before{
+    transform: translateY(50%) rotate(-180deg);
 }
 .menu-items li a i{
     font-size: 24px;
@@ -209,7 +232,7 @@ nav.close ~ .dashboard{
     left: 73px;
     width: calc(100% - 73px);
 }
-.dashboard .top{
+    .top{
     position: fixed;
     top: 0;
     left: 250px;
@@ -232,12 +255,46 @@ nav.close ~ .dashboard .top{
     cursor: pointer;
 }
 
-.table{
+.dash-content{
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    height: 10vh;
-    top: 0%;
-    align-content: center;
+    align-items: center;
 }
 
+.table-container {
+    margin: 0px;
+    padding: 0px;
+    background-color: var(--table-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    overflow-y: auto;
+    border: solid 2px black;
+    border-radius: 5px;
+    width: 100%;
+  height: 400px;         
+}
+
+.table-container th {
+    background-color:#5BC0F8;
+    text-align: left;
+    padding: 8px;
+  }
+
+  .table-container td {
+    padding: 8px;
+    border-bottom: 1px solid ;
+  }
+
+ .table-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .table-container tr:hover {
+    background-color: var(--th-td-hover-color);
+  }
