@@ -16,7 +16,7 @@
     --toggle-color: white;
     --hover-color: #85CDFD;
     --dashboard-color: #FFEEB3;
-    --table-color:#FFF8D6;
+    --table-color:#2F86A6;
     --th-td-hover-color:#5BC0F8;
     
     /*  Transition  */
@@ -38,7 +38,7 @@ body.dark{
     --panel-color: #1A120B;
     --dashboard-color: grey;
     --table-color:grey;
-    --th-td-hover-color:white;
+    --th-td-hover-color:grey;
 }
 ::-webkit-scrollbar {
     width: 8px;
@@ -291,8 +291,8 @@ nav.close ~ .dashboard .top{
     border-bottom: 1px solid ;
   }
 
- .table-container tr:nth-child(even) {
-    background-color: #f9f9f9;
+ .table-container tr{
+    background-color: #FFC93C;
   }
 
   .table-container tr:hover {
