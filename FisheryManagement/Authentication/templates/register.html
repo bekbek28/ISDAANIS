@@ -27,21 +27,34 @@
     <h2>Register</h2>
   </div>
   <div>
-      <span class="close"><a href="{% url 'usertype' %}">
+      <span class="close"><a href="{% url 'Authentication:usertype' %}">
         <ion-icon name="close-outline" class="close-outline"></ion-icon></a></span>
       </div>
       </div>
-      <form method="POST" action="{% url 'register' %}">
+      <form method="POST" action="{% url 'Authentication:register' %}">
         {% csrf_token %}
-      <div class="input-box">
-        <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-          <input type="fullname" required>
-          <label>Fullname</label>
+        <div class="input-box">
+        
+          <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+            <input type="firstname" name="fname" required>
+            <label>First Name</label>        
+        </div>
+     
+        <div class="input-box">    
+          <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+            <input type="lastname" name="lname" required>
+            <label>Last Name</label>    
       </div>
       <div class="input-box">
         <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
           <input type="text" id="username" name="username" required>
           <label>Username</label>
+      </div>
+
+      <div class="input-box">
+        <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+          <input type="email" name="email" required>
+          <label>Email</label>
       </div>
 
     <div class="input-box">
@@ -58,7 +71,7 @@
       
       <button type="submit" class="btn">Register</button>
       <div class="login-register">
-        <p>Already have an account?<a href="{% url 'login' %}" class="register-link">Login</a></p>
+        <p>Already have an account?<a href="{% url 'Authentication:login' %}" class="register-link">Login</a></p>
       </div>
     </form>
 

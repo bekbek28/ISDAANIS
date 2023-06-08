@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login 
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 
@@ -17,13 +18,33 @@ def usertype(request):
 def index(request):
    return HttpResponse('<h1>my first app</h1>')
 
+# Custom decorator to check if the user is a Port Manager
+def port_manager_required(view_func):
+    def check_port_manager(user):
+        return user.is_authenticated and user.groups.filter(name='Port Manager').exists()
+    return user_passes_test(check_port_manager)(view_func)
+
+@port_manager_required
+def port_manager_view(request):
+    # Only accessible by users with the 'Port Manager' role
+    return HttpResponse("Port Manager view")
+
+# Custom decorator to check if the user is a Market Checker
+def market_checker_required(view_func):
+    def check_market_checker(user):
+        return user.is_authenticated and user.groups.filter(name='Market Checker').exists()
+    return user_passes_test(check_market_checker)(view_func)
+
+@market_checker_required
+def market_checker_view(request):
+    # Only accessible by users with the 'Market Checker' role
+    return HttpResponse("Market Checker view")
+
 
 def islogin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username)
-        print(password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -35,8 +56,10 @@ def islogin(request):
 
 def isreghtml(request):
     if request.method == 'POST':
-        fullname = request.POST.get('fullname')
+        firstname = request.POST.get('fname')
+        lastname = request.POST.get('lname')
         uname = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
@@ -46,7 +69,7 @@ def isreghtml(request):
             try:
                 my_user = User.objects.create_user(uname, password)
                 my_user.save()
-                return redirect('login')
+                return redirect('Authentication:login')
             except IntegrityError:
                 return HttpResponse("Username or email already exists!")
 
@@ -70,8 +93,10 @@ def ispmloginhtml(request):
 
 def ispmreghtml(request):
     if request.method == 'POST':
-        fullname = request.POST.get('fullname')
+        firstname = request.POST.get('fname')
+        lastname = request.POST.get('lname')
         uname = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
@@ -81,7 +106,7 @@ def ispmreghtml(request):
             try:
                 my_user = User.objects.create_user(uname, password)
                 my_user.save()
-                return redirect('login')
+                return redirect('Authentication:pmlogin')
             except IntegrityError:
                 return HttpResponse("Username or email already exists!")
 

@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#fish-type">
                       <i class="uil uil-chart-bar"></i>
                       <span class="link-name">Fish Type</span>
                   </a>
@@ -102,10 +102,10 @@
         <section class="table-container" id="table-con">
             <table id="user-table">
                 <tr>
-                    <th>Full Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Username</th>
                     <th>E-mail</th>
-                    <th>Password</th>
                 </tr>
                 <tr>
                     <td>Data 1</td>
@@ -139,25 +139,37 @@
                 </tr>
             </table>
            </section>
-
-           <section class="ft-graph">
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            <h2>HAHAHAHAH</h2>
-            
+           <section class="fishtype" id="fish-type">
+            <h2>TOTAL QUANTITIES</h2>
+           <div>
+            <canvas id="myChart"></canvas>
+          </div>
+          
+          
+          <script>
+            const ctx = document.getElementById('myChart');
+          
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['bangus', 'baliwis', 'tilapia', 'bunak', 'galunggong', 'siga',],
+                datasets: [{
+                  label: 'Quantity',
+                  data: [12, 19, 3, 5, 20, 3],
+                  borderColor: '#36A2EB',
+                    backgroundColor: '#9BD0F5',
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
           </section>
         
                

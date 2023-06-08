@@ -27,7 +27,7 @@
     <h2>Register</h2>
   </div>
   <div>
-      <span class="close"><a href="{% url 'usertype' %}">
+      <span class="close"><a href="{% url 'Authentication:usertype' %}">
         <ion-icon name="close-outline" class="close-outline"></ion-icon></a></span>
       </div>
       </div>
@@ -36,10 +36,15 @@
      
       <div class="input-box">
         
-
         <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-          <input type="fullname" name="fullname" required>
-          <label>Fullname</label>
+          <input type="firstname" name="fname" required>
+          <label>First Name</label>        
+      </div>
+   
+      <div class="input-box">    
+        <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+          <input type="lastname" name="lname" required>
+          <label>Last Name</label>    
       </div>
       <div class="input-box">
         <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
@@ -67,7 +72,7 @@
       
       <button type="submit" class="btn">Register</button>
       <div class="login-register">
-        <p>Already have an account?<a href="{% url 'pmlogin' %}" class="register-link">Login</a></p>
+        <p>Already have an account?<a href="{% url 'Authentication:pmlogin' %}" class="register-link">Login</a></p>
       </div>
     </form>
 
