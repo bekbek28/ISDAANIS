@@ -14,10 +14,11 @@
     --black-light-color: #707070;
     --border-color: black;
     --toggle-color: white;
-    --hover-color: #85CDFD;
+    --hover-color: #3D56B2;
     --dashboard-color: #FFEEB3;
     --table-color:#2F86A6;
     --th-td-hover-color:#5BC0F8;
+    --table-row-color:#FFC93C;
     
     /*  Transition  */
     --tran-05: all 0.5s ease;
@@ -39,6 +40,7 @@ body.dark{
     --dashboard-color: grey;
     --table-color:grey;
     --th-td-hover-color:grey;
+    --table-row-color:#62B6B7;
 }
 ::-webkit-scrollbar {
     width: 8px;
@@ -280,6 +282,9 @@ nav.close ~ .dashboard .top{
   height: 400px;         
 }
 
+#user-table{
+    width: 100%;
+}
 .table-container th {
     background-color:#5BC0F8;
     text-align: left;
@@ -292,7 +297,7 @@ nav.close ~ .dashboard .top{
   }
 
  .table-container tr{
-    background-color: #FFC93C;
+    background-color:var(--table-row-color) ;
   }
 
   .table-container tr:hover {

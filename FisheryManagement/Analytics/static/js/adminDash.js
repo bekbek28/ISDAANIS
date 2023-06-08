@@ -34,3 +34,15 @@ sidebarToggle.addEventListener("click", () => {
 $('.analysis_btn').click(function() {
     $('nav ul .sub-menu').toggleClass("show");
 });
+
+const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };

@@ -21,14 +21,15 @@ def index(request):
 def islogin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        password = request.POST.get('pass')
+        password = request.POST.get('password')
+        print(username)
+        print(password)
         user = authenticate(request, username=username, password=password)
-        
         if user is not None:
             login(request, user)
-            return redirect('forms/')
+            return redirect('Analytics:forms')
         else:
-            return HttpResponse("Username or Password is incorrect!!!")
+            return HttpResponse("Username or Password is incorrecsdsdt!!!")
 
     return render(request, 'index.html')
 
@@ -55,12 +56,12 @@ def isreghtml(request):
 def ispmloginhtml(request):
    if request.method == 'POST':
         username = request.POST.get('username')
-        password = request.POST.get('pass')
+        password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         
         if user is not None:
             login(request, user)
-            return redirect('dashboard/')
+            return redirect('Analytics:dashboard')
         else:
             return HttpResponse("Username or Password is incorrect!!!")
 
