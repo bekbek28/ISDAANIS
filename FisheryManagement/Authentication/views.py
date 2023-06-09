@@ -108,3 +108,40 @@ def ispmreghtml(request):
                 return HttpResponse("Username or email already exists!")
 
     return render(request, 'PMregister.html')
+
+def isadminloginhtml(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('Analytics:admindashboard')
+        else:
+            return HttpResponse("Username or Password is incorrect!!!")
+
+    return render(request, 'admin.html')
+
+
+
+def isadminreghtml(request):
+    if request.method == 'POST':
+        firstname = request.POST.get('fname')
+        lastname = request.POST.get('lname')
+        uname = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if password != confirm_password:
+            return HttpResponse("Your password and confirm password are not the same!!")
+        else:
+            try:
+                my_user = User.objects.create_user(uname, password)
+                my_user.save()
+                return redirect('Authentication:adminlogin')
+            except IntegrityError:
+                return HttpResponse("Username or email already exists!")
+
+    return render(request, 'adminreg.html')
