@@ -303,3 +303,9 @@ nav.close ~ .dashboard .top{
   .table-container tr:hover {
     background-color: var(--th-td-hover-color);
   }
+
+.chart-container{
+    margin: 0;
+    padding: 0;
+    background-color:var(--panel-color);
+}

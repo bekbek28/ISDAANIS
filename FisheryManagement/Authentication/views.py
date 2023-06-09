@@ -10,13 +10,6 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 # Create your views here.
-@login_required(login_url='login/')
-
-def usertype(request):
-   return render(request, 'usertype.html')
-
-def index(request):
-   return HttpResponse('<h1>my first app</h1>')
 
 # Custom decorator to check if the user is a Port Manager
 def port_manager_required(view_func):
@@ -24,22 +17,28 @@ def port_manager_required(view_func):
         return user.is_authenticated and user.groups.filter(name='Port Manager').exists()
     return user_passes_test(check_port_manager)(view_func)
 
-@port_manager_required
-def port_manager_view(request):
-    # Only accessible by users with the 'Port Manager' role
-    return HttpResponse("Port Manager view")
-
 # Custom decorator to check if the user is a Market Checker
 def market_checker_required(view_func):
     def check_market_checker(user):
         return user.is_authenticated and user.groups.filter(name='Market Checker').exists()
     return user_passes_test(check_market_checker)(view_func)
 
+@login_required(login_url='login/')
+def usertype(request):
+    return render(request, 'usertype.html')
+
+@port_manager_required
+def port_manager_view(request):
+    # Only accessible by users with the 'Port Manager' role
+    return HttpResponse("Port Manager view")
+
 @market_checker_required
 def market_checker_view(request):
     # Only accessible by users with the 'Market Checker' role
     return HttpResponse("Market Checker view")
 
+def index(request):
+    return HttpResponse('<h1>my first app</h1>')
 
 def islogin(request):
     if request.method == 'POST':
@@ -50,7 +49,7 @@ def islogin(request):
             login(request, user)
             return redirect('Analytics:forms')
         else:
-            return HttpResponse("Username or Password is incorrecsdsdt!!!")
+            return HttpResponse("Username or Password is incorrect!!!")
 
     return render(request, 'index.html')
 
@@ -74,10 +73,9 @@ def isreghtml(request):
                 return HttpResponse("Username or email already exists!")
 
     return render(request, 'register.html')
-        
-        
+
 def ispmloginhtml(request):
-   if request.method == 'POST':
+    if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
@@ -88,8 +86,7 @@ def ispmloginhtml(request):
         else:
             return HttpResponse("Username or Password is incorrect!!!")
 
-   
-   return render(request, 'PManager.html')
+    return render(request, 'PManager.html')
 
 def ispmreghtml(request):
     if request.method == 'POST':

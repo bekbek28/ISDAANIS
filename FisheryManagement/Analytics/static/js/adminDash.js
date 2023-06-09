@@ -35,7 +35,7 @@ $('.analysis_btn').click(function() {
     $('nav ul .sub-menu').toggleClass("show");
 });
 
-const config = {
+const Fishtype = {
     type: 'bar',
     data: data,
     options: {
@@ -46,3 +46,4 @@ const config = {
       }
     },
   };
+
