@@ -309,3 +309,15 @@ nav.close ~ .dashboard .top{
     padding: 0;
     background-color:var(--panel-color);
 }
+
+.chart-container2{
+    margin: 0;
+    padding: 0;
+    background-color:var(--panel-color);
+}
+
+.chart-container3{
+    margin: 0;
+    padding: 0;
+    background-color:var(--panel-color);
+}
