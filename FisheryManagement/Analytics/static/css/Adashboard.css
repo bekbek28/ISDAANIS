@@ -268,18 +268,18 @@ nav.close ~ .dashboard .top{
 }
 
 .table-container {
-    margin: 0px;
+    margin-top: 50px;
     padding: 0px;
     background-color: var(--table-color);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100px;
     overflow-y: auto;
     border: solid 2px black;
     border-radius: 5px;
     width: 100%;
-  height: 400px;         
+  height: 350px;         
 }
 
 #user-table{
@@ -304,20 +304,25 @@ nav.close ~ .dashboard .top{
     background-color: var(--th-td-hover-color);
   }
 
-.chart-container{
-    margin: 0;
+.chart-container,
+.chart-container2,
+.chart-container3,
+.chart-container4,
+.chart-container5,
+.chart-container6{
+    margin-top: 30px;
     padding: 0;
     background-color:var(--panel-color);
+    border: solid 2px black;
+    border-radius: 5px;
 }
 
-.chart-container2{
-    margin: 0;
-    padding: 0;
-    background-color:var(--panel-color);
+.chart-container,
+.chart-container2,
+.chart-container3,
+.chart-container4,
+.chart-container5,
+.chart-container6 h2{
+    text-align: center;
 }
 
-.chart-container3{
-    margin: 0;
-    padding: 0;
-    background-color:var(--panel-color);
-}

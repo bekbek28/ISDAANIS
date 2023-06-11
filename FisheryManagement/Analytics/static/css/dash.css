@@ -232,4 +232,34 @@ nav.close ~ .dashboard .top{
     cursor: pointer;
 }
 
+.chart-container{
+    margin-top:60px;
+    padding: 0;
+    background-color:var(--panel-color);
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+.chart-container2,
+.chart-container3,
+.chart-container4,
+.chart-container5,
+.chart-container6{
+    margin-top:30px;
+    padding: 0;
+    background-color:var(--panel-color);
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+.chart-container,
+.chart-container2,
+.chart-container3,
+.chart-container4,
+.chart-container5,
+.chart-container6 h2{
+    text-align: center;
+}
+
+
 

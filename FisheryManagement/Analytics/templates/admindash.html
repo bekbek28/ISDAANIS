@@ -38,7 +38,7 @@
                   <i class="uil uil-ship"></i>
                     <span class="link-name">Vessel</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="#myThirdChart">
                   <i class="uil uil-globe"></i>
                     <span class="link-name">Place of catch</span>
                 </a>
@@ -49,17 +49,17 @@
               </a>
 
               <ul class="sub-menu">
-                <li><a href="#">
+                <li><a href="#myFourthChart">
                     <i class="uil uil-calendar-alt"></i>
                       <span class="link-name">Daily Catch</span>
                   </a>
               </li>
-                  <li><a href="#">
+                  <li><a href="#myFifthChart">
                     <i class="uil uil-calendar-alt"></i>
                       <span class="link-name">Monthly Catch</span>
                   </a>
               </li>
-              <li><a href="#">
+              <li><a href="#mySixthChart">
                 <i class="uil uil-calendar-alt"></i>
                   <span class="link-name">Yearly Catch</span>
               </a>
@@ -78,7 +78,7 @@
               </ul>    
       
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="{% url 'Authentication:loginadmin' %}">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
@@ -97,9 +97,10 @@
         </div>
     </nav>
 
-    <section class="dashboard">
+    <div class="dashboard">
 
-        <section class="table-container" id="table-con">
+        <div class="table-container" id="table-con">
+          <h1>USERS TABLE</h1>
             <table id="user-table">
                 <tr>
                     <th>First Name</th>
@@ -138,12 +139,41 @@
                     <td>Data 4</td>
                 </tr>
             </table>
-           </section>
-            <h2>TOTAL QUANTITIES</h2>
+          </div>
+            
            <div class="chart-container">
+            <h2>TOTAL QUANTITIES</h2>
             <canvas id="myChart"></canvas>
           </div>
           
+          
+          <div class="chart-container2">
+            <h2>VESSELS</h2>
+            <canvas id="mySecondChart"></canvas>
+          </div>
+          
+          <div class="chart-container3">
+            <h2>Place of catch</h2>
+            <canvas id="myThirdChart"></canvas>
+          </div>
+
+          <div class="chart-container4">
+            <h2>Daily Catch</h2>
+            <canvas id="myFourthChart"></canvas>
+          </div>
+
+          <div class="chart-container5">
+            <h2>Monthly catch</h2>
+            <canvas id="myFifthChart"></canvas>
+          </div>
+
+          <div class="chart-container6">
+            <h2>Yearly Catch</h2>
+            <canvas id="mySixthChart"></canvas>
+          </div>
+
+          
+
           
           <script>
             const ctx = document.getElementById('myChart');
@@ -169,34 +199,24 @@
               }
             });
           </script>
-          <h2>VESSELS</h2>
-          <div class="chart-container2">
-            <canvas id="mySecondChart"></canvas>
-          </div>
-
+       
           <script>
             var ctx2 = document.getElementById('mySecondChart').getContext('2d');
           
             var data2 = {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+              labels: ['St. Maverick', 'Pagbilao', 'Dalahican', 'Lipa', 'Romblon', 'Palawan'],
               datasets: [{
                 label: 'Dataset 1',
-                data: [10, 20, 30, 40, 50, 60],
+                data: [10, 70, 20, 40, 80, 70],
                 borderColor: '#FF0060',
                 backgroundColor: '#36A2EB',
                 borderWidth: 1
               },
-              {
-                label: 'Dataset 2',
-                data: [5, 10, 15, 20, 25, 30],
-                borderColor: '#FF8C00',
-                backgroundColor: '#FFD700',
-                borderWidth: 1
-              }]
+             ]
             };
           
             var mySecondChart = new Chart(ctx2, {
-              type: 'line',
+              type: 'pie',
               data: data2,
               options: {
                 scales: {
@@ -208,15 +228,13 @@
             });
           </script>
 
-          <div class="chart-container3">
-            <canvas id="myThirdChart"></canvas>
-          </div>
+         
 
           <script>
             var ctx3 = document.getElementById('myThirdChart').getContext('2d');
 
             var data2 = {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+              labels: ['Polilio', 'Pagbilao', 'Dalahican', 'Lipa', 'Romblon', 'Palawan'],
               datasets: [{
                 label: 'Dataset 1',
                 data: [10, 20, 30, 40, 50, 60],
@@ -240,16 +258,103 @@
               }
             });
           </script>
+
+        <script>
+          var ctx4 = document.getElementById('myFourthChart').getContext('2d');
+
+          var data2 = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+              label: 'Dataset 1',
+              data: [10, 20, 30, 40, 50, 60],
+              borderColor: '#FF0060',
+              backgroundColor: '#36A2EB',
+              borderWidth: 1
+            },
+          
+            ]
+          };
+
+          var myFourthChart = new Chart(ctx4, {
+            type: 'line',
+            data: data2,
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        </script>
+
+        <script>
+          var ctx5 = document.getElementById('myFifthChart').getContext('2d');
+
+          var data2 = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+              label: 'Dataset 1',
+              data: [10, 20, 30, 40, 50, 60],
+              borderColor: '#FF0060',
+              backgroundColor: '#36A2EB',
+              borderWidth: 1
+            },
+          
+            ]
+          };
+
+          var myFifthChart = new Chart(ctx5, {
+            type: 'line',
+            data: data2,
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        </script>
+
+        <script>
+          var ctx6 = document.getElementById('mySixthChart').getContext('2d');
+
+          var data2 = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
+            datasets: [{
+              label: 'Dataset 1',
+              data: [10, 20, 10, 70, 50, 60],
+              borderColor: '#FF0060',
+              backgroundColor: '#36A2EB',
+              borderWidth: 1
+            },
+          
+            ]
+          };
+
+          var mySixthChart = new Chart(ctx6, {
+            type: 'line',
+            data: data2,
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        </script>
                     
 
 
             
                
         <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>          
-        </section>
-   
-
+            <i class="uil uil-bars sidebar-toggle"></i>   
+        </div>       
+      
+    </div>
           
   
 

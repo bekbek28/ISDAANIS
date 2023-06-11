@@ -30,3 +30,15 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+
+const Fishtype = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
