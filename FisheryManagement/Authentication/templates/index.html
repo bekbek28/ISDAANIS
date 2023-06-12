@@ -34,15 +34,8 @@
         </span>
       </div>
     </div>
-    <form action="{% url 'Authentication:islogin' %}" method="POST">
+    <form action="{% url 'Authentication:login' %}" method="POST">
       {% csrf_token %}
-      {% if request.user.is_authenticated %}
-        <p>You are already logged in as {{ request.user.username }}.</p>
-        <a href="{% url 'Analytics:forms' %}">Go to Dashboard</a>
-      {% else %}
-        {% if error_message %}
-          <p class="error">{{ error_message }}</p>
-        {% endif %}
         <div class="input-box">
           <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
           <input type="text" id="username" name="username" required>
@@ -62,7 +55,6 @@
         <div class="login-register">
           <p>Don't have an account?<a href="{% url 'Authentication:register' %}" class="login-link">Register</a></p>
         </div>
-      {% endif %}
     </form>
   </div>
 </div>
