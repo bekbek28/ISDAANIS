@@ -9,7 +9,7 @@
   <link rel="stylesheet"href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>ISdaanIS</title>
 </head>
 <body>
@@ -25,32 +25,32 @@
     <div class="menu-items">
         <ul class="nav-links">
             <li>
-                <a href="#myChart">
+                <a href="#Fishtype">
                   <i class="uil uil-chart-bar"></i>
                   <span class="link-name">Fish Type</span>
               </a>
             </li>
-            <li><a href="#mySecondChart">
+            <li><a href="#Vessel">
               <i class="uil uil-ship"></i>
                 <span class="link-name">Vessel</span>
             </a></li>
-            <li><a href="#myThirdChart">
+            <li><a href="#PlaceOfCatch">
               <i class="uil uil-globe"></i>
                 <span class="link-name">Place of catch</span>
             </a>
         </li>
-        <li><a href="#myFourthChart">
+        <li><a href="#DailyCatch">
           <i class="uil uil-calendar-alt"></i>
             <span class="link-name">Daily Catch</span>
         </a>
       </li>
-          <li><a href="#myFifthChart">
+          <li><a href="#MonthlyCatch">
             <i class="uil uil-calendar-alt"></i>
               <span class="link-name">Monthly Catch</span>
           </a>
       </li>
     </li>
-          <li><a href="#mySixthChart">
+          <li><a href="#YearlyCatch">
             <i class="uil uil-calendar-alt"></i>
               <span class="link-name">Yearly Catch</span>
             </a>
@@ -79,214 +79,40 @@
 </nav>
 
 <section class="dashboard">
-          
   
-          <div class="chart-container">
-              <h2>TOTAL QUANTITIES</h2>
-              <canvas id="myChart"></canvas>
-          </div>
-          
-          
-          <div class="chart-container2">
-            <h2>VESSELS</h2>
-            <canvas id="mySecondChart"></canvas>
-          </div>
-          
-          <div class="chart-container3">
-            <h2>Place of catch</h2>
-            <canvas id="myThirdChart"></canvas>
-          </div>
+      <div class="chart-container" width="100%" height="80">
+        <h2>TOTAL QUANTITIES</h2>
+        <canvas id="Fishtype"></canvas>
+      </div>
+      
+      <div class="chart-container2" width="100%" height="80">
+        <h2>VESSEL</h2>
+        <canvas id="Vessel"></canvas>
+      </div>
+      
 
-          <div class="chart-container4">
-            <h2>Daily Catch</h2>
-            <canvas id="myFourthChart"></canvas>
-          </div>
+      <div class="chart-container3" width="100%" height="80">
+        <h2>PLACES</h2>
+        <canvas id="PlaceOfCatch"></canvas>
+      </div>
+      
+      <div class="chart-container4" width="100%" height="80">
+        <canvas id="DailyCatch"></canvas>
+      </div>
+      
+      <div class="chart-container5" width="100%" height="80">
+        <canvas id="MonthlyCatch"></canvas>
+      </div>
+      
+      <div class="chart-container6" width="100%" height="80">
+        <canvas id="YearlyCatch"></canvas>
+      </div>
+      
 
-          <div class="chart-container5">
-            <h2>Monthly catch</h2>
-            <canvas id="myFifthChart"></canvas>
-          </div>
-
-          <div class="chart-container6">
-            <h2>Yearly Catch</h2>
-            <canvas id="mySixthChart"></canvas>
-          </div>
-
-          
-
-          
-          <script>
-            const ctx = document.getElementById('myChart');
-          
-            new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: ['bangus', 'baliwis', 'tilapia', 'bunak', 'galunggong', 'siga',],
-                datasets: [{
-                  label: 'Quantity',
-                  data: [12, 19, 3, 5, 20, 3],
-                  borderColor: '#36A2EB',
-                    backgroundColor: '#FF0060',
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
-                  }
-                }
-              }
-            });
-          </script>
-       
-          <script>
-            var ctx7 = document.getElementById('mySecondChart').getContext('2d');
-          
-            var data2 = {
-              labels: ['St. Maverick', 'Pagbilao', 'Dalahican', 'Lipa', 'Romblon', 'Palawan'],
-              datasets: [{
-                label: 'Dataset 1',
-                data: [10, 70, 20, 40, 80, 70],
-                borderColor: '#36A2EB',
-                 backgroundColor: '#FF0060',
-                                  
-                 
-                borderWidth: 1
-              },
-             ]
-            };
-          
-            var my7thChart = new Chart(ctx7, {
-              type: 'pie',
-              data: data2,
-              options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
-                  }
-                }
-              }
-            });
-          </script>
-
-         
-
-          <script>
-            var ctx3 = document.getElementById('myThirdChart').getContext('2d');
-
-            var data2 = {
-              labels: ['Polilio', 'Pagbilao', 'Dalahican', 'Lipa', 'Romblon', 'Palawan'],
-              datasets: [{
-                label: 'Dataset 1',
-                data: [10, 20, 30, 40, 50, 60],
-                borderColor: '#36A2EB',
-                 backgroundColor: '#FF0060',
-                borderWidth: 1
-              },
-             
-              ]
-            };
-
-            var myThirdChart = new Chart(ctx3, {
-              type: 'pie',
-              data: data2,
-              options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
-                  }
-                }
-              }
-            });
-          </script>
-
-        <script>
-          var ctx4 = document.getElementById('myFourthChart').getContext('2d');
-
-          var data2 = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-            datasets: [{
-              label: 'Dataset 1',
-              data: [10, 20, 30, 40, 50, 60],
-              borderColor: '#FF0060',
-              backgroundColor: '#36A2EB',
-              borderWidth: 1
-            },
-          
-            ]
-          };
-
-          var myFourthChart = new Chart(ctx4, {
-            type: 'line',
-            data: data2,
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-        </script>
-
-        <script>
-          var ctx5 = document.getElementById('myFifthChart').getContext('2d');
-
-          var data2 = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-            datasets: [{
-              label: 'Dataset 1',
-              data: [10, 20, 30, 40, 50, 60],
-              borderColor: '#FF0060',
-              backgroundColor: '#36A2EB',
-              borderWidth: 1
-            },
-          
-            ]
-          };
-
-          var myFifthChart = new Chart(ctx5, {
-            type: 'line',
-            data: data2,
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-        </script>
-
-        <script>
-          var ctx6 = document.getElementById('mySixthChart').getContext('2d');
-
-          var data2 = {
-            labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
-            datasets: [{
-              label: 'Dataset 1',
-              data: [10, 20, 10, 70, 50, 60],
-              borderColor: '#FF0060',
-              backgroundColor: '#36A2EB',
-              borderWidth: 1
-            },
-          
-            ]
-          };
-
-          var mySixthChart = new Chart(ctx6, {
-            type: 'line',
-            data: data2,
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-        </script>
+      
+      
+      
+      
     <div class="top">
         <i class="uil uil-bars sidebar-toggle"></i>
     </section>

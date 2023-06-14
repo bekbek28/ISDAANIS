@@ -1,3 +1,4 @@
+/* javascript codes for dark mode */
 const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");
@@ -12,7 +13,7 @@ let getStatus = localStorage.getItem("status");
 if(getStatus && getStatus ==="close"){
     sidebar.classList.toggle("close");
 }
-
+/* javascript codes for dark mode button */
 modeToggle.addEventListener("click", () =>{
     body.classList.toggle("dark");
     if(body.classList.contains("dark")){
@@ -21,7 +22,7 @@ modeToggle.addEventListener("click", () =>{
         localStorage.setItem("mode", "light");
     }
 });
-
+/* javascript codes for side bar */
 sidebarToggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
     if(sidebar.classList.contains("close")){
@@ -35,16 +36,6 @@ $('.analysis_btn').click(function() {
     $('nav ul .sub-menu').toggleClass("show");
 });
 
-const Fishtype = {
-    type: 'bar',
-    data: data,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    },
-  };
+
 
 

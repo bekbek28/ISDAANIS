@@ -31,14 +31,137 @@ sidebarToggle.addEventListener("click", () => {
     }
 })
 
-const Fishtype = {
+
+const ctx = document.getElementById('Fishtype').getContext('2d');
+      
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [{
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      borderColor: '#F6F6F6',
+      backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    legend: {
+      display: true, // Set to true to display the legend
+       },
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+
+const ctx2 = document.getElementById('Vessel').getContext('2d');
+new Chart(ctx2, {
     type: 'bar',
-    data: data,
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor: '#F6F6F6',
+        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+        borderWidth: 3
+      }]
+    },
     options: {
       scales: {
         y: {
           beginAtZero: true
         }
       }
+    }
+  });
+
+  const ctx3 = document.getElementById('PlaceOfCatch').getContext('2d');
+new Chart(ctx3, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor: '#F6F6F6',
+        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+        borderWidth: 3
+      }]
     },
-  };
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  const ctx4 = document.getElementById('DailyCatch').getContext('2d');
+new Chart(ctx4, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor: '#F6F6F6',
+        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+        borderWidth: 3
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  const ctx5 = document.getElementById('MonthlyCatch').getContext('2d');
+new Chart(ctx5, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor: '#F6F6F6',
+        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+        borderWidth: 3
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx6 = document.getElementById('YearlyCatch').getContext('2d');
+new Chart(ctx6, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor: '#F6F6F6',
+        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+        borderWidth: 3
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
