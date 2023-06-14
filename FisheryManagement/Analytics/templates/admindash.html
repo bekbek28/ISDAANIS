@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/Adashboard.css' %}">
     <link rel="stylesheet"href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <title>ISdaanIs: Admin Dashboard</title> 
 </head>
 <body>
@@ -29,16 +29,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#myChart">
+                    <a href="#FishType">
                       <i class="uil uil-chart-bar"></i>
                       <span class="link-name">Fish Type</span>
                   </a>
                 </li>
-                <li><a href="#mySecondChart">
+                <li><a href="#Vessel">
                   <i class="uil uil-ship"></i>
                     <span class="link-name">Vessel</span>
                 </a></li>
-                <li><a href="#myThirdChart">
+                <li><a href="#PlaceOfCatch">
                   <i class="uil uil-globe"></i>
                     <span class="link-name">Place of catch</span>
                 </a>
@@ -49,17 +49,17 @@
               </a>
 
               <ul class="sub-menu">
-                <li><a href="#myFourthChart">
+                <li><a href="#DailyCatch">
                     <i class="uil uil-calendar-alt"></i>
                       <span class="link-name">Daily Catch</span>
                   </a>
               </li>
-                  <li><a href="#myFifthChart">
+                  <li><a href="#MonthlyCatch">
                     <i class="uil uil-calendar-alt"></i>
                       <span class="link-name">Monthly Catch</span>
                   </a>
               </li>
-              <li><a href="#mySixthChart">
+              <li><a href="#YearlyCatch">
                 <i class="uil uil-calendar-alt"></i>
                   <span class="link-name">Yearly Catch</span>
               </a>
@@ -141,14 +141,36 @@
             </table>
           </div>
             
-           <div class="chart-container">
+          <div class="chart-container" width="100%" height="80">
             <h2>TOTAL QUANTITIES</h2>
-            <canvas id="myChart"></canvas>
+            <canvas id="FishType"></canvas>
           </div>
-          
-          
-        
-                    
+
+          <div class="chart-container2" width="100%" height="80">
+            <h2>VESSEL</h2>
+            <canvas id="Vessel"></canvas>
+          </div>
+
+          <div class="chart-container3" width="100%" height="80">
+            <h2>PLACES</h2>
+            <canvas id="PlaceOfCatch"></canvas>
+          </div>
+
+          <div class="chart-container4" width="100%" height="80">
+            <h2>DAILY</h2>
+            <canvas id="DailyCatch"></canvas>
+          </div>
+
+          <div class="chart-container5" width="100%" height="80">
+            <h2>MONTHLY</h2>
+            <canvas id="MonthlyCatch"></canvas>
+          </div>
+
+          <div class="chart-container6" width="100%" height="80">
+            <h2>YEARLY</h2>
+            <canvas id="YearlyCatch"></canvas>
+          </div>
+
 
 
             
@@ -157,6 +179,152 @@
             <i class="uil uil-bars sidebar-toggle"></i>   
         </div>       
       
+        <script>
+            const ctx = document.getElementById('FishType');
+          
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderColor: '#F6F6F6',
+                backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+
+            const ctx2 = document.getElementById('Vessel');
+          
+            new Chart(ctx2, {
+              type: 'bar',
+              data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderColor: '#F6F6F6',
+                backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+
+            const ctx3 = document.getElementById('PlaceOfCatch');
+          
+            new Chart(ctx3, {
+              type: 'bar',
+              data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderColor: '#F6F6F6',
+                backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+
+            const ctx4 = document.getElementById('DailyCatch');
+          
+            new Chart(ctx4, {
+              type: 'bar',
+              data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderColor: '#F6F6F6',
+                backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+
+            const ctx5 = document.getElementById('MonthlyCatch');
+          
+            new Chart(ctx5, {
+              type: 'bar',
+              data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderColor: '#F6F6F6',
+                backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+
+            const ctx6 = document.getElementById('YearlyCatch');
+          
+            new Chart(ctx6, {
+              type: 'bar',
+              data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderColor: '#F6F6F6',
+                backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          
+          
+          
+          
+          </script>
+
+
+
     </div>
           
   

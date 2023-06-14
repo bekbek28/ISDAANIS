@@ -312,7 +312,7 @@ nav.close ~ .dashboard .top{
 .chart-container6{
     margin-top: 30px;
     padding: 0;
-    background-color:var(--panel-color);
+    background-color:var(--table-color);
     border: solid 2px black;
     border-radius: 5px;
 }
