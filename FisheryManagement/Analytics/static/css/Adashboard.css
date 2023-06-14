@@ -32,13 +32,13 @@ body{
 }
 body.dark{
     --primary-color: #3A3B3C;
-    --text-color:#85CDFD ;
+    --text-color:black ;
     --border-color: #4D4C4C;
     --toggle-color: #FFF;
     --title-icon-color: #CCC;
-    --panel-color: #1A120B;
-    --dashboard-color: grey;
-    --table-color:grey;
+    --panel-color: #005792;
+    --dashboard-color: black;
+    --table-color:#005792;
     --th-td-hover-color:grey;
     --table-row-color:#62B6B7;
 }
