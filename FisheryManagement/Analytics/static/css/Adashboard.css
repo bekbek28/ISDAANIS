@@ -140,6 +140,7 @@ body.dark li a:hover:before{
   .nav-links li:hover .sub-menu {
     display: block;
   }
+
 .nav-links li a span i{
     position: absolute;
     display: inline-block;
