@@ -30,6 +30,14 @@
         <ion-icon name="close-outline" class="close-outline"></ion-icon></a></span>
       </div>
       </div>
+      {% if messages %}
+      {% for message in messages %}
+          {% if message.tags == 'error' %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{message}}
+          {% endif %}
+      {% endfor %}
+      {% endif %}
       <form method="POST" action="{% url 'Authentication:registeradmin' %}">
         {% csrf_token %}
         <div class="input-box">

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
@@ -18,6 +18,7 @@ ISadmin_group, _ = Group.objects.get_or_create(name='ISAdmin')
 def usertype(request):
     return render(request, 'usertype.html')
 
+
 def islogin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -26,12 +27,12 @@ def islogin(request):
 
         if user is not None:
             if user.groups.filter(name='Isadmin').exists() or user.groups.filter(name='PManager').exists():
-                return HttpResponse("Port Managers and Admin cannot log in as Market Checkers.")
+                messages.error(request, 'You are not a Market Checker!')
             else:
                 login(request, user)
                 return redirect('Analytics:forms')
         else:
-            return HttpResponse("Username or password is incorrect!")
+            messages.error(request, 'Username and Password are Invalid!')
 
     return render(request, 'index.html')
 
@@ -46,7 +47,7 @@ def isreghtml(request):
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-            return HttpResponse("Your password and confirm password do not match!")
+            return redirect('Authentication:error')
         else:
             try:
                 my_user = User.objects.create_user(username=uname, password=password)
@@ -57,13 +58,13 @@ def isreghtml(request):
 
                 return redirect('Authentication:login')  # Update this with the correct URL
             except IntegrityError:
-                return HttpResponse("Username or email already exists!")
+                 messages.error(request, 'Username or email already exist!')
 
     return render(request, 'register.html')
 
 
 
-def ispmloginhtml(request):
+def ispmloginhtml(request): 
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -71,12 +72,12 @@ def ispmloginhtml(request):
 
         if user is not None:
             if user.groups.filter(name='Market Checker').exists() or user.groups.filter(name='ISAdmin').exists():
-                return HttpResponse("Market Checkers and Admins cannot log in as Port Manager.")
+                 messages.error(request, 'You are not a Port Manager!')
             else:
                 login(request, user)
                 return redirect('Analytics:dashboard')
         else:
-            return HttpResponse("Username or password is incorrect!")
+             messages.error(request, 'Username and Password are Invalid!')
 
     return render(request, 'PManager.html')
 
@@ -91,7 +92,7 @@ def ispmreghtml(request):
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-            return HttpResponse("Your password and confirm password do not match!")
+             return redirect('Authentication:error')
         else:
             try:
                 my_user = User.objects.create_user(username=uname, password=password)
@@ -102,7 +103,7 @@ def ispmreghtml(request):
 
                 return redirect('Authentication:pmlogin')
             except IntegrityError:
-                return HttpResponse("Username or email already exists!")
+                messages.error(request, 'Username or email already exist!')
 
     return render(request, 'PMregister.html')
 
@@ -115,12 +116,12 @@ def isadminloginhtml(request):
 
         if user is not None:
             if user.groups.filter(name='Market Checker').exists() or user.groups.filter(name='PManager').exists():
-                return HttpResponse("Port Managers and Market Checkers cannot log in as Admins.")
+                 messages.error(request, 'You are not a Admin!')
             else:
                 login(request, user)
                 return redirect('Analytics:admindashboard')
         else:
-            return HttpResponse("Username or password is incorrect!")
+             messages.error(request, 'Username and Password are Invalid!')
 
     return render(request, 'admin.html')
 
@@ -137,7 +138,7 @@ def isadminreghtml(request):
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-            return HttpResponse("Your password and confirm password do not match!")
+             return redirect('Authentication:error')
         else:
             try:
                 my_user = User.objects.create_user(username=uname, password=password)
@@ -148,7 +149,7 @@ def isadminreghtml(request):
 
                 return redirect('Authentication:loginadmin')  # Update this with the correct URL
             except IntegrityError:
-                return HttpResponse("Username or email already exists!")
+                messages.error(request, 'Username or email already exist!')
 
     return render(request, 'adminreg.html')
 

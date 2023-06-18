@@ -45,7 +45,7 @@ new Chart(ctx, {
     datasets: [{
       label: '# of Votes',
       data: [12, 19, 3, 5, 2, 3],
-      borderColor: '#F6F6F6',
+      borderColor: '#F6FF6',
     backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0','#060047'],
       borderWidth: 1
     }]

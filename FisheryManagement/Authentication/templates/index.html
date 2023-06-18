@@ -21,6 +21,7 @@
 </header>
 
 <div class="wrapper">
+ 
   <div class="form-box login">
     <div class="login-header">
       <div>
@@ -34,8 +35,18 @@
         </span>
       </div>
     </div>
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{message}}
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+
     <form action="{% url 'Authentication:login' %}" method="POST">
       {% csrf_token %}
+      
         <div class="input-box">
           <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
           <input type="text" id="username" name="username" required>
