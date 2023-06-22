@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -15,10 +16,12 @@ pmanager_group, _ = Group.objects.get_or_create(name='PManager')
 # Create the 'ISAdmin' group if it doesn't exist
 ISadmin_group, _ = Group.objects.get_or_create(name='ISAdmin')
 
+@login_required
 def usertype(request):
     return render(request, 'usertype.html')
 
 
+@login_required
 def islogin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -47,7 +50,7 @@ def isreghtml(request):
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-            return redirect('Authentication:error')
+            messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
                 my_user = User.objects.create_user(username=uname, password=password)
@@ -63,7 +66,7 @@ def isreghtml(request):
     return render(request, 'register.html')
 
 
-
+@login_required
 def ispmloginhtml(request): 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -92,7 +95,7 @@ def ispmreghtml(request):
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-             return redirect('Authentication:error')
+            messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
                 my_user = User.objects.create_user(username=uname, password=password)
@@ -107,7 +110,7 @@ def ispmreghtml(request):
 
     return render(request, 'PMregister.html')
 
-
+@login_required
 def isadminloginhtml(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -138,7 +141,7 @@ def isadminreghtml(request):
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-             return redirect('Authentication:error')
+             messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
                 my_user = User.objects.create_user(username=uname, password=password)
