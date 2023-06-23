@@ -29,8 +29,6 @@ body {
 .card{
   background-color: rgba(238, 233, 233, 0.836);
   opacity: 95%;
-  height: 450px;
-  width: 70%;
   border: 2px solid rgba(255, 255, 255,.10);
   border-radius: 8%;
   backdrop-filter: blur(20px);
