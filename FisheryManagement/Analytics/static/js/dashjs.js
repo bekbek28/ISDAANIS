@@ -31,6 +31,11 @@ sidebarToggle.addEventListener("click", () => {
     }
 })
 
+function showLogoutMessage() {
+  const logoutMessage = document.getElementById('logout-message');
+  logoutMessage.textContent = 'You have been logged out.';
+}
+
 
 const ctx = document.getElementById('Fishtype').getContext('2d');
       
@@ -165,3 +170,4 @@ new Chart(ctx6, {
       }
     }
   });
+

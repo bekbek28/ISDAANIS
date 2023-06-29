@@ -13,6 +13,7 @@
   <title>ISdaanIS</title>
 </head>
 <body>
+
   <nav>
     <div class="logo-name">
         <div class="logo-image">
@@ -57,12 +58,12 @@
           </li>
               
           </ul>    
-  
         <ul class="logout-mode">
-            <li><a href="{% url 'Authentication:pmlogin' %}">
-                <i class="uil uil-signout"></i>
-                <span class="link-name">Logout</span>
-            </a></li>
+            <li><a href="{% url 'Authentication:usertype' %}?message=You are logged out">
+              <i class="uil uil-signout"></i>
+              <span class="link-name">Logout</span>
+            </a>            
+            </li>
 
             <li class="mode">
                 <a href="#">

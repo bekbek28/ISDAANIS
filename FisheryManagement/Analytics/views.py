@@ -1,16 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def  index(request):
-    return HttpResponse('<h1>my first app</h1>')
 
+@login_required
 def  isforms(request):
     return render(request, 'MCforms.html' )
 
+@login_required
 def  isdashboard(request):
     return render(request, 'dashboard.html' )
 
+@login_required
 def  isadmindashboard(request):
     return render(request, 'admindash.html' )

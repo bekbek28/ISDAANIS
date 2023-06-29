@@ -1,6 +1,5 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
       <link rel="stylesheet" href="{% static 'css/Usertype.css' %}">
@@ -8,13 +7,16 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
+
+      <div id="logout-message"></div>
+
       <div class="cards">
      <header>
       <img src="{% static 'img/pfda.png' %}" width="90px" alt="">
       <h2>Welcome to ISdaanIS</h2>
       <h2>ARE YOU THE......</h2>
      </header>
-         <div class="services">
+         <div class="user">
             <div class="content content-1">
               <i class="uil uil-user-square"></i>
                <h2>
@@ -37,5 +39,6 @@
          </footer>
       </div>
       
+      <script src="{% static 'js/usertype.js' %}"></script>
    </body>
 </html>

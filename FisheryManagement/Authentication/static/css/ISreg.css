@@ -9,10 +9,7 @@ body {
   background-image: url(../img/122155615_175479397542068_2300959587956042065_n.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center; /* Optional: Center the background image */
-  margin: 0; /* Optional: Remove default body margin */
-  height: 100vh;
-  overflow: hidden; /* Optional: Hide scrollbars */
+  height: 100%;
 
 }
 
@@ -28,6 +25,7 @@ body {
 
 #column{
  margin-top: 10px;
+ margin-right: 70px;
 }
 
 .card{
