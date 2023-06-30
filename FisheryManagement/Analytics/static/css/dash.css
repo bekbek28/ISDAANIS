@@ -16,6 +16,7 @@
     --toggle-color: white;
     --hover-color: #85CDFD;
     --dashboard-color: #FFEEB3;
+    --chart-color:rgb(240, 240, 240);
     
     /*  Transition  */
     --tran-05: all 0.5s ease;
@@ -29,12 +30,13 @@ body{
 }
 body.dark{
     --primary-color: #3A3B3C;
-    --text-color:black ;
+    --text-color:#f5f5f5 ;
     --border-color: #4D4C4C;
     --toggle-color: #FFF;
     --title-icon-color: #CCC;
-    --panel-color:#005792;
+    --panel-color:#252525;
     --dashboard-color: black;
+    --chart-color:#252525;
 }
 ::-webkit-scrollbar {
     width: 8px;
@@ -234,8 +236,8 @@ nav.close ~ .dashboard .top{
 
 .chart-container{
     margin-top:60px;
-    padding: 0;
-    background-color:var(--panel-color);
+    padding: 15px;
+    background-color:var(--chart-color);
     border: solid 2px black;
     border-radius: 5px;
 }
@@ -247,7 +249,7 @@ nav.close ~ .dashboard .top{
 .chart-container6{
     margin-top:30px;
     padding: 0;
-    background-color:var(--panel-color);
+    background-color:var(--chart-color);
     border: solid 2px black;
     border-radius: 5px;
 }

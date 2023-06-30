@@ -58,12 +58,15 @@
           </li>
               
           </ul>    
-        <ul class="logout-mode">
-            <li><a href="{% url 'Authentication:usertype' %}?message=You are logged out">
-              <i class="uil uil-signout"></i>
-              <span class="link-name">Logout</span>
-            </a>            
+          <ul class="logout-mode">
+            <li>
+                <a href="{% url 'Analytics:logout' %}">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a>  
             </li>
+        </ul>
+        
 
             <li class="mode">
                 <a href="#">

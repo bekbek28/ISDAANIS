@@ -78,11 +78,15 @@
                
               </ul>    
       
-            <ul class="logout-mode">
-                <li><a href="{% url 'Authentication:loginadmin' %}">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Logout</span>
-                </a></li>
+              <ul class="logout-mode">
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a>  
+                </li>
+            </ul>
+            
 
                 <li class="mode">
                     <a href="#">

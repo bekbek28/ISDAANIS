@@ -46,8 +46,18 @@ new Chart(ctx, {
     datasets: [{
       label: '# of Votes',
       data: [12, 19, 3, 5, 2, 3],
-      borderColor: '#F6F6F6',
-      backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+      borderColor: ['rgba(0, 255, 171, 0.8)', 
+                    'rgba(0, 255, 171, 0.8)',
+                    'rgba(0, 255, 171, 0.8)',
+                    'rgba(0, 255, 171, 0.8)',
+                    'rgba(0, 255, 171, 0.8)',
+                    'rgba(0, 255, 171, 0.8)'],
+      backgroundColor: ['rgba(0, 255, 171, 0.3)', 
+                        'rgba(0, 255, 171, 0.3)',
+                        'rgba(0, 255, 171, 0.3)',
+                        'rgba(0, 255, 171, 0.3)',
+                        'rgba(0, 255, 171, 0.3)',
+                        'rgba(0, 255, 171, 0.3)'],
       borderWidth: 3
     }]
   },
@@ -70,10 +80,20 @@ new Chart(ctx2, {
       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [{
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor: '#F6F6F6',
-        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
-        borderWidth: 3
+        data: [13, 19, 3, 5, 2, 3],
+        borderColor: ['rgba(0, 255, 171, 0.8)', 
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)'],
+        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)'],
+        borderWidth: 1.5
       }]
     },
     options: {
@@ -93,9 +113,20 @@ new Chart(ctx3, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor: '#F6F6F6',
-        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
-        borderWidth: 3
+        borderColor: ['rgba(0, 255, 171, 0.8)', 
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)'],
+        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)'],
+                          
+        borderWidth: 1.5
       }]
     },
     options: {
@@ -114,9 +145,19 @@ new Chart(ctx4, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor: '#F6F6F6',
-        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
-        borderWidth: 3
+        borderColor: ['rgba(0, 255, 171, 0.8)', 
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)'],
+        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)'],
+        borderWidth: 1.5
       }]
     },
     options: {
@@ -135,8 +176,18 @@ new Chart(ctx5, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor: '#F6F6F6',
-        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
+        borderColor:['rgba(0, 255, 171, 0.8)', 
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)'],
+        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)'],
         borderWidth: 3
       }]
     },
@@ -157,9 +208,19 @@ new Chart(ctx6, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor: '#F6F6F6',
-        backgroundColor: ['#00FFAB', '#94DAFF','#F5FDB0'],
-        borderWidth: 3
+        borderColor: ['rgba(0, 255, 171, 0.8)', 
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)',
+                      'rgba(0, 255, 171, 0.8)'],
+        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)',
+                          'rgba(0, 255, 171, 0.3)'],
+        borderWidth: 1.5
       }]
     },
     options: {

@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
-from django.contrib.auth.decorators import login_required
 
 
 
@@ -16,12 +15,11 @@ pmanager_group, _ = Group.objects.get_or_create(name='PManager')
 # Create the 'ISAdmin' group if it doesn't exist
 ISadmin_group, _ = Group.objects.get_or_create(name='ISAdmin')
 
-@login_required
+
 def usertype(request):
     return render(request, 'usertype.html')
 
 
-@login_required
 def islogin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -66,7 +64,6 @@ def isreghtml(request):
     return render(request, 'register.html')
 
 
-@login_required
 def ispmloginhtml(request): 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -110,7 +107,6 @@ def ispmreghtml(request):
 
     return render(request, 'PMregister.html')
 
-@login_required
 def isadminloginhtml(request):
     if request.method == 'POST':
         username = request.POST.get('username')
