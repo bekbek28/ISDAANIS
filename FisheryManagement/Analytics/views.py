@@ -6,15 +6,15 @@ from django.shortcuts import redirect
 # Create your views here.
 
 
-@login_required
+@login_required(login_url='Authentication:usertype')
 def  isforms(request):
     return render(request, 'MCforms.html' )
 
-@login_required
+@login_required(login_url='Authentication:usertype')
 def  isdashboard(request):
     return render(request, 'dashboard.html' )
 
-""" @login_required """
+@login_required(login_url='Authentication:loginadmin')
 def  isadmindashboard(request):
     return render(request, 'admindash.html' )
 

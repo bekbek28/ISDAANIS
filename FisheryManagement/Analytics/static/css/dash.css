@@ -35,7 +35,7 @@ body.dark{
     --toggle-color: #FFF;
     --title-icon-color: #CCC;
     --panel-color:#252525;
-    --dashboard-color: black;
+    --dashboard-color: rgb(43, 42, 42);
     --chart-color:#252525;
 }
 ::-webkit-scrollbar {
@@ -158,6 +158,7 @@ body.dark .nav-links li a:hover .link-name{
 .menu-items .logout-mode{
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
+    margin-top: 50px;
 }
 .menu-items .mode{
     display: flex;

@@ -30,6 +30,15 @@ align-items: center;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+ @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Apply the animation to the heading elements */
+       .cards{
+            animation: fade-in 2s ease-in-out forwards;
+        }
 .user{
   display: flex;
   align-items: center;
