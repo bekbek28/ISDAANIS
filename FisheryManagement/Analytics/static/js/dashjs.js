@@ -37,8 +37,23 @@ function showLogoutMessage() {
 }
 
 
+const getRandomColors = (count) => {
+  const colors = [];
+  const letters = '0123456789ABCDEF';
+  for (let i = 0; i < count; i++) {
+    let color = 'rgba(';
+    for (let j = 0; j < 3; j++) {
+      color += Math.floor(Math.random() * 256) + ', ';
+    }
+    color += '0.5)';
+    colors.push(color);
+  }
+  return colors;
+};
+
+
 const ctx = document.getElementById('Fishtype').getContext('2d');
-      
+   
 new Chart(ctx, {
   type: 'bar',
   data: {
@@ -52,19 +67,14 @@ new Chart(ctx, {
                     'rgba(0, 255, 171, 0.8)',
                     'rgba(0, 255, 171, 0.8)',
                     'rgba(0, 255, 171, 0.8)'],
-      backgroundColor: ['rgba(0, 255, 171, 0.3)', 
-                        'rgba(0, 255, 171, 0.3)',
-                        'rgba(0, 255, 171, 0.3)',
-                        'rgba(0, 255, 171, 0.3)',
-                        'rgba(0, 255, 171, 0.3)',
-                        'rgba(0, 255, 171, 0.3)'],
-      borderWidth: 3
+      backgroundColor: getRandomColors(6),
+      borderWidth: 1.5
     }]
   },
   options: {
     legend: {
-      display: true, // Set to true to display the legend
-       },
+      display: true,
+    },
     scales: {
       y: {
         beginAtZero: true
@@ -73,7 +83,9 @@ new Chart(ctx, {
   }
 });
 
+
 const ctx2 = document.getElementById('Vessel').getContext('2d');
+
 new Chart(ctx2, {
     type: 'bar',
     data: {
@@ -87,12 +99,7 @@ new Chart(ctx2, {
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)'],
-        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)'],
+        backgroundColor: getRandomColors(6),
         borderWidth: 1.5
       }]
     },
@@ -119,12 +126,7 @@ new Chart(ctx3, {
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)'],
-        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)'],
+        backgroundColor: getRandomColors(6),
                           
         borderWidth: 1.5
       }]
@@ -151,12 +153,7 @@ new Chart(ctx4, {
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)'],
-        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)'],
+        backgroundColor: getRandomColors(6),
         borderWidth: 1.5
       }]
     },
@@ -176,19 +173,14 @@ new Chart(ctx5, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor:['rgba(0, 255, 171, 0.8)', 
+        borderColor: ['rgba(0, 255, 171, 0.8)', 
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)'],
-        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)'],
-        borderWidth: 3
+        backgroundColor: getRandomColors(6),
+        borderWidth: 1.5
       }]
     },
     options: {
@@ -214,12 +206,7 @@ new Chart(ctx6, {
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)',
                       'rgba(0, 255, 171, 0.8)'],
-        backgroundColor: ['rgba(0, 255, 171, 0.3)', 
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)',
-                          'rgba(0, 255, 171, 0.3)'],
+      backgroundColor: getRandomColors(6),
         borderWidth: 1.5
       }]
     },
