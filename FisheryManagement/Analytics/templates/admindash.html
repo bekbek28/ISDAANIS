@@ -1,280 +1,114 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" dir="ltr">
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ISDAANIS:ADMIN </title>
     <link rel="stylesheet" href="{% static 'css/Adashboard.css' %}">
-    <link rel="stylesheet"href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <title>ISdaanIs: Admin Dashboard</title> 
-</head>
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style id="darkModeStyles"></style>
+   </head>
 <body>
-    <nav>
-        <div class="logo-name">
-            <div class="logo-image">
-                <img src="{% static 'img/pfda.png' %}" alt="">
-            </div>
-
-            <span class="logo_name">ISdaanIS</span>
-        </div>
-
-        <div class="menu-items">
-            <ul class="nav-links">
-                <li>
-                    <a href="#table-con">
-                        <i class="uil uil-user"></i>
-                        <span class="link-name">Users</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#FishType">
-                      <i class="uil uil-chart-bar"></i>
-                      <span class="link-name">Fish Type</span>
-                  </a>
-                </li>
-                <li><a href="#Vessel">
-                  <i class="uil uil-ship"></i>
-                    <span class="link-name">Vessel</span>
-                </a></li>
-                <li><a href="#PlaceOfCatch">
-                  <i class="uil uil-globe"></i>
-                    <span class="link-name">Place of catch</span>
-                </a>
-            </li>
-            <li><a href="#" class="">
-                <i class="uil uil-calendar-alt"></i>
-                  <span class="link-name">Analysis</span>
-              </a>
-
-              <ul class="sub-menu">
-                <li><a href="#DailyCatch">
-                    <i class="uil uil-calendar-alt"></i>
-                      <span class="link-name">Daily Catch</span>
-                  </a>
-              </li>
-                  <li><a href="#MonthlyCatch">
-                    <i class="uil uil-calendar-alt"></i>
-                      <span class="link-name">Monthly Catch</span>
-                  </a>
-              </li>
-              <li><a href="#YearlyCatch">
-                <i class="uil uil-calendar-alt"></i>
-                  <span class="link-name">Yearly Catch</span>
-              </a>
-          </li>
-              </ul>
-          </li>
-           
-
-                <li><a href="#">
-                  <i class="uil uil-file-graph"></i>
-                    <span class="link-name">Reports</span>
-                </a>
-            </li>
-            
-               
-              </ul>    
-      
-              <ul class="logout-mode">
-                <li>
-                    <a href="{% url 'Analytics:logout' %}">
-                        <i class="uil uil-signout"></i>
-                        <span class="link-name">Logout</span>
-                    </a>  
-                </li>
-            </ul>
-            
-
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
-
-                <div class="mode-toggle">
-                  <span class="switch"></span>
-                </div>
-            </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="dashboard">
-
-        <div class="table-container" id="table-con">
-          <h1>USERS TABLE</h1>
-            <table id="user-table">
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                    <th>E-mail</th>
-                </tr>
-                <tr>
-                    <td>Data 1</td>
-                    <td>Data 2</td>
-                    <td>Data 2</td>
-                    <td>Data 2</td>
-                </tr>
-                <tr>
-                    <td>Data 3</td>
-                    <td>Data 4</td>
-                    <td>Data 4</td>
-                    <td>Data 4</td>
-                </tr>
-                <tr>
-                    <td>Data 3</td>
-                    <td>Data 4</td>
-                    <td>Data 4</td>
-                    <td>Data 4</td>
-                </tr>
-                <tr>
-                    <td>Data 3</td>
-                    <td>Data 4</td>
-                    <td>Data 4</td>
-                    <td>Data 4</td>
-                </tr>
-                <tr>
-                    <td>Data 3</td>
-                    <td>Data 4</td>
-                    <td>Data 4</td>
-                    <td>Data 4</td>
-                </tr>
-            </table>
-          </div>
-
-          <div class="table-container" id="table-con">
-            <h1>USERS TABLE</h1>
-              <table id="user-table">
-                  <tr>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Username</th>
-                      <th>E-mail</th>
-                  </tr>
-                  <tr>
-                      <td>Data 1</td>
-                      <td>Data 2</td>
-                      <td>Data 2</td>
-                      <td>Data 2</td>
-                  </tr>
-                  <tr>
-                      <td>Data 3</td>
-                      <td>Data 4</td>
-                      <td>Data 4</td>
-                      <td>Data 4</td>
-                  </tr>
-                  <tr>
-                      <td>Data 3</td>
-                      <td>Data 4</td>
-                      <td>Data 4</td>
-                      <td>Data 4</td>
-                  </tr>
-                  <tr>
-                      <td>Data 3</td>
-                      <td>Data 4</td>
-                      <td>Data 4</td>
-                      <td>Data 4</td>
-                  </tr>
-                  <tr>
-                      <td>Data 3</td>
-                      <td>Data 4</td>
-                      <td>Data 4</td>
-                      <td>Data 4</td>
-                  </tr>
-              </table>
-            </div>
-            
-            <div class="table-container" id="table-con">
-              <h1>USERS TABLE</h1>
-                <table id="user-table">
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                        <th>E-mail</th>
-                    </tr>
-                    <tr>
-                        <td>Data 1</td>
-                        <td>Data 2</td>
-                        <td>Data 2</td>
-                        <td>Data 2</td>
-                    </tr>
-                    <tr>
-                        <td>Data 3</td>
-                        <td>Data 4</td>
-                        <td>Data 4</td>
-                        <td>Data 4</td>
-                    </tr>
-                    <tr>
-                        <td>Data 3</td>
-                        <td>Data 4</td>
-                        <td>Data 4</td>
-                        <td>Data 4</td>
-                    </tr>
-                    <tr>
-                        <td>Data 3</td>
-                        <td>Data 4</td>
-                        <td>Data 4</td>
-                        <td>Data 4</td>
-                    </tr>
-                    <tr>
-                        <td>Data 3</td>
-                        <td>Data 4</td>
-                        <td>Data 4</td>
-                        <td>Data 4</td>
-                    </tr>
-                </table>
-              </div>
-                
-            
-          <div class="chart-container" width="100%" height="80">
-            <h2>TOTAL QUANTITIES</h2>
-            <canvas id="FishType"></canvas>
-          </div>
-
-          <div class="chart-container2" width="100%" height="80">
-            <h2>VESSEL</h2>
-            <canvas id="Vessel"></canvas>
-          </div>
-
-          <div class="chart-container3" width="100%" height="80">
-            <h2>PLACES</h2>
-            <canvas id="PlaceOfCatch"></canvas>
-          </div>
-
-          <div class="chart-container4" width="100%" height="80">
-            <h2>DAILY</h2>
-            <canvas id="DailyCatch"></canvas>
-          </div>
-
-          <div class="chart-container5" width="100%" height="80">
-            <h2>MONTHLY</h2>
-            <canvas id="MonthlyCatch"></canvas>
-          </div>
-
-          <div class="chart-container6" width="100%" height="80">
-            <h2>YEARLY</h2>
-            <canvas id="YearlyCatch"></canvas>
-          </div>
-
-
-
-            
-               
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>   
-        </div>       
-
-
+  <div class="sidebar close">
+    <div class="logo-details">
+      <div class="logo-image">
+        <img src="{% static 'img/pfda.png' %}" alt="">
     </div>
-          
-  
 
-    <script src="{% static 'js/adminDash.js' %}"></script>
+      <span class="logo_name">IsdaanIS</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Dashboard</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bxs-user'></i>
+            <span class="link_name">Users</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Users</a></li>
+         
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">Posts</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Posts</a></li>
+          <li><a href="#">Web Design</a></li>
+          <li><a href="#">Login Form</a></li>
+          <li><a href="#">Card Design</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="link_name">Analytics</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Analytics</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-line-chart' ></i>
+          <span class="link_name">Reports</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Reports</a></li>
+        </ul>
+      </li>
+      <li>
+       
+      
+     
+        <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bxs-cog' ></i>
+                <span class="link_name">Settings</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Settings</a></li>
+              <li><a href="{% url 'Analytics:logout' %}">Logout</a></li>
+              
+            </ul>
+          </li>
+          
+          
+        </ul>
+      </li>
+      
+      
+      <li>
+  </li>
+</ul>
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+    </div>
+  </section>
+
+  <script src="{% static 'js/adminDash.js' %}"></script>
 
 </body>
 </html>
