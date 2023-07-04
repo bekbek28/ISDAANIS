@@ -10,13 +10,12 @@ body{
   overflow: hidden;
 }
 .sidebar{
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 260px;
   background: #11101d;
-  z-index: 100;
   transition: all 0.5s ease;
 }
 .sidebar.close{
@@ -187,9 +186,11 @@ body{
   width: calc(100% - 78px);
 }
 .home-content{
+  position: absolute;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  z-index: -1;
 }
 .home-section .home-content .bx-menu,
 .home-section .home-content .text{
