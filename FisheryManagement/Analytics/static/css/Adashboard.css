@@ -9,7 +9,7 @@
 body{
   overflow: hidden;
 }
-.sidebar{
+.sidebar {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,6 +17,7 @@ body{
   width: 260px;
   background: #11101d;
   transition: all 0.5s ease;
+  z-index: 999; 
 }
 .sidebar.close{
   width: 78px;
@@ -172,7 +173,7 @@ body{
 }
 
   
-.home-section{
+.home-section {
   position: relative;
   background: #E4E9F7;
   height: 100vh;
@@ -180,6 +181,7 @@ body{
   width: calc(100% - 260px);
   transition: all 0.5s ease;
   padding: 12px;
+  z-index: 1; 
 }
 .sidebar.close ~ .home-section{
   left: 78px;
@@ -190,7 +192,6 @@ body{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  z-index: -1;
 }
 .home-section .home-content .bx-menu,
 .home-section .home-content .text{
