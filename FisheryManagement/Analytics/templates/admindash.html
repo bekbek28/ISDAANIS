@@ -3,91 +3,57 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title> ISDAANIS:ADMIN </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> IsdaanIS:Admin</title>
     <link rel="stylesheet" href="{% static 'css/Adashboard.css' %}">
-    <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <style id="darkModeStyles"></style>
    </head>
 <body>
-  <div class="sidebar close">
-    <div class="logo-details">
-      <div class="logo-image">
-        <img src="{% static 'img/pfda.png' %}" alt="">
+  <div class="main_box">
+    <input type="checkbox" id="check">
+    <div class="btn_one">
+      <label for="check">
+        <i class='bx bx-menu'></i>
+      </label>
     </div>
-
-      <span class="logo_name">IsdaanIS</span>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="#">
-          <i class='bx bx-grid-alt' ></i>
-          <span class="link_name">Dashboard</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Dashboard</a></li>
-        </ul>
-      </li>
-      <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bxs-user'></i>
-            <span class="link_name">Users</span>
-          </a>
+    <div class="sidebar_menu">
+      <div class="logo">
+        <div class="logo-image">
+          <img src="{% static 'img/pfda.png' %}" alt="">
+          <a href="#">IsdaanIS</a>
+      </div>
+        
+          </div>
+        <div class="btn_two">
+          <label for="check">
+            <i class='bx bx-x'></i>
+          </label>
         </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Users</a></li>
-         
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-pie-chart-alt-2' ></i>
-          <span class="link_name">Analytics</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Analytics</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-line-chart' ></i>
-          <span class="link_name">Reports</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Reports</a></li>
-        </ul>
-      </li>
-      
-        <li>
-            <div class="iocn-link">
-              <a href="#">
-                <i class='bx bxs-cog' ></i>
-                <span class="link_name">Settings</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-              <li><a class="link_name" href="#">Settings</a></li>
-              <li><a href="{% url 'Analytics:logout' %}">Logout</a></li>
-              
-            </ul>
+      <div class="menu">
+        <ul>
+            <i class='bx bxs-dashboard' ></i>
+            <a href="#">Dashboard</a>
           </li>
-          
-        </ul>    
-      </ul>
-  </div>
-  <section class="home-section">
-    <h2></h2>
-    <div class="home-content">
-      <i class='bx bx-menu'></i>
-      <h2>sdfdsfdsfds</h2>
+          <li>
+            <i class='bx bxs-bar-chart-alt-2'></i>
+            <a href="#">Analytics</a>
+          </li>
+          <li>
+            <i class='bx bxs-user'></i>
+            <a href="#">Users</a>
+          </li>
+          <li>
+            <i class='bx bx-line-chart'></i>
+            <a href="#">Reports</a>
+          </li>
+          <li>
+            <i class='bx bxs-cog'></i>
+            <a href="{% url 'Analytics:logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    
-  </section>
+  </div>
+  </body>
 
-  <script src="{% static 'js/adminDash.js' %}"></script>
-
-</body>
 </html>
