@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> IsdaanIS:Admin</title>
-    <link rel="stylesheet" href="{% static 'css/userstable.css' %}">
+    <link rel="stylesheet" href="{% static 'css/analytics.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -48,43 +48,14 @@
             </ul>
         </div>
         </div>
-        <section class="dashboard">
-  
-            <div class="chart-container" width="100%" height="80">
-              <h2>TOTAL QUANTITIES</h2>
-              <canvas id="Fishtype"></canvas>
-            </div>
-            
-            <div class="chart-container2" width="100%" height="80">
-              <h2>VESSEL</h2>
-              <canvas id="Vessel"></canvas>
-            </div>
-            
-      
-            <div class="chart-container3" width="100%" height="80">
-              <h2>PLACES</h2>
-              <canvas id="PlaceOfCatch"></canvas>
-            </div>
-            
-            <div class="chart-container4" width="100%" height="80">
-              <h2>DAILY </h2>
-              <canvas id="DailyCatch"></canvas>
-            </div>
-            
-            <div class="chart-container5" width="100%" height="80">
-              <h2>MONTHLY</h2>
-              <canvas id="MonthlyCatch"></canvas>
-            </div>
-            
-            <div class="chart-container6" width="100%" height="80">
-              <h2>YEARLY</h2>
-              <canvas id="YearlyCatch"></canvas>
-            </div>
-            
-      
-          </section>
+        <section class="analytics">
+        <div class="analytics-graphs">
+            <h2>Fish Type</h2>
+            <canvas id="myChart"></canvas>
+          </div>
+        </section>
 
-          <script src="{% static 'js/dashjs.js' %}"></script>
+          <script src="{% static 'js/analyticsTable.js' %}"></script>
   </div>
   
   </body>
