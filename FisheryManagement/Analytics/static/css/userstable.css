@@ -115,3 +115,7 @@ text-decoration: none;
 .table-responsive {
   margin-left: 80px;
 }
+
+#user-table{
+  background-color: #FFEEB3;
+}

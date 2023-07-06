@@ -22,6 +22,10 @@ def  isadmindashboard(request):
 def userstable(request,):
     return render(request, 'userstable.html' )
 
+@login_required(login_url='Authentication:loginadmin')
+def analyticsTable(request,):
+    return render(request, 'analytics.html' )
+
 def logout_view(request):
     logout(request)
     return redirect('Authentication:usertype')

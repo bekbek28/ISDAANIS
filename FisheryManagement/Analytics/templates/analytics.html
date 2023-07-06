@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> IsdaanIS:Admin</title>
+    <link rel="stylesheet" href="{% static 'css/userstable.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   </head>
+<body>
+  <div class="main_box">
+        <input type="checkbox" id="check">
+        <div class="btn_one">
+        <label for="check">
+            <i class='bx bx-menu'></i>
+        </label>
+        </div>
+        <div class="sidebar_menu">
+        <div class="logo">
+            <div class="logo-image">
+            <img src="{% static 'img/pfda.png' %}" alt="">
+            <a href="{% url 'Analytics:admindashboard' %}">IsdaanIS</a>
+        </div>
+            
+            </div>
+            <div class="btn_two">
+            <label for="check">
+                <i class='bx bx-x'></i>
+            </label>
+            </div>
+        <div class="menu">
+            <ul>
+            <li>
+                <i class='bx bxs-dashboard' ></i>
+                <a href="#">Add new User</a>
+            </li>
+            <li>
+                <i class='bx bxs-bar-chart-alt-2'></i>
+                <a href="#">Remove User</a>
+            </li>
+            <li>
+                <i class='bx bx-exit'></i>
+                <a href="{% url 'Analytics:logout' %}">Logout</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+        <section class="dashboard">
+  
+            <div class="chart-container" width="100%" height="80">
+              <h2>TOTAL QUANTITIES</h2>
+              <canvas id="Fishtype"></canvas>
+            </div>
+            
+            <div class="chart-container2" width="100%" height="80">
+              <h2>VESSEL</h2>
+              <canvas id="Vessel"></canvas>
+            </div>
+            
+      
+            <div class="chart-container3" width="100%" height="80">
+              <h2>PLACES</h2>
+              <canvas id="PlaceOfCatch"></canvas>
+            </div>
+            
+            <div class="chart-container4" width="100%" height="80">
+              <h2>DAILY </h2>
+              <canvas id="DailyCatch"></canvas>
+            </div>
+            
+            <div class="chart-container5" width="100%" height="80">
+              <h2>MONTHLY</h2>
+              <canvas id="MonthlyCatch"></canvas>
+            </div>
+            
+            <div class="chart-container6" width="100%" height="80">
+              <h2>YEARLY</h2>
+              <canvas id="YearlyCatch"></canvas>
+            </div>
+            
+      
+          </section>
+
+          <script src="{% static 'js/dashjs.js' %}"></script>
+  </div>
+  
+  </body>
+
+</html>
