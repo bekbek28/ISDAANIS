@@ -18,7 +18,7 @@ def  isdashboard(request):
 def  isadmindashboard(request):
     return render(request, 'admindash.html' )
 
-@login_required(login_url='Authentication:userstable')
+@login_required(login_url='Authentication:loginadmin')
 def userstable(request,):
     return render(request, 'userstable.html' )
 
