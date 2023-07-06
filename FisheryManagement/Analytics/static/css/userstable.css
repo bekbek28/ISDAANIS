@@ -68,28 +68,8 @@ text-decoration: none;
 }
 .sidebar_menu .menu li:hover{
   border-left: 1px solid #fff;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-}
-.sidebar_menu .social_media{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 20px;
-  list-style: none;
-  cursor: pointer;
-}
-.sidebar_menu .social_media i{
-  text-decoration: none;
-  padding: 0 5px;
-  color: #fff;
-  opacity: 0.6;
-  font-size: 20px;
-}
-.sidebar_menu .social_media i:hover{
-  opacity: 1;
-  transition: all 0.2s linear;
-  transform: scale(1.01);
-}
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);}
+
 #check{
   display: none;
 }

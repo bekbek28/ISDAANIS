@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> IsdaanIS:Admin</title>
-    <link rel="stylesheet" href="{% static 'css/Adashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/userstable.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    </head>
@@ -21,7 +21,7 @@
       <div class="logo">
         <div class="logo-image">
           <img src="{% static 'img/pfda.png' %}" alt="">
-          <a href="#">IsdaanIS</a>
+          <a href="{% url 'Analytics:admindashboard' %}">IsdaanIS</a>
       </div>
         
           </div>
@@ -34,19 +34,11 @@
         <ul>
           <li>
             <i class='bx bxs-dashboard' ></i>
-            <a href="#">Dashboard</a>
+            <a href="#">Add new User</a>
           </li>
           <li>
             <i class='bx bxs-bar-chart-alt-2'></i>
-            <a href="#">Analytics</a>
-          </li>
-          <li>
-            <i class='bx bxs-user'></i>
-            <a href="{% url 'Analytics:userstable'%}">Users</a>
-          </li>
-          <li>
-            <i class='bx bx-line-chart'></i>
-            <a href="#">Reports</a>
+            <a href="#">Remove User</a>
           </li>
           <li>
             <i class='bx bx-exit'></i>
@@ -55,6 +47,39 @@
         </ul>
       </div>
     </div>
+    
+    <div class="table-responsive ">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
   </div>
   
   </body>
