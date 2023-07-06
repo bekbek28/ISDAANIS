@@ -7,7 +7,7 @@
 }
 .main_box{
   position: relative;
-  background-color:#FFEEB3;
+  background-color:#f8eeca;
   height: 100vh;
   width: 100%;
 }
@@ -20,6 +20,7 @@
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.5);
   overflow: hidden;
   transition: all 0.3s linear;
+  margin-top: -25px;
 }
 .sidebar_menu .logo{
   position: absolute;
@@ -31,6 +32,7 @@
   width: 60px;
   object-fit: cover;
   border-radius: 50%;
+  padding-top: 10px;
 }
 
 .sidebar_menu .logo a{

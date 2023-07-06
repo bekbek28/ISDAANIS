@@ -10,7 +10,7 @@
 .main_box{
   position: relative;
   background-color:#FFEEB3;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }
 .main_box .sidebar_menu{
@@ -22,6 +22,7 @@
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.5);
   overflow: hidden;
   transition: all 0.3s linear;
+  margin-top: -25px;
 }
 .sidebar_menu .logo{
   position: absolute;
@@ -114,6 +115,7 @@ text-decoration: none;
 
 .analytics-graphs{
     margin-top:60px;
+    margin-left: 300px;
     padding: 15px;
     background-color: whitesmoke;
     border: solid 2px black;
