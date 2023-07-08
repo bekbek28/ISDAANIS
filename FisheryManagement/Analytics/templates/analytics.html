@@ -22,7 +22,7 @@
         <div class="logo">
             <div class="logo-image">
             <img src="{% static 'img/pfda.png' %}" alt="">
-            <a href="{% url 'Analytics:admindashboard' %}">IsdaanIS</a>
+            <a href="#">IsdaanIS</a>
         </div>
             
             </div>
@@ -34,12 +34,8 @@
         <div class="menu">
             <ul>
             <li>
-                <i class='bx bxs-dashboard' ></i>
-                <a href="#">Add new User</a>
-            </li>
-            <li>
-                <i class='bx bxs-bar-chart-alt-2'></i>
-                <a href="#">Remove User</a>
+                <i class='bx bx-arrow-back'></i>
+                <a href="{% url 'Analytics:admindashboard' %}">Back</a>
             </li>
             <li>
                 <i class='bx bx-exit'></i>

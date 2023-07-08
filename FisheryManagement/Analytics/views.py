@@ -30,6 +30,10 @@ def analyticsTable(request,):
 def loadhistory(request,):
     return render(request, 'loadhistory.html')
 
+@login_required(login_url='Authentication:loginadmin')
+def unloadhistory(request,):
+    return render(request, 'unloadhistory.html')
+
 def logout_view(request):
     logout(request)
     return redirect('Authentication:usertype')
