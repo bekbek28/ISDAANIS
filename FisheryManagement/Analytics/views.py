@@ -26,6 +26,10 @@ def userstable(request,):
 def analyticsTable(request,):
     return render(request, 'analytics.html' )
 
+@login_required(login_url='Authentication:loginadmin')
+def loadhistory(request,):
+    return render(request, 'loadhistory.html')
+
 def logout_view(request):
     logout(request)
     return redirect('Authentication:usertype')

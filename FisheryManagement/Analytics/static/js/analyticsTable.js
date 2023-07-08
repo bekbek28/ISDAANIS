@@ -106,3 +106,32 @@ const ctx = document.getElementById('Fishtype').getContext('2d');
         }
       }
     });
+
+    const ctx4 = document.getElementById('Daily Catch').getContext('2d');
+
+   new Chart(ctx4, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderColor: ['rgba(0, 255, 171, 0.8)', 
+          'rgba(0, 255, 171, 0.8)',
+          'rgba(0, 255, 171, 0.8)',
+          'rgba(0, 255, 171, 0.8)',
+          'rgba(0, 255, 171, 0.8)',
+          'rgba(0, 255, 171, 0.8)'],
+          backgroundColor: getRandomColors(6),
+          borderWidth: 1
+        }]
+      },
+      options: {
+           
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });

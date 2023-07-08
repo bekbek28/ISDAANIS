@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> IsdaanIS:Admin</title>
+    <link rel="stylesheet" href="{% static 'css/historyTables.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   </head>
+<body>
+  <div class="main_box">
+    <input type="checkbox" id="check">
+    <div class="btn_one">
+      <label for="check">
+        <i class='bx bx-menu'></i>
+      </label>
+    </div>
+    <div class="sidebar_menu">
+      <div class="logo">
+        <div class="logo-image">
+          <img src="{% static 'img/pfda.png' %}" alt="">
+          <a href="{% url 'Analytics:admindashboard' %}">IsdaanIS</a>
+      </div>
+        
+          </div>
+        <div class="btn_two">
+          <label for="check">
+            <i class='bx bx-x'></i>
+          </label>
+        </div>
+      <div class="menu">
+        <ul>
+          <li>
+            <i class='bx bxs-dashboard' ></i>
+            <a href="#">Add new User</a>
+          </li>
+          <li>
+            <i class='bx bxs-bar-chart-alt-2'></i>
+            <a href="#">Remove User</a>
+          </li>
+          <li>
+            <i class='bx bx-exit'></i>
+            <a href="{% url 'Analytics:logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="table-responsive bg-info">
+      <h2>Loading History</h2>
+        <table class="table table-bordered table-hover ">
+            <thead>
+              <tr class="bg-info">
+                <th scope="col">Load Date</th>
+                <th scope="col">Type of fish</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Vessel</th>
+                <th scope="col">Location</th>
+
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="table-info">JOhnny</td>
+                <td class="table-info">Marks</td>
+                <td class="table-info">jmarks@email.com</td>
+                <td class="table-info">Port Manager</td>
+                <td class="table-info">Port Manager</td>
+              </tr>
+            
+              <tr>
+                <td>JOhnny</td>
+                <td>Marks</td>
+                <td>jmarks@email.com</td>
+                <td>Port Manager</td>
+                <td>Port Manager</td>
+              </tr>
+              <tr>
+                <td class="table-info">JOhnny</td>
+                <td class="table-info">Marks</td>
+                <td class="table-info">jmarks@email.com</td>
+                <td class="table-info">Port Manager</td>
+                <td class="table-info">Port Manager</td>
+              </tr>
+              <tr>
+                <td>JOhnny</td>
+                <td>Marks</td>
+                <td>jmarks@email.com</td>
+                <td>Port Manager</td>
+                <td>Port Manager</td>
+                
+              </tr>
+              <tr>
+                <td class="table-info">JOhnny</td>
+                <td class="table-info">Marks</td>
+                <td class="table-info">jmarks@email.com</td>
+                <td class="table-info">Port Manager</td>
+                <td class="table-info">Port Manager</td>
+              </tr>
+              <tr>
+                <td>JOhnny</td>
+                <td>Marks</td>
+                <td>jmarks@email.com</td>
+                <td>Port Manager</td>
+                <td>Port Manager</td>
+              </tr>
+              <tr>
+                <td class="table-info">JOhnny</td>
+                <td class="table-info">Marks</td>
+                <td class="table-info">jmarks@email.com</td>
+                <td class="table-info">Port Manager</td>
+                <td class="table-info">Port Manager</td>
+              </tr>
+              <tr>
+                <td>JOhnny</td>
+                <td>Marks</td>
+                <td>jmarks@email.com</td>
+                <td>Port Manager</td>
+                <td>Port Manager</td>
+              </tr>
+              <tr>
+                <td class="table-info">JOhnny</td>
+                <td class="table-info">Marks</td>
+                <td class="table-info">jmarks@email.com</td>
+                <td class="table-info">Port Manager</td>
+                <td class="table-info">Port Manager</td>
+              </tr>
+              <tr>
+                <td>JOhnny</td>
+                <td>Marks</td>
+                <td>jmarks@email.com</td>
+                <td>Port Manager</td>
+                <td>Port Manager</td>
+              </tr>
+              <tr>
+                <td class="table-info">JOhnny</td>
+                <td class="table-info">Marks</td>
+                <td class="table-info">jmarks@email.com</td>
+                <td class="table-info">Port Manager</td>
+                <td class="table-info">Port Manager</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+  </div>
+  
+  </body>
+
+</html>
