@@ -11,8 +11,12 @@ def  isforms(request):
     return render(request, 'MCforms.html' )
 
 @login_required(login_url='Authentication:usertype')
-def  isdashboard(request):
-    return render(request, 'dashboard.html' )
+def  loadingdash(request):
+    return render(request, 'loadingDash.html' )
+
+@login_required(login_url='Authentication:usertype')
+def  unloadingdash(request):
+    return render(request, 'unloadingDash.html' )
 
 @login_required(login_url='Authentication:loginadmin')
 def  isadmindashboard(request):

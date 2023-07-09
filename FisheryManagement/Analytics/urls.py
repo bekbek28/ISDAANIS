@@ -5,7 +5,8 @@ app_name = "Analytics"
 
 urlpatterns = [
     path('forms/', views.isforms, name="forms"),
-    path('dashboard/', views.isdashboard, name="dashboard"),
+    path('loadingdash/', views.loadingdash, name="loadingdash"),
+    path('unloadingdash/', views.unloadingdash, name="unloadingdash"),
     path('admindashboard/', views.isadmindashboard, name= "admindashboard"),
     path('userstable/', views.userstable, name= "userstable"),
     path('analyticsTable/', views.analyticsTable, name= "analyticsTable"),

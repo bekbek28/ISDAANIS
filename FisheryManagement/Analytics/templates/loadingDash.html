@@ -10,7 +10,7 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <title>ISdaanIS</title>
+  <title>ISdaanIS: Fish Loading</title>
 </head>
 <body>
 
@@ -20,37 +20,15 @@
     <div class="menu-items">
         <ul class="nav-links">
             <li>
-                <a href="#Fishtype">
+                <a href="{% url 'Analytics:loadingdash' %}">
                   <i class="uil uil-chart-bar"></i>
-                  <span class="link-name">Fish Type</span>
+                  <span class="link-name">Loading</span>
               </a>
             </li>
-            <li><a href="#Vessel">
+            <li><a href="{% url 'Analytics:unloadingdash' %}">
               <i class="uil uil-ship"></i>
-                <span class="link-name">Vessel</span>
+                <span class="link-name">Unloading</span>
             </a></li>
-            <li><a href="#PlaceOfCatch">
-              <i class="uil uil-globe"></i>
-                <span class="link-name">Place of catch</span>
-            </a>
-        </li>
-        <li><a href="#DailyCatch">
-          <i class="uil uil-calendar-alt"></i>
-            <span class="link-name">Daily Catch</span>
-        </a>
-      </li>
-          <li><a href="#MonthlyCatch">
-            <i class="uil uil-calendar-alt"></i>
-              <span class="link-name">Monthly Catch</span>
-          </a>
-      </li>
-    </li>
-          <li><a href="#YearlyCatch">
-            <i class="uil uil-calendar-alt"></i>
-              <span class="link-name">Yearly Catch</span>
-            </a>
-          </li>
-              
           </ul>    
           <ul class="logout-mode">
             <li>

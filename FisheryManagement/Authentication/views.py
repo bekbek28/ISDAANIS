@@ -75,7 +75,7 @@ def ispmloginhtml(request):
                  messages.error(request, 'You are not a Port Manager!')
             else:
                 login(request, user)
-                return redirect('Analytics:dashboard')
+                return redirect('Analytics:loadingdash')
         else:
              messages.error(request, 'Username and Password are Invalid!')
 
