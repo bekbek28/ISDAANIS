@@ -1,4 +1,4 @@
-/* Javascript code for making a dropdown function in navbars */
+/* Javascript code for making a dropdown function in different inputs */
 window.addEventListener('click', function(e) {
   var dropdowns = document.getElementsByClassName('dropdown-content');
   for (var i = 0; i < dropdowns.length; i++) {
@@ -9,16 +9,3 @@ window.addEventListener('click', function(e) {
   }
 });
 
-// Add this script to your JavaScript file
-
-// Get the dark mode toggle checkbox element
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-// Function to toggle dark mode
-function toggleDarkMode() {
-  const body = document.body;
-  body.classList.toggle('dark-mode');
-}
-
-// Add event listener to the dark mode toggle checkbox
-darkModeToggle.addEventListener('change', toggleDarkMode);

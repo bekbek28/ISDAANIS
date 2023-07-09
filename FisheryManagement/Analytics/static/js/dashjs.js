@@ -1,3 +1,4 @@
+/* DARK MODE JAVASCRIPT CODE */
 const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");
@@ -36,7 +37,7 @@ function showLogoutMessage() {
   logoutMessage.textContent = 'You have been logged out.';
 }
 
-
+/* to get random colors for the bar chart */
 const getRandomColors = (count) => {
   const colors = [];
   const letters = '0123456789ABCDEF';
@@ -61,12 +62,12 @@ new Chart(ctx, {
     datasets: [{
       label: '# of Votes',
       data: [12, 19, 3, 5, 2, 3],
-      borderColor: ['rgba(0, 255, 171, 0.8)', 
-                    'rgba(0, 255, 171, 0.8)',
-                    'rgba(0, 255, 171, 0.8)',
-                    'rgba(0, 255, 171, 0.8)',
-                    'rgba(0, 255, 171, 0.8)',
-                    'rgba(0, 255, 171, 0.8)'],
+      borderColor: ['rgba(0, 215, 255, 1)', 
+                    'rgba(0, 215, 255, 1)',
+                    'rgba(0, 215, 255, 1)',
+                    'rgba(0, 215, 255, 1)',
+                    'rgba(0, 215, 255, 1)',
+                    'rgba(0, 215, 255, 1)'],
       backgroundColor: getRandomColors(6),
       borderWidth: 1.5
     }]
@@ -93,12 +94,12 @@ new Chart(ctx2, {
       datasets: [{
         label: '# of Votes',
         data: [13, 19, 3, 5, 2, 3],
-        borderColor: ['rgba(0, 255, 171, 0.8)', 
-                      'rgba(0, 255, 171, 0.8)',
-                      'rgba(0, 255, 171, 0.8)',
-                      'rgba(0, 255, 171, 0.8)',
-                      'rgba(0, 255, 171, 0.8)',
-                      'rgba(0, 255, 171, 0.8)'],
+        borderColor: ['rgba(0, 215, 255, 1)', 
+                      'rgba(0, 215, 255, 1)',
+                      'rgba(0, 215, 255, 1)',
+                      'rgba(0, 215, 255, 1)',
+                      'rgba(0, 215, 255, 1)',
+                      'rgba(0, 215, 255, 1)'],
         backgroundColor: getRandomColors(6),
         borderWidth: 1.5
       }]
@@ -120,12 +121,12 @@ new Chart(ctx3, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor: ['rgba(0, 255, 171, 0.8)', 
-                      'rgba(0, 255, 171, 0.8)',
-                      'rgba(0, 255, 171, 0.8)',
-                      'rgba(0, 255, 171, 0.8)',
-                      'rgba(0, 255, 171, 0.8)',
-                      'rgba(0, 255, 171, 0.8)'],
+        borderColor: ['rgba(0, 215, 255, 1)', 
+                      'rgba(0, 215, 255, 1)',
+                      'rgba(0, 215, 255, 1)',
+                      'rgba(0, 215, 255, 1)',
+                      'rgba(0, 215, 255, 1)',
+                      'rgba(0, 215, 255, 1)'],
         backgroundColor: getRandomColors(6),
                           
         borderWidth: 1.5
@@ -140,7 +141,7 @@ new Chart(ctx3, {
     }
   });
 
-
+ /* to get random colors in the line chart */
   const getRandomColors2 = (count) => {
     const colors = [];
     const letters = '0123456789ABCDEF';
@@ -149,7 +150,7 @@ new Chart(ctx3, {
       for (let j = 0; j < 3; j++) {
         color += Math.floor(Math.random() * 256) + ', ';
       }
-      color += '3)';
+      color += '5)';
       colors.push(color);
     }
     return colors;
@@ -163,9 +164,9 @@ new Chart(ctx4, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor: ['rgba(rgb(0,0,0, 0.8)'],
+        borderColor: ['rgba(0, 2, 161, 1)'],
         backgroundColor: getRandomColors2(1),
-        borderWidth: 0.5
+        borderWidth: 2
       }]
     },
     options: {
@@ -184,9 +185,9 @@ new Chart(ctx5, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor: ['rgba(0, 255, 171, 0.8)'],
+        borderColor: ['rgba(0, 2, 161, 1)'],
         backgroundColor: getRandomColors2(1),
-        borderWidth: 0.5
+        borderWidth: 2
       }]
     },
     options: {
@@ -206,9 +207,9 @@ new Chart(ctx6, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor: ['rgba(0, 255, 171, 0.8)', ],
+        borderColor: ['rgba(0, 2, 161, 1)', ],
       backgroundColor: getRandomColors2 (1),
-        borderWidth: 0.5
+        borderWidth: 2
       }]
     },
     options: {

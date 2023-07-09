@@ -34,6 +34,10 @@ def loadhistory(request,):
 def unloadhistory(request,):
     return render(request, 'unloadhistory.html')
 
+@login_required(login_url='Authentication:loginadmin')
+def addUser(request,):
+    return render(request, 'addUser.html')
+
 def logout_view(request):
     logout(request)
     return redirect('Authentication:usertype')

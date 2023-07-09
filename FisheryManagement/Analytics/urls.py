@@ -11,5 +11,6 @@ urlpatterns = [
     path('analyticsTable/', views.analyticsTable, name= "analyticsTable"),
     path('loadHistory/', views.loadhistory, name= "loadhistory"),
     path('unloadHistory/', views.unloadhistory, name= "unloadhistory"),
+    path('addUser/', views.addUser, name= "addUser"),
     path('logout/', views.logout_view, name='logout'),
 ]
