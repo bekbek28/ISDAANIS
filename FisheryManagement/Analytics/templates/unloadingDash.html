@@ -18,7 +18,11 @@
      
       <!-- Code for the sidebar -->
     <div class="menu-items">
-        <ul class="nav-links">
+      <div class="logo-image">
+        <img src="{% static 'img/pfda.png' %}" alt="">
+        <a href="#">IsdaanIS</a>
+    </div>
+        <ul class="nav-links"> 
             <li>
                 <a href="{% url 'Analytics:loadingdash' %}">
                   <i class="uil uil-chart-bar"></i>

@@ -11,7 +11,7 @@
    <!-- Add User Form Popup -->
    <div id="addUserForm" class="modal">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
+      <a href="{% url 'Analytics:userstable' %}"><span class="close-btn">&times;</span></a>
       <form method="POST" action="{% url 'Analytics:addUser' %}">
         {% csrf_token %}
         <label for="fname">First Name:</label>
