@@ -33,14 +33,6 @@
       <div class="menu">
         <ul>
           <li>
-            <i class='bx bxs-dashboard' ></i>
-            <a href="{% url 'Analytics:addUser' %}">Add new User</a>
-          </li>
-          <li>
-            <i class='bx bxs-bar-chart-alt-2'></i>
-            <a href="#">Remove User</a>
-          </li>
-          <li>
             <i class='bx bx-arrow-back'></i>
             <a href="{% url 'Analytics:admindashboard' %}">Back</a>
           </li>
@@ -62,6 +54,8 @@
                 <th scope="col">Email</th>
                 <th scope="col">Username</th>
                 <th scope="col">Usergroup</th>
+                <th scope="col">Actions</th>
+                
                 
               </tr>
             </thead>
@@ -73,6 +67,11 @@
                 <td class="table-info">{{ market_c.email }}</td>
                 <td class="table-info">{{ market_c.username }}</td>
                 <td class="table-info">{{ market_c.groups.first }}</td>
+                <td class="table-info">
+              <a href="{% url 'Analytics:edituser' %}"> <button class="btn btn-primary">Edit</button></a>   
+                  <button class="btn btn-danger">Delete</button>
+                </td>
+                
               </tr>
               {% endfor %}
               {% for pm_m in pm_manager %}
@@ -82,6 +81,10 @@
                 <td class="table-info">{{ pm_m.email }}</td>
                 <td class="table-info">{{ pm_m.username }}</td>
                 <td class="table-info">{{ pm_m.groups.first }}</td>
+                <td class="table-info">
+                  <button class="btn btn-primary">Edit</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
               </tr>
               {% endfor %}
               {% for admin in is_admin %}
@@ -91,6 +94,10 @@
                 <td class="table-info">{{ admin.email }}</td>
                 <td class="table-info">{{ admin.username }}</td>
                 <td class="table-info">{{ admin.groups.first }}</td>
+                <td class="table-info">
+                  <button class="btn btn-primary">Edit</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
               </tr>
               {% endfor %}
             </tbody>
