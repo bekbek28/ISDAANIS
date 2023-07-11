@@ -66,84 +66,33 @@
               </tr>
             </thead>
             <tbody>
+              {% for market_c in market_checker %}
               <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
+                <td class="table-info">{{ market_c.first_name }}</td>
+                <td class="table-info">{{ market_c.last_name }}</td>
+                <td class="table-info">{{ market_c.email }}</td>
+                <td class="table-info">{{ market_c.username }}</td>
+                <td class="table-info">{{ market_c.groups.first }}</td>
               </tr>
-            
+              {% endfor %}
+              {% for pm_m in pm_manager %}
               <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
+                <td class="table-info">{{ pm_m.first_name }}</td>
+                <td class="table-info">{{ pm_m.last_name }}</td>
+                <td class="table-info">{{ pm_m.email }}</td>
+                <td class="table-info">{{ pm_m.username }}</td>
+                <td class="table-info">{{ pm_m.groups.first }}</td>
               </tr>
+              {% endfor %}
+              {% for admin in is_admin %}
               <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
+                <td class="table-info">{{ admin.first_name }}</td>
+                <td class="table-info">{{ admin.last_name }}</td>
+                <td class="table-info">{{ admin.email }}</td>
+                <td class="table-info">{{ admin.username }}</td>
+                <td class="table-info">{{ admin.groups.first }}</td>
               </tr>
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-              </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-              </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-              </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-              </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
+              {% endfor %}
             </tbody>
         </table>
       </div>

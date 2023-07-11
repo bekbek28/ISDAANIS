@@ -51,7 +51,7 @@ def isreghtml(request):
             messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
-                my_user = User.objects.create_user(username=uname, password=password)
+                my_user = User.objects.create_user(first_name=firstname,last_name=lastname,email=email,username=uname, password=password)
                 my_user.save()
 
                 if not my_user.groups.filter(name='PManager').exists() and not my_user.groups.filter(name='ISAdmin').exists():
@@ -95,7 +95,7 @@ def ispmreghtml(request):
             messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
-                my_user = User.objects.create_user(username=uname, password=password)
+                my_user = User.objects.create_user(first_name=firstname,last_name=lastname,email=email,username=uname, password=password)
                 my_user.save()
 
                 if not my_user.groups.filter(name='ISAdmin').exists() and not my_user.groups.filter(name='Market Checker').exists():
@@ -140,7 +140,7 @@ def isadminreghtml(request):
              messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
-                my_user = User.objects.create_user(username=uname, password=password)
+                my_user = User.objects.create_user(first_name=firstname,last_name=lastname,email=email,username=uname, password=password)
                 my_user.save()
 
                 if not my_user.groups.filter(name='PManager').exists() and not my_user.groups.filter(name='Market Checker').exists():

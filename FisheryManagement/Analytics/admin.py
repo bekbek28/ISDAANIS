@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+
+admin.site.register(Species)
+admin.site.register(Origin)
+admin.site.register(Vessel)
+admin.site.register(User)
+admin.site.register(DailyTransaction)
