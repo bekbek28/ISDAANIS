@@ -43,6 +43,24 @@ def edit_user(request):
     # Handle GET requests if needed
     return render(request, 'edituser.html')
 
+def delete_user(request, user_id):
+    if request.method == 'POST':
+        # Retrieve the user object
+        try:
+            user = User.objects.get(id=first_name)
+        except User.DoesNotExist:
+            # Handle the case if the user doesn't exist
+            return redirect('Analytics:deleteuser')  # Replace 'user-not-found' with your desired URL
+
+        # Delete the user
+        user.delete()
+
+        # Redirect to a success page or any other appropriate view
+        return redirect('Analytics:userstable')  # Replace 'success-page' with your desired URL
+
+    # Handle GET requests if needed
+    return redirect('user-list')  # Replace 'user-list' with the URL of your user listing page
+
 @login_required(login_url='Authentication:usertype')
 def  loadingdash(request):
     return render(request, 'loadingDash.html' )
