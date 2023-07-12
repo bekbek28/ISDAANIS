@@ -82,7 +82,7 @@
                 <td class="table-info">{{ pm_m.username }}</td>
                 <td class="table-info">{{ pm_m.groups.first }}</td>
                 <td class="table-info">
-                  <button class="btn btn-primary">Edit</button>
+                  <a href="{% url 'Analytics:edituser' %}"> <button class="btn btn-primary">Edit</button></a>
                   <button class="btn btn-danger">Delete</button>
                 </td>
               </tr>
@@ -95,7 +95,7 @@
                 <td class="table-info">{{ admin.username }}</td>
                 <td class="table-info">{{ admin.groups.first }}</td>
                 <td class="table-info">
-                  <button class="btn btn-primary">Edit</button>
+                  <a href="{% url 'Analytics:edituser' %}"> <button class="btn btn-primary">Edit</button></a>
                   <button class="btn btn-danger">Delete</button>
                 </td>
               </tr>

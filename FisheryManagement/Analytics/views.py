@@ -10,9 +10,38 @@ from django.contrib.auth.models import User
 def  isforms(request):
     return render(request, 'MCforms.html' )
 
-@login_required(login_url='Authentication:userstable')
-def  editusers(request):
-    return render(request, 'edituser.html' )
+@login_required(login_url='Authentication:loginadmin')
+def edit_user(request):
+    if request.method == 'POST':
+        # Retrieve the updated user information from the form
+        first_name = request.POST.get('firstName')
+        last_name = request.POST.get('lastName')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        usergroup = request.POST.get('usergroup')
+
+        # Retrieve the user object
+        user = request.user
+
+        # Update the user's attributes
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.username = username
+
+        # Update the user's group
+        group = user.groups.first()
+        group.name = usergroup
+        group.save()
+
+        # Save the changes
+        user.save()
+
+        # Redirect to a success page or any other appropriate view
+        return redirect('Analytics:userstable')  # Replace 'success-page' with your desired URL
+
+    # Handle GET requests if needed
+    return render(request, 'edituser.html')
 
 @login_required(login_url='Authentication:usertype')
 def  loadingdash(request):
