@@ -5,5 +5,4 @@ from .models import *
 admin.site.register(Species)
 admin.site.register(Origin)
 admin.site.register(Vessel)
-admin.site.register(User)
 admin.site.register(DailyTransaction)

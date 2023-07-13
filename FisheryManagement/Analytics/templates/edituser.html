@@ -21,23 +21,23 @@
         <form action="{% url 'Analytics:edituser' %}" method="POST">
           {% csrf_token %}
           <!-- Input fields for user information -->
-          <div class="mb-3">
+          <div class="mb-3" id="input-form">
             <label for="firstName" class="form-label">First Name</label>
             <input type="text" class="form-control" id="firstName" name="firstName" value="{{ user.first_name }}">
           </div>
-          <div class="mb-3">
+          <div class="mb-3" id="input-form">
             <label for="lastName" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="lastName" name="lastName" value="{{ user.last_name }}">
           </div>
-          <div class="mb-3">
+          <div class="mb-3" id="input-form">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
           </div>
-          <div class="mb-3">
+          <div class="mb-3" id="input-form">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
           </div>
-          <div class="mb-3">
+          <div class="mb-3" id="input-form">
             <label for="usergroup" class="form-label">Usergroup</label>
             <input type="text" class="form-control" id="usergroup" name="usergroup" value="{{ user.groups.first }}">
           </div>

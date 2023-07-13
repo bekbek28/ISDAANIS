@@ -83,8 +83,8 @@
                 <td class="table-info">{{ pm_m.groups.first }}</td>
                 <td class="table-info">
                   <a href="{% url 'Analytics:edituser' %}"> <button class="btn btn-primary">Edit</button></a>
-                  <button class="btn btn-danger">Delete</button>
-                </td>
+                  <a href="{% url 'Analytics:deleteuser' %}"><button class="btn btn-danger">Delete</button>
+                  </td></a>
               </tr>
               {% endfor %}
               {% for admin in is_admin %}

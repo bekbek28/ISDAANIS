@@ -43,7 +43,7 @@ def edit_user(request):
     # Handle GET requests if needed
     return render(request, 'edituser.html')
 
-def delete_user(request, user_id):
+def delete_user(request, first_name):
     if request.method == 'POST':
         # Retrieve the user object
         try:
@@ -60,6 +60,8 @@ def delete_user(request, user_id):
 
     # Handle GET requests if needed
     return redirect('user-list')  # Replace 'user-list' with the URL of your user listing page
+
+
 
 @login_required(login_url='Authentication:usertype')
 def  loadingdash(request):

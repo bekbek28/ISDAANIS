@@ -9,3 +9,8 @@ window.addEventListener('click', function(e) {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const dateField = document.getElementById('dateofCatch');
+  datepicker(dateField);
+});
+

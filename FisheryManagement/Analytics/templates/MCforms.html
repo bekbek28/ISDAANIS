@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{% static 'css/forms.css' %}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
   rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datepicker/datepicker.min.css">
   <title>Information Forms</title>
 </head>
 <body style="background-color: #8a4848;">
@@ -28,11 +29,12 @@
 <div class="container-sm" id="container"> 
   
   <form class="row g-3">
+   
 
   <!-- for fishtype input -->
     <div class="row-6" id="fishtype">
-      <label for="fishtype" class="form-label">Type of Fish</label>
-      <input type="text" class="form-control" id="fishtype" placeholder="ex. Bangus" list="fishtypeOptions">
+      <label for="fishtype" class="form-label">Type of Fish:</label>
+      <input type="text" class="form-control" id="fishtype" placeholder="ex. Type of Fish" list="fishtypeOptions">
       <datalist id="fishtypeOptions">
         <option value="Bangus">
         <option value="Tuna">
@@ -44,14 +46,14 @@
 
     <div class="row-6">
       <label for="quantity" class="form-label">Quantity:</label>
-      <input type="text" class="form-control" id="quantity">
+      <input type="text" class="form-control" id="quantity" placeholder="In Kilos or Tons">
     </div>
 
 
     <!-- for type of vessel input -->
     <div class="row-6">
-      <label for="vessel" class="form-label">Vessel</label>
-      <input type="text" class="form-control" id="vessel" placeholder="ex. Boat" list="vesselOptions">
+      <label for="vessel" class="form-label">Vessel:</label>
+      <input type="text" class="form-control" id="vessel" placeholder="ex. Name Of Boat" list="vesselOptions">
       <datalist id="vesselOptions">
         <option value="St Mary">
         <option value="st francis">
@@ -60,8 +62,8 @@
     </div>
     <!-- for place of catch function -->
     <div class="row-6">
-      <label for="placeofcatch" class="form-label">Place Of Catch</label>
-      <input type="text" class="form-control" id="placeofcatch" placeholder="1234 Main St" list="placeofcatchOptions">
+      <label for="placeofcatch" class="form-label">Origin:</label>
+      <input type="text" class="form-control" id="placeofcatch" placeholder="Enter the Origin" list="placeofcatchOptions">
       <datalist id="placeofcatchOptions">
         <option value="Dalahican">
         <option value="Polilio">
@@ -73,9 +75,11 @@
       <label for="date" class="form-label">Date of Catch:</label>
       <input type="datetime" class="form-control" id="dateofCatch">
     </div>
+
+
     <div class="row-6">
       <label for="text" class="form-label">Price:</label>
-      <input type="text" class="form-control" id="dateofCatch">
+      <input class="form-control" type="text" value="Fish Price" aria-label="fish_prize" readonly>
     </div>
 
     <div class="d-flex justify-content-center">
@@ -84,6 +88,7 @@
   </form>
 </div>
 <!-- end of form creation -->
+<script src="https://cdn.jsdelivr.net/npm/datepicker/datepicker.min.js"></script>
 <script src="{% static 'js/forms.js' %}"></script>
 
 </body>
