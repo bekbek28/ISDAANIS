@@ -18,7 +18,7 @@
       </div>
       <div class="modal-body">
         <!-- Add your form elements here to capture the updated user information -->
-        <form action="{% url 'Analytics:edituser' %}" method="POST">
+        <form  method="POST">
           {% csrf_token %}
           <!-- Input fields for user information -->
           <div class="mb-3" id="input-form">

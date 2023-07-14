@@ -1,14 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> IsdaanIS:Admin</title>
-    <link rel="stylesheet" href="{% static 'css/userstable.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-   </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IsdaanIS:Admin</title>
+  <link rel="stylesheet" href="{% static 'css/userstable.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
 <body>
   <div class="main_box">
     <input type="checkbox" id="check">
@@ -22,14 +22,13 @@
         <div class="logo-image">
           <img src="{% static 'img/pfda.png' %}" alt="">
           <a href="#">IsdaanIS</a>
-      </div>
-        
-          </div>
-        <div class="btn_two">
-          <label for="check">
-            <i class='bx bx-x'></i>
-          </label>
         </div>
+      </div>
+      <div class="btn_two">
+        <label for="check">
+          <i class='bx bx-x'></i>
+        </label>
+      </div>
       <div class="menu">
         <ul>
           <li>
@@ -46,67 +45,66 @@
     
     <div class="table-responsive bg-info">
       <h2>User's Table</h2>
-        <table class="table table-bordered table-hover ">
-            <thead>
-              <tr class="bg-info">
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Username</th>
-                <th scope="col">Usergroup</th>
-                <th scope="col">Actions</th>
-                
-                
-              </tr>
-            </thead>
-            <tbody>
-              {% for market_c in market_checker %}
-              <tr>
-                <td class="table-info">{{ market_c.first_name }}</td>
-                <td class="table-info">{{ market_c.last_name }}</td>
-                <td class="table-info">{{ market_c.email }}</td>
-                <td class="table-info">{{ market_c.username }}</td>
-                <td class="table-info">{{ market_c.groups.first }}</td>
-                <td class="table-info">
-              <a href="{% url 'Analytics:edituser' %}"> <button class="btn btn-primary">Edit</button></a>   
-                  <button class="btn btn-danger">Delete</button>
-                </td>
-                
-              </tr>
-              {% endfor %}
-              {% for pm_m in pm_manager %}
-              <tr>
-                <td class="table-info">{{ pm_m.first_name }}</td>
-                <td class="table-info">{{ pm_m.last_name }}</td>
-                <td class="table-info">{{ pm_m.email }}</td>
-                <td class="table-info">{{ pm_m.username }}</td>
-                <td class="table-info">{{ pm_m.groups.first }}</td>
-                <td class="table-info">
-                  <a href="{% url 'Analytics:edituser' %}"> <button class="btn btn-primary">Edit</button></a>
-                  <a href="{% url 'Analytics:deleteuser' %}"><button class="btn btn-danger">Delete</button>
-                  </td></a>
-              </tr>
-              {% endfor %}
-              {% for admin in is_admin %}
-              <tr>
-                <td class="table-info">{{ admin.first_name }}</td>
-                <td class="table-info">{{ admin.last_name }}</td>
-                <td class="table-info">{{ admin.email }}</td>
-                <td class="table-info">{{ admin.username }}</td>
-                <td class="table-info">{{ admin.groups.first }}</td>
-                <td class="table-info">
-                  <a href="{% url 'Analytics:edituser' %}"> <button class="btn btn-primary">Edit</button></a>
-                  <button class="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-        </table>
-      </div>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="bg-info">
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>
+            <th scope="col">Usergroup</th>
+            <th scope="col">Actions</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in market_checker %}
+          <tr>
+            <td class="table-info">{{ user.id }}</td>
+            <td class="table-info">{{ user.first_name }}</td>
+            <td class="table-info">{{ user.last_name }}</td>
+            <td class="table-info">{{ user.email }}</td>
+            <td class="table-info">{{ user.username }}</td>
+            <td class="table-info">{{ user.groups.first }}</td>
+            <td class="table-info">
+              <a href="{% url 'Analytics:edituser' id=user.id %}"><button class="btn btn-primary">Edit</button></a>   
+              <a href="{% url 'Analytics:deleteuser' id=user.id %}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+          {% for user in pm_manager %}
+          <tr>
+            <td class="table-info">{{ user.id }}</td>
+            <td class="table-info">{{ user.first_name }}</td>
+            <td class="table-info">{{ user.last_name }}</td>
+            <td class="table-info">{{ user.email }}</td>
+            <td class="table-info">{{ user.username }}</td>
+            <td class="table-info">{{ user.groups.first }}</td>
+            <td class="table-info">
+              <a href="{% url 'Analytics:edituser' id=user.id %}"><button class="btn btn-primary">Edit</button></a>
+              <a href="{% url 'Analytics:deleteuser' id=user.id %}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+          {% for user in is_admin %}
+          <tr>
+            <td class="table-info">{{ user.id }}</td> 
+            <td class="table-info">{{ user.first_name }}</td>
+            <td class="table-info">{{ user.last_name }}</td>
+            <td class="table-info">{{ user.email }}</td>
+            <td class="table-info">{{ user.username }}</td>
+            <td class="table-info">{{ user.groups.first }}</td>
+            <td class="table-info">
+              <a href="{% url 'Analytics:edituser' id=user.id %}"><button class="btn btn-primary">Edit</button></a>
+              <a href="{% url 'Analytics:deleteuser' id=user.id %}" class="btn btn-danger">Delete</a>
+            </td>
+            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
-
-  
-  
-  </body>
-
+</body>
 </html>

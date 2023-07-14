@@ -146,7 +146,8 @@ def isadminreghtml(request):
                 if not my_user.groups.filter(name='PManager').exists() and not my_user.groups.filter(name='Market Checker').exists():
                     ISadmin_group.user_set.add(my_user)  # Add the user to the ISAdmin group
 
-                return redirect('Authentication:loginadmin')  # Update this with the correct URL
+                return redirect('Authentication:loginadmin') 
+            
             except IntegrityError:
                 messages.error(request, 'Username or email already exist!')
 
