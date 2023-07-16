@@ -14,7 +14,7 @@ class Origin(models.Model):
 
 
 class Vessel(models.Model):
-    vessel_id = models.CharField(max_length=30)
+    vessel_id = models.CharField(max_length=30,)
     vessel_name = models.CharField(max_length=30)
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
 
@@ -25,6 +25,6 @@ class DailyTransaction(models.Model):
     species = models.ForeignKey(Species, on_delete=models.CASCADE)
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
     vessel = models.ForeignKey(Vessel, on_delete=models.CASCADE)
-    quantity = models.CharField(max_length=30)
-    price = models.CharField(max_length=30)
-    date = models.DateTimeField()
+    quantity = models.IntegerField()
+    price = models.IntegerField()
+    date = models.DateField()

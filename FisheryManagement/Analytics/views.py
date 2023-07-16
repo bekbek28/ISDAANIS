@@ -3,38 +3,48 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
-from .models import DailyTransaction, Species
+from .models import Species, DailyTransaction, Vessel, Origin
 
 
 
 @login_required(login_url='Authentication:usertype')
 def isforms(request):
     if request.method == 'POST':
-        fishtype = request.POST.get('fishtype')
-        quantity = request.POST.get('quantity')
-        vessel = request.POST.get('vessel')
-        placeofcatch = request.POST.get('placeofcatch')
-        dateofcatch = request.POST.get('dateofCatch')
-        price = request.POST.get('price')
+        fishtype = request.POST['fishtype']
+        quantity = request.POST['quantity']
+        vessel = request.POST['vessel']
+        placeofcatch = request.POST['placeofcatch']
+        dateofCatch = request.POST['dateofCatch']
+        price = request.POST['price']
 
-        # Retrieve the corresponding Species instance
-        species = Species.objects.get(name=fishtype)
-
-        # Create a new DailyTransaction object and save the data
-        transaction = DailyTransaction(
-            species=species,
-            origin=placeofcatch,
-            vessel=vessel,
-            quantity=quantity,
-            price=price, 
-            date=dateofcatch
+        species_instance, _ = Species.objects.get_or_create(
+            species_id=fishtype,
+            species_name=fishtype,
+            quantity=0,  # You can set a default quantity if it's not provided in the form
+            price=0,  # You can set a default price if it's not provided in the form
         )
-        transaction.save()
 
-        # Redirect to a success page or any other desired page
-        return redirect('Analytics:loadhistory')  # Replace 'success' with your desired URL name
+        origin_instance, _ = Origin.objects.get_or_create(
+            origin=placeofcatch,
+            date=dateofCatch,
+        )
 
-    # Render the MCforms.html template for GET requests
+        vessel_instance, _ = Vessel.objects.get_or_create(
+            vessel_id=vessel,
+            vessel_name=vessel, 
+            origin=origin_instance,
+        )
+
+        new_transaction = DailyTransaction(
+            species=species_instance,
+            quantity=quantity,
+            vessel=vessel_instance,
+            origin=origin_instance,
+            date=dateofCatch,
+            price=price,
+        )
+        new_transaction.save()
+
     return render(request, 'MCforms.html')
 
 
@@ -110,9 +120,6 @@ def userstable(request):
     })
 
 
-@login_required(login_url='Authentication:loginadmin')
-def analyticsTable(request,):
-    return render(request, 'analytics.html' )
 
 @login_required(login_url='Authentication:loginadmin')
 def loadhistory(request,):
