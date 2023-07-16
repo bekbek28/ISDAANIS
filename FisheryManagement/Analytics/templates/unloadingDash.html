@@ -17,11 +17,14 @@
   <nav>
      
       <!-- Code for the sidebar -->
-    <div class="menu-items">
-      <div class="logo-image">
-        <img src="{% static 'img/pfda.png' %}" alt="">
-        <a href="#">IsdaanIS</a>
+      <div class="logo-name">
+        <div class="logo-image">
+            <img src="{% static 'img/pfda.png' %}" alt="">
+        </div>
+  
+        <span class="logo_name">IsdaanIS</span>
     </div>
+    <div class="menu-items">
         <ul class="nav-links"> 
             <li>
                 <a href="{% url 'Analytics:loadingdash' %}">

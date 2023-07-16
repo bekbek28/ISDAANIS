@@ -9,7 +9,7 @@
 
 .main_box{
   position: relative;
-  background-color:#FFEEB3;
+  background-color:whitesmoke;
   height: 100vh;
   width: 100%;
 }
@@ -18,7 +18,7 @@
   height: 100vh;
   width: 280px;
   left: -280px;
-  background: #85CDFD;
+  background: #57a1d3;
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.5);
   overflow: hidden;
   transition: all 0.3s linear;
@@ -61,12 +61,12 @@ text-decoration: none;
   list-style: none;
 }
 .sidebar_menu .menu i{
-  color: #fff;
+  color: black;
   font-size: 20px;
   padding-right: 8px;
 }
 .sidebar_menu .menu a{
-  color: #fff;
+  color: black;
   font-size: 20px;
   text-decoration: none;
 }
