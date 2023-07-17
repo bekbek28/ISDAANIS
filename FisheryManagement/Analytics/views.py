@@ -67,6 +67,7 @@ def edit_user(request, id):
         user.last_name = last_name
         user.email = email
         user.username = username
+        user.group = group
 
         # Update the user's group
         group = Group.objects.get(name=usergroup)
@@ -121,7 +122,8 @@ def userstable(request):
 
 @login_required(login_url='Authentication:loginadmin')
 def loadhistory(request,):
-    return render(request, 'loadhistory.html')
+    transactions = DailyTransaction.objects.all()
+    return render(request, 'loadhistory.html', {'transactions': transactions})
 
 @login_required(login_url='Authentication:loginadmin')
 def unloadhistory(request,):

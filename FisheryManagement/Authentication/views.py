@@ -125,8 +125,6 @@ def isadminloginhtml(request):
     return render(request, 'admin.html')
 
 
-
-
 def isadminreghtml(request):
     if request.method == 'POST':
         firstname = request.POST.get('fname')
