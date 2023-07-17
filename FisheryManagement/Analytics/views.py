@@ -17,11 +17,10 @@ def isforms(request):
         dateofCatch = request.POST['dateofCatch']
         price = request.POST['price']
 
-        species_instance, _ = Species.objects.get_or_create(
-            species_id=fishtype,
+        species_instance = Species.objects.get_or_create(
             species_name=fishtype,
-            quantity=0,  # You can set a default quantity if it's not provided in the form
-            price=0,  # You can set a default price if it's not provided in the form
+            quantity=quantity,  # You can set a default quantity if it's not provided in the form
+            price=price,  # You can set a default price if it's not provided in the form
         )
 
         origin_instance, _ = Origin.objects.get_or_create(
@@ -30,7 +29,6 @@ def isforms(request):
         )
 
         vessel_instance, _ = Vessel.objects.get_or_create(
-            vessel_id=vessel,
             vessel_name=vessel, 
             origin=origin_instance,
         )
