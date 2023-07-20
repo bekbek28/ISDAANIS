@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.contrib.auth.models import Group
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from .models import Species, DailyTransaction, Vessel, Origin
 
 
 
 @login_required(login_url='Authentication:usertype')
 def isforms(request):
+    origins = Origin.objects.all()
+
     if request.method == 'POST':
         fishtype = request.POST['fishtype']
         quantity = request.POST['quantity']
@@ -17,19 +18,24 @@ def isforms(request):
         dateofCatch = request.POST['dateofCatch']
         price = request.POST['price']
 
+        origin = placeofcatch.capitalize()
+        print(origin)
+        try:
+            origin_instance = Origin.objects.get(origin=origin, date=dateofCatch)
+        except Origin.DoesNotExist:
+            origin_instance = Origin.objects.create(
+                origin=origin,
+                date=dateofCatch,
+            )
+
         species_instance, _ = Species.objects.get_or_create(
             species_name=fishtype,
-            quantity=quantity,  # You can set a default quantity if it's not provided in the form
-            price=price,  # You can set a default price if it's not provided in the form
-        )
-
-        origin_instance, _ = Origin.objects.get_or_create(
-            origin=placeofcatch,
-            date=dateofCatch,
+            quantity=quantity,
+            price=price,
         )
 
         vessel_instance, _ = Vessel.objects.get_or_create(
-            vessel_name=vessel, 
+            vessel_name=vessel,
             origin=origin_instance,
         )
 
@@ -43,53 +49,45 @@ def isforms(request):
         )
         new_transaction.save()
 
-    return render(request, 'MCforms.html')
-
-
+    return render(request, 'MCforms.html', {
+        'origins': origins
+    })
 
 @login_required(login_url='Authentication:loginadmin')
 def edit_user(request, id):
     user = get_object_or_404(User, id=id)
-
     if request.method == 'POST':
-        # Retrieve the updated user information from the form
         first_name = request.POST.get('firstName')
         last_name = request.POST.get('lastName')
         email = request.POST.get('email')
         username = request.POST.get('username')
         usergroup = request.POST.get('usergroup')
 
-        # Retrieve the user object
-        user = request.user
-
-        # Update the user's attributes
         user.first_name = first_name
         user.last_name = last_name
         user.email = email
-        user.username = username
-        user.group = group
+        if user.username:
+            pass
+        else:
+            user.username = username
+        user.group = usergroup
 
-        # Update the user's group
         group = Group.objects.get(name=usergroup)
         user.group = group
 
-        # Save the changes
         user.save()
 
-        # Redirect to a success page or any other appropriate view
-        return redirect('Analytics:userstable')  # Replace 'success-page' with your desired URL
+        return redirect('Analytics:userstable') 
 
-    # Handle GET requests if needed
     return render(request, 'edituser.html', {
         'user': user
     })
 
+
 def delete_user(request, id):
     user = get_object_or_404(User, id=id)
     user.delete()
-
-    return redirect('Analytics:userstable')  # Replace 'user-list' with the URL of your user listing page
-
+    return redirect('Analytics:userstable')  
 
 
 @login_required(login_url='Authentication:usertype')
@@ -104,8 +102,6 @@ def  unloadingdash(request):
 def  isadmindashboard(request):
     return render(request, 'admindash.html' )
 
-
-
 @login_required(login_url='Authentication:loginadmin')
 def userstable(request):
     market_checker = Group.objects.get(name='Market Checker').user_set.all()
@@ -119,7 +115,6 @@ def userstable(request):
     })
 
 
-
 @login_required(login_url='Authentication:loginadmin')
 def loadhistory(request,):
     transactions = DailyTransaction.objects.all()
@@ -130,10 +125,6 @@ def unloadhistory(request,):
     return render(request, 'unloadhistory.html')
 
 
-
 def logout_view(request):
     logout(request)
     return redirect('Authentication:usertype')
- 
-
- 

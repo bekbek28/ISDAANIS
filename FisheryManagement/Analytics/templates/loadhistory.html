@@ -35,19 +35,22 @@
       <div class="menu">
         <ul>
           <li>
-            <i class='bx bx-arrow-back'></i>
-            <a href="{% url 'Analytics:admindashboard' %}">Back</a>
+            <a href="{% url 'Analytics:admindashboard' %}">
+              <i class='bx bx-arrow-back'></i>Back</a>
           </li>
           <li>
-            <i class='bx bx-exit'></i>
-            <a href="{% url 'Analytics:logout' %}">Logout</a>
+            <a href="{% url 'Analytics:logout' %}">
+              <i class='bx bx-exit'></i>Logout</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- Codes For Load History Table -->
     <div class="table-responsive bg-info">
-      <h2>Loading History</h2>
+      <div class="topbar"><h2>Loading History</h2>
+        <div class="search-bar">
+          <input type="text" placeholder="Search..">
+        </div></div>
         <table class="table table-bordered table-hover ">
             <thead>
               <!-- Table Contents -->
@@ -77,8 +80,8 @@
               {% endfor %}
             </tbody>
         </table>
-      </div>
   </div>
+</div>
   
   </body>
 

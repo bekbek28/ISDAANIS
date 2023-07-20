@@ -5,13 +5,25 @@ class Species(models.Model):
     quantity = models.IntegerField()
     price = models.IntegerField()
 
-class Origin(models.Model):
-    origin = models.CharField(max_length=30, primary_key=True)
-    date = models.DateTimeField()
+    def __str__(self):
+        return self.species_name
 
+class Origin(models.Model):
+    origin = models.CharField(max_length=30)
+    date = models.DateTimeField()
+    class Meta:
+        unique_together = ('origin', 'date')
+
+    def __str__(self):
+        return self.origin
+    
+    
 class Vessel(models.Model):
     vessel_name = models.CharField(max_length=30)
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.vessel_name
 
 class DailyTransaction(models.Model):
     species = models.ForeignKey(Species, on_delete=models.CASCADE)
@@ -20,3 +32,6 @@ class DailyTransaction(models.Model):
     quantity = models.IntegerField()
     price = models.IntegerField()
     date = models.DateField()
+
+    def __str__(self):
+        return f'{self.species}'

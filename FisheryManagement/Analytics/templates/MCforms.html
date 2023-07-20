@@ -28,7 +28,7 @@
 </div>
 <div class="container-sm" id="container"> 
   
-  <form class="row g-3" action="{% url 'Analytics:forms' %}" method="POST">
+  <form class="row g-3" method="POST">
     {% csrf_token %}
 
     <!-- for fishtype input -->
@@ -46,7 +46,7 @@
 
     <div class="row-6">
       <label for="quantity" class="form-label">Quantity:</label>
-      <input type="text" class="form-control" id="quantity" name="quantity" placeholder="In Kilos or Tons">
+      <input type="number" class="form-control" id="quantity" name="quantity" placeholder="In Kilos or Tons">
     </div>
 
 
@@ -62,14 +62,15 @@
     </div>
     <!-- for place of catch function -->
     <div class="row-6">
-      <label for="placeofcatch" class="form-label">Origin:</label>
-      <input type="text" class="form-control" id="placeofcatch" name="placeofcatch" placeholder="Enter the Origin" list="placeofcatchOptions">
-      <datalist id="placeofcatchOptions">
-        <option value="Dalahican">
-        <option value="Polilio">
-        <option value="Marinduque">
+      <label for="placeofcatch" class="form-label">Place of catch:</label>
+      <input type="text" class="form-control" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch">
+      <datalist id="placeofcatch">
+        <option value="Origins" disabled></option>
+        {% for origin in origins %}
+          <option value={{origin.id}}>{{origin.origin}}</option>
+        {% endfor %}
       </datalist>
-    </div>
+    </div> 
     <!-- for date of catch function -->
     <div class="row-6">
       <label for="date" class="form-label">Date of Catch:</label>

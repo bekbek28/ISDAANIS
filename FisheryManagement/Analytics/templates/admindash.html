@@ -40,20 +40,21 @@
             <a href="#">Dashboard</a>
           </li>
           <li>
-            <i class='bx bxs-user'></i>
-            <a href="{% url 'Analytics:userstable'%}">Users</a>
+            <a href="{% url 'Analytics:userstable'%}">
+              <i class='bx bxs-user'></i>Users</a>
           </li>
           <li>
-            <i class='bx bx-line-chart'></i>
-            <a href="{% url 'Analytics:loadhistory'%}">Load History</a>
+            <a href="{% url 'Analytics:loadhistory'%}">
+              <i class='bx bx-line-chart'></i> Load History</a>
           </li>
           <li>
-            <i class='bx bx-line-chart'></i>
-            <a href="{% url 'Analytics:unloadhistory'%}">Unload History</a>
+            <a href="{% url 'Analytics:unloadhistory'%}">
+              <i class='bx bx-line-chart'></i>Unload History</a>
           </li>
           <li>
-            <i class='bx bx-exit'></i>
-            <a href="{% url 'Analytics:logout' %}">Logout</a>
+            
+            <a href="{% url 'Analytics:logout' %}">
+              <i class='bx bx-exit'></i>Logout</a>
           </li>
         </ul>
       </div>

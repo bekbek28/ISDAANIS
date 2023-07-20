@@ -117,6 +117,12 @@ text-decoration: none;
   margin-left: 80px;
 }
 
+.table-responsive .topbar{
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
 #user-table{
   background-color: #FFEEB3;
 }
