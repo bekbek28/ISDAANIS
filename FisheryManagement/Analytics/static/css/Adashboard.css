@@ -81,14 +81,7 @@ text-decoration: none;
   border-left: 1px solid #fff;
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
 }
-.sidebar_menu .social_media{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 20px;
-  list-style: none;
-  cursor: pointer;
-}
+
 .sidebar_menu .social_media i{
   text-decoration: none;
   padding: 0 5px;
@@ -140,3 +133,13 @@ text-decoration: none;
   opacity: 1;
 }
 
+.navbar{
+  background-color: #57a1d3;
+  height: 90px;
+  display: flex;
+  flex-direction:row-reverse;
+  }
+  
+  .navbar .btn_one{
+    margin-bottom: 80px;
+  }

@@ -5,6 +5,8 @@ from django.contrib.auth.models import User, Group
 from .models import Species, DailyTransaction, Vessel, Origin
 from django.http import JsonResponse
 from django.db.models import Q
+from django.core.paginator import Paginator
+
 
 
 @login_required(login_url='Authentication:usertype')
@@ -98,6 +100,31 @@ def  loadingdash(request):
 @login_required(login_url='Authentication:usertype')
 def  unloadingdash(request):
     transactions = DailyTransaction.objects.all()
+    labels = []
+    quantities = []
+    prices = []
+    species = []
+    origins = []
+    vessels = []
+
+    for transaction in transactions:
+        labels.append(str(transaction.date))  # Convert date to string for chart labels
+        quantities.append(transaction.quantity)
+        prices.append(transaction.price)
+        species.append(transaction.species.name)
+        origins.append(transaction.origin.name if transaction.origin else None)
+        vessels.append(transaction.vessel.name)
+
+    data = {
+        'labels': labels,
+        'quantities': quantities,
+        'prices': prices,
+        'species': species,
+        'origin': origins,
+        'vessel': vessels,
+    }
+
+    return JsonResponse(data)
     return render(request, 'unloadingDash.html', {'transactions': transactions} )
 
 @login_required(login_url='Authentication:loginadmin')
@@ -146,36 +173,17 @@ def loadhistory(request,):
     return render(request, 'loadhistory.html', {'transactions': transactions})
 
 @login_required(login_url='Authentication:loginadmin')
-def unloadhistory(request,):
+
+
+def unloadhistory(request):
     transactions = DailyTransaction.objects.all()
+    paginator = Paginator(transactions, 10)  # Show 10 transactions per page
 
-    labels = []
-    quantities = []
-    prices = []
-    species_list = []
-    origins = []
-    vessels = []
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
 
-    for transaction in transactions:
-        labels.append(str(transaction.date))  # Convert date to string for chart labels
-        quantities.append(transaction.quantity)
-        prices.append(transaction.price)
-        species_list.append(transaction.species.name)
-        origins.append(transaction.origin.name if transaction.origin else None)
-        vessels.append(transaction.vessel.name)
+    return render(request, 'unloadhistory.html', {'transactions': page})
 
-    data = {
-        'labels': labels,
-        'quantities': quantities,
-        'prices': prices,
-        'species': species_list,
-        'origin': origins,
-        'vessel': vessels,
-    }
-
-    return JsonResponse(data)
-
-    return render(request, 'loadhistory.html', {'transactions': transactions})
 
 
 def logout_view(request):

@@ -11,13 +11,15 @@
    </head>
 <body>
   <div class="main_box">
-    <input type="checkbox" id="check">
-    <div class="btn_one">
-      <label for="check">
-        <i class='bx bx-menu'></i>
-      </label>
+    <div class="navbar">
+     
+      <h2>ISdaanIS</h2>
+      <div class="btn_one">
+        <label for="check">
+          <i class='bx bx-menu'></i>
+        </label>
+      </div>
     </div>
-
     
     <div class="sidebar_menu">
       <div class="logo">
@@ -35,10 +37,6 @@
       <div class="menu">
         
         <ul>
-          <li>
-            <i class='bx bxs-dashboard' ></i>
-            <a href="#">Dashboard</a>
-          </li>
           <li>
             <a href="{% url 'Analytics:userstable'%}">
               <i class='bx bxs-user'></i>Users</a>
