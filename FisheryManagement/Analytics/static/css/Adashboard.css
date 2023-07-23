@@ -5,30 +5,24 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+
 .main_box{
   position: relative;
   background-color:whitesmoke;
   height: 100vh;
   width: 100%;
 }
-
-.main_box nav{
-margin-left: 90px;
-margin-bottom: 80px;
-background-color: antiquewhite;
-}
-
-
 .main_box .sidebar_menu{
   position: fixed;
   height: 100vh;
   width: 280px;
   left: -280px;
-  background: #85CDFD;
+  background: #57a1d3;
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.5);
   overflow: hidden;
   transition: all 0.3s linear;
-  margin-top: -25px;
+  margin-top: -90px;
 }
 .sidebar_menu .logo{
   position: absolute;
@@ -40,7 +34,6 @@ background-color: antiquewhite;
   width: 60px;
   object-fit: cover;
   border-radius: 50%;
-  padding-top: 10px;
 }
 
 .sidebar_menu .logo a{
@@ -73,27 +66,14 @@ text-decoration: none;
   padding-right: 8px;
 }
 .sidebar_menu .menu a{
-  color:black;
+  color: black;
   font-size: 20px;
   text-decoration: none;
 }
 .sidebar_menu .menu li:hover{
   border-left: 1px solid #fff;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-}
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);}
 
-.sidebar_menu .social_media i{
-  text-decoration: none;
-  padding: 0 5px;
-  color: #fff;
-  opacity: 0.6;
-  font-size: 20px;
-}
-.sidebar_menu .social_media i:hover{
-  opacity: 1;
-  transition: all 0.2s linear;
-  transform: scale(1.01);
-}
 #check{
   display: none;
 }
@@ -133,6 +113,24 @@ text-decoration: none;
   opacity: 1;
 }
 
+.table-responsive {
+  margin-top: 20px;
+  margin-left: 100px;
+  width: 80%;
+}
+
+#user-table{
+  background-color: #FFEEB3;
+}
+
+.w3-modal-content .w3-container{
+  display: flex;
+  flex-direction: column ;
+  align-content: center;
+  align-items: center;
+  height: 150px;
+}
+
 .navbar{
   background-color: #57a1d3;
   height: 90px;
@@ -143,3 +141,24 @@ text-decoration: none;
   .navbar .btn_one{
     margin-bottom: 80px;
   }
+  
+  .search-bar{
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #57a1d3;
+    margin-right: 50px;
+  }
+
+  .search-bar .btn{
+    background-color: #FFEEB3;
+    height: 33px;
+  }
+
+  .search-bar i{
+    font-size: 25px;
+    border-radius: 10%;
+    height: 10px;
+  }
+  
