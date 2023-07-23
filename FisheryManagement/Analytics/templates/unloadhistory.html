@@ -11,13 +11,22 @@
    </head>
 <body>
   <!-- Code for sidebar -->
+  
   <div class="main_box">
     <input type="checkbox" id="check">
+    <div class="navbar">
+    <div class="search-bar">
+      <input type="text" placeholder="Search..">
+      <div class="btn">
+        <i class='bx bx-search-alt-2'></i>
+      </div>
+    </div>
     <div class="btn_one">
       <label for="check">
         <i class='bx bx-menu'></i>
       </label>
     </div>
+  </div>
     <div class="sidebar_menu">
       <div class="logo">
         <div class="logo-image">
@@ -44,108 +53,42 @@
         </ul>
       </div>
     </div>
-    
+    <!-- Codes For Load History Table -->
     <div class="table-responsive bg-info">
-      <h2>Unloading History</h2>
-
-        <!-- Table Contents -->
+      <div class="topbar"><h2>Loading History</h2>
+      
+      </div>
         <table class="table table-bordered table-hover ">
             <thead>
+              <!-- Table Contents -->
               <tr class="bg-info">
                 <th scope="col">Load Date</th>
                 <th scope="col">Type of fish</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Vessel</th>
                 <th scope="col">Location</th>
+                <th scope="col">Price</th>
 
                 
               </tr>
             </thead>
             <!-- Table Data -->
             <tbody>
+              {% for transaction in transactions %}
               <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
-            
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-                <td>Port Manager</td>
-              </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-                <td>Port Manager</td>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.species.species_name }}</td>
+                <td>{{ transaction.quantity }}</td>
+                <td>{{ transaction.vessel.vessel_name }}</td>
+                <td>{{ transaction.origin.origin }}</td>
+                <td>{{ transaction.price }}</td>
                 
               </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-                <td>Port Manager</td>
-              </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-                <td>Port Manager</td>
-              </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
-              <tr>
-                <td>JOhnny</td>
-                <td>Marks</td>
-                <td>jmarks@email.com</td>
-                <td>Port Manager</td>
-                <td>Port Manager</td>
-              </tr>
-              <tr>
-                <td class="table-info">JOhnny</td>
-                <td class="table-info">Marks</td>
-                <td class="table-info">jmarks@email.com</td>
-                <td class="table-info">Port Manager</td>
-                <td class="table-info">Port Manager</td>
-              </tr>
+              {% endfor %}
             </tbody>
         </table>
-      </div>
   </div>
+</div>
   
   </body>
 

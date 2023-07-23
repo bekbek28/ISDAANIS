@@ -53,6 +53,7 @@ def isreghtml(request):
             try:
                 my_user = User.objects.create_user(first_name=firstname,last_name=lastname,email=email,username=uname, password=password)
                 my_user.save()
+                messages.success(request, 'User Account Created')
 
                 if not my_user.groups.filter(name='PManager').exists() and not my_user.groups.filter(name='ISAdmin').exists():
                     market_checker_group.user_set.add(my_user)  # Add the user to the Market Checker group

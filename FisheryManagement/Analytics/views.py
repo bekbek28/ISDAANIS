@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
 from .models import Species, DailyTransaction, Vessel, Origin
-
+from django.http import JsonResponse
+from django.db.models import Q
 
 
 @login_required(login_url='Authentication:usertype')
@@ -96,7 +97,8 @@ def  loadingdash(request):
 
 @login_required(login_url='Authentication:usertype')
 def  unloadingdash(request):
-    return render(request, 'unloadingDash.html' )
+    transactions = DailyTransaction.objects.all()
+    return render(request, 'unloadingDash.html', {'transactions': transactions} )
 
 @login_required(login_url='Authentication:loginadmin')
 def  isadmindashboard(request):
@@ -107,13 +109,36 @@ def userstable(request):
     market_checker = Group.objects.get(name='Market Checker').user_set.all()
     pm_manager = Group.objects.get(name='PManager').user_set.all()
     is_admin = Group.objects.get(name='ISAdmin').user_set.all()
+
+    search_query = request.GET.get('q')
+    if search_query:
+        market_checker = market_checker.filter(
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query) |
+            Q(email__icontains=search_query) |
+            Q(username__icontains=search_query)
+        )
+
+        pm_manager = pm_manager.filter(
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query) |
+            Q(email__icontains=search_query) |
+            Q(username__icontains=search_query)
+        )
+
+        is_admin = is_admin.filter(
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query) |
+            Q(email__icontains=search_query) |
+            Q(username__icontains=search_query)
+        )
     
     return render(request, 'userstable.html', {
         'market_checker': market_checker,
         'pm_manager': pm_manager,
-        'is_admin': is_admin
+        'is_admin': is_admin,
+        'search_query':search_query
     })
-
 
 @login_required(login_url='Authentication:loginadmin')
 def loadhistory(request,):
@@ -122,7 +147,35 @@ def loadhistory(request,):
 
 @login_required(login_url='Authentication:loginadmin')
 def unloadhistory(request,):
-    return render(request, 'unloadhistory.html')
+    transactions = DailyTransaction.objects.all()
+
+    labels = []
+    quantities = []
+    prices = []
+    species_list = []
+    origins = []
+    vessels = []
+
+    for transaction in transactions:
+        labels.append(str(transaction.date))  # Convert date to string for chart labels
+        quantities.append(transaction.quantity)
+        prices.append(transaction.price)
+        species_list.append(transaction.species.name)
+        origins.append(transaction.origin.name if transaction.origin else None)
+        vessels.append(transaction.vessel.name)
+
+    data = {
+        'labels': labels,
+        'quantities': quantities,
+        'prices': prices,
+        'species': species_list,
+        'origin': origins,
+        'vessel': vessels,
+    }
+
+    return JsonResponse(data)
+
+    return render(request, 'loadhistory.html', {'transactions': transactions})
 
 
 def logout_view(request):
