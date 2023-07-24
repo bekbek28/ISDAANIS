@@ -136,29 +136,18 @@ text-decoration: none;
   height: 90px;
   display: flex;
   flex-direction:row-reverse;
+  align-content: space-around;
+  justify-content: flex-end;
+  align-items: center;
   }
   
   .navbar .btn_one{
     margin-bottom: 80px;
   }
   
-  .search-bar{
-    font-size: 20px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #57a1d3;
-    margin-right: 50px;
+  .navbar h2{
+   margin-right: 80px;
+
   }
 
-  .search-bar .btn{
-    background-color: #FFEEB3;
-    height: 33px;
-  }
-
-  .search-bar i{
-    font-size: 25px;
-    border-radius: 10%;
-    height: 10px;
-  }
   

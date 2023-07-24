@@ -40,24 +40,31 @@ function showLogoutMessage() {
 
 
 /* to get random colors for the bar chart */
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 
-
-fetch('/unloadhistory/')
+fetch('http://127.0.0.1:8000/analytics/unloadingDashData/')
   .then(response => response.json())
   .then(data => {
-    console.log(data);
     // Chart.js code for the first bar chart (Fishtype)
-    const ctx = document.getElementById('Fishtype').getContext('2d');
-    new Chart(ctx, {
+    console.log(data)
+    var ctx = document.getElementById('Fishtype').getContext('2d');
+   var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: data.species, // Use the 'species' data from Django view
         datasets: [{
           label: 'Quantity',
           data: data.quantities, // Use the 'quantities' data from Django view
-          borderColor: getRandomColors(data.species.length), // Use random colors for each species
-          backgroundColor: getRandomColors(data.species.length),
+          borderColor: getRandomColor(data.species.length), // Use random colors for each species
+          backgroundColor: getRandomColor(data.species.length),
           borderWidth: 1.5
         }]
       },
@@ -82,8 +89,8 @@ fetch('/unloadhistory/')
         datasets: [{
           label: 'Quantity',
           data: data.quantities, // Use the 'quantities' data from Django view
-          borderColor: getRandomColors(data.vessel.length), // Use random colors for each vessel
-          backgroundColor: getRandomColors(data.vessel.length),
+          borderColor: getRandomColor(data.vessel.length), // Use random colors for each vessel
+          backgroundColor: getRandomColor(data.vessel.length),
           borderWidth: 1.5
         }]
       },
@@ -105,8 +112,8 @@ fetch('/unloadhistory/')
         datasets: [{
           label: 'Quantity',
           data: data.quantities, // Use the 'quantities' data from Django view
-          borderColor: getRandomColors(data.origin.length), // Use random colors for each origin
-          backgroundColor: getRandomColors(data.origin.length),
+          borderColor: getRandomColor(data.origin.length), // Use random colors for each origin
+          backgroundColor: getRandomColor(data.origin.length),
           borderWidth: 1.5
         }]
       },
@@ -119,6 +126,16 @@ fetch('/unloadhistory/')
       }
     });
 
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+
     // Chart.js code for the first line chart (DailyCatch)
     const ctx4 = document.getElementById('DailyCatch').getContext('2d');
     new Chart(ctx4, {
@@ -129,7 +146,7 @@ fetch('/unloadhistory/')
           label: 'Quantity',
           data: data.quantities, // Use the 'quantities' data from Django view
           borderColor: 'rgba(0, 2, 161, 1)',
-          backgroundColor: getRandomColors2(1),
+          backgroundColor: getRandomColor(1),
           borderWidth: 2
         }]
       },
@@ -152,7 +169,7 @@ fetch('/unloadhistory/')
           label: 'Quantity',
           data: data.quantities, // Use the 'quantities' data from Django view
           borderColor: 'rgba(0, 2, 161, 1)',
-          backgroundColor: getRandomColors2(1),
+          backgroundColor: getRandomColor(1),
           borderWidth: 2
         }]
       },
@@ -175,7 +192,7 @@ fetch('/unloadhistory/')
           label: 'Quantity',
           data: data.quantities, // Use the 'quantities' data from Django view
           borderColor: 'rgba(0, 2, 161, 1)',
-          backgroundColor: getRandomColors2(1),
+          backgroundColor: getRandomColor(1),
           borderWidth: 2
         }]
       },

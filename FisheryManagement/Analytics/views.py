@@ -97,8 +97,7 @@ def delete_user(request, id):
 def  loadingdash(request):
     return render(request, 'loadingDash.html' )
 
-@login_required(login_url='Authentication:usertype')
-def  unloadingdash(request):
+def  dataUnloadingDash(request):
     transactions = DailyTransaction.objects.all()
     labels = []
     quantities = []
@@ -111,9 +110,10 @@ def  unloadingdash(request):
         labels.append(str(transaction.date))  # Convert date to string for chart labels
         quantities.append(transaction.quantity)
         prices.append(transaction.price)
-        species.append(transaction.species.name)
-        origins.append(transaction.origin.name if transaction.origin else None)
-        vessels.append(transaction.vessel.name)
+        species.append(transaction.species.species_name)
+        origin_data = transaction.origin.origin if transaction.origin else None
+        origins.append(origin_data)
+        vessels.append(transaction.vessel.vessel_name)
 
     data = {
         'labels': labels,
@@ -125,7 +125,9 @@ def  unloadingdash(request):
     }
 
     return JsonResponse(data)
-    return render(request, 'unloadingDash.html', {'transactions': transactions} )
+@login_required(login_url='Authentication:usertype')
+def  unloadingdash(request):
+    return render(request, 'unloadingDash.html' )
 
 @login_required(login_url='Authentication:loginadmin')
 def  isadmindashboard(request):
@@ -173,7 +175,6 @@ def loadhistory(request,):
     return render(request, 'loadhistory.html', {'transactions': transactions})
 
 @login_required(login_url='Authentication:loginadmin')
-
 
 def unloadhistory(request):
     transactions = DailyTransaction.objects.all()
