@@ -158,3 +158,46 @@ flex-direction:row-reverse;
   font-size: 20px;
   border-radius: 10%;
 }
+
+/* Basic styling for the paginator container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Styling for the Previous and Next buttons */
+a.prev, a.next {
+  padding: 8px 12px;
+  background-color: #f2f2f2;
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+a.prev:hover, a.next:hover {
+  background-color: #ddd;
+}
+
+/* Styling for the page numbers */
+span.page-numbers a {
+  padding: 8px 12px;
+  background-color: #f2f2f2;
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+span.page-numbers a.active {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+span.page-numbers a:hover {
+  background-color: #ddd;
+}

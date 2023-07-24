@@ -178,7 +178,16 @@ def loadhistory(request,):
 
 def unloadhistory(request):
     transactions = DailyTransaction.objects.all()
-    paginator = Paginator(transactions, 10)  # Show 10 transactions per page
+    search_query = request.GET.get('q')
+    if search_query:
+        transactions = transactions.filter(
+            Q(species__species_name__icontains=search_query) |
+            Q(quantity__icontains=search_query) |
+            Q(vessel__vessel_name__icontains=search_query) |
+            Q(origin__origin__icontains=search_query) |
+            Q(price__icontains=search_query)
+        )
+    paginator = Paginator(transactions, 4)
 
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)

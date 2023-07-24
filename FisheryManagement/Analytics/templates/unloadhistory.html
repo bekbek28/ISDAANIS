@@ -15,12 +15,12 @@
   <div class="main_box">
     <input type="checkbox" id="check">
     <div class="navbar">
-    <div class="search-bar">
-      <input type="text" placeholder="Search..">
-      <div class="btn">
-        <i class='bx bx-search-alt-2'></i>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search.." value="{{ search_query }}">
+        <button type="button" id="search-btn" class="btn">
+          <i class='bx bx-search-alt-2'></i>
+        </button>      
       </div>
-    </div>
     <h2>ISdaanIS</h2>
     <div class="btn_one">
       <label for="check">
@@ -56,7 +56,7 @@
     </div>
     <!-- Codes For Load History Table -->
     <div class="table-responsive bg-info">
-      <div class="topbar"><h2>Loading History</h2>
+      <div class="topbar"><h2>Unloading History</h2>
       
       </div>
         <table class="table table-bordered table-hover ">
@@ -92,23 +92,25 @@
 
   <div class="pagination">
     <span class="step-links">
-        {% if page.has_previous %}
+        {% if transactions.has_previous %}
             <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page.previous_page_number }}">previous</a>
+            <a href="?page={{ transactions.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
-            Page {{ page.number }} of {{ page.paginator.num_pages }}.
+            Page {{ transactions.number }} of {{ transactions.paginator.num_pages }}.
         </span>
 
-        {% if page.has_next %}
-            <a href="?page={{ page.next_page_number }}">next</a>
-            <a href="?page={{ page.paginator.num_pages }}">last &raquo;</a>
+        {% if transactions.has_next %}
+            <a href="?page={{ transactions.next_page_number }}">next</a>
+            <a href="?page={{ transactions.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
 </div>
+
 </div>
   
+<script src="{% static 'js/unloadhistory.js' %}"></script>
   </body>
 
 </html>
