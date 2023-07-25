@@ -167,7 +167,7 @@ fetch('http://127.0.0.1:8000/analytics/unloadingDashData/')
         labels: data.labels, // Use the 'labels' data from Django view
         datasets: [{
           label: 'Quantity',
-          data: data.quantities, // Use the 'quantities' data from Django view
+          data: data.quantities_monthly, // Use the 'quantities' data from Django view
           borderColor: 'rgba(0, 2, 161, 1)',
           backgroundColor: getRandomColor(1),
           borderWidth: 2
@@ -190,7 +190,7 @@ fetch('http://127.0.0.1:8000/analytics/unloadingDashData/')
         labels: data.labels, // Use the 'labels' data from Django view
         datasets: [{
           label: 'Quantity',
-          data: data.quantities, // Use the 'quantities' data from Django view
+          data: data.quantities_yearly, // Use the 'quantities' data from Django view
           borderColor: 'rgba(0, 2, 161, 1)',
           backgroundColor: getRandomColor(1),
           borderWidth: 2

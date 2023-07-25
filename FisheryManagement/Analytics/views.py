@@ -4,6 +4,9 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
 from .models import Species, DailyTransaction, Vessel, Origin
 from django.http import JsonResponse
+from collections import defaultdict
+from django.db.models import Sum
+from django.db.models.functions import TruncMonth, TruncYear
 from django.db.models import Q
 from django.core.paginator import Paginator
 
@@ -97,15 +100,28 @@ def delete_user(request, id):
 def  loadingdash(request):
     return render(request, 'loadingDash.html' )
 
-def  dataUnloadingDash(request):
+def dataUnloadingDash(request):
     transactions = DailyTransaction.objects.all()
+
+    # Use defaultdict to group quantities by date and calculate the sum for daily catch
+    quantity_by_date = defaultdict(int)
+    for transaction in transactions:
+        quantity_by_date[str(transaction.date)] += transaction.quantity
+
+    # Use Django's aggregation to calculate the sum for monthly and yearly catch
+    monthly_catch = transactions.annotate(month=TruncMonth('date')).values('month').annotate(total_quantity=Sum('quantity'))
+    yearly_catch = transactions.annotate(year=TruncYear('date')).values('year').annotate(total_quantity=Sum('quantity'))
+
     labels = []
     quantities = []
     prices = []
     species = []
     origins = []
     vessels = []
+    quantities_monthly = []
+    quantities_yearly = []
 
+    # Extract the dates, quantities, prices, species, origin, and vessel for daily catch
     for transaction in transactions:
         labels.append(str(transaction.date))  # Convert date to string for chart labels
         quantities.append(transaction.quantity)
@@ -115,9 +131,29 @@ def  dataUnloadingDash(request):
         origins.append(origin_data)
         vessels.append(transaction.vessel.vessel_name)
 
+    # Extract the months and quantities for monthly catch
+    for entry in monthly_catch:
+        month = entry['month'].strftime('%Y-%m')
+        quantities_monthly.append(entry['total_quantity'])
+        labels.append(month)  # Add month labels for Chart.js
+
+    # Extract the years and quantities for yearly catch
+    for entry in yearly_catch:
+        year = entry['year'].strftime('%Y')
+        quantities_yearly.append(entry['total_quantity'])
+        labels.append(year)  # Add year labels for Chart.js
+
+    # Extract the daily catch quantities
+    for date, quantity in quantity_by_date.items():
+        quantities.append(quantity)
+        # Add date labels for Chart.js
+        labels.append(date)
+
     data = {
         'labels': labels,
         'quantities': quantities,
+        'quantities_monthly': quantities_monthly,
+        'quantities_yearly': quantities_yearly,
         'prices': prices,
         'species': species,
         'origin': origins,
@@ -125,6 +161,7 @@ def  dataUnloadingDash(request):
     }
 
     return JsonResponse(data)
+
 @login_required(login_url='Authentication:usertype')
 def  unloadingdash(request):
     return render(request, 'unloadingDash.html' )
