@@ -100,31 +100,38 @@ def delete_user(request, id):
 def  loadingdash(request):
     return render(request, 'loadingDash.html' )
 
+
+
+
+from collections import defaultdict
+
 def dataUnloadingDash(request):
     transactions = DailyTransaction.objects.all()
 
-    # Use defaultdict to group quantities by date and calculate the sum for daily catch
     quantity_by_date = defaultdict(int)
     for transaction in transactions:
         quantity_by_date[str(transaction.date)] += transaction.quantity
 
-    # Use Django's aggregation to calculate the sum for monthly and yearly catch
     monthly_catch = transactions.annotate(month=TruncMonth('date')).values('month').annotate(total_quantity=Sum('quantity'))
     yearly_catch = transactions.annotate(year=TruncYear('date')).values('year').annotate(total_quantity=Sum('quantity'))
 
-    labels = []
-    quantities = []
+    species_quantities = transactions.values('species__species_name').annotate(total_quantity=Sum('quantity'))
+    origin_quantities = transactions.values('origin__origin').annotate(total_quantity=Sum('quantity'))
+    vessel_quantities = transactions.values('vessel__vessel_name').annotate(total_quantity=Sum('quantity'))
+
+    labels_daily = list(quantity_by_date.keys())
+    quantities = list(quantity_by_date.values())
     prices = []
     species = []
     origins = []
     vessels = []
+    labels_monthly = []
     quantities_monthly = []
+    labels_yearly = []
     quantities_yearly = []
 
     # Extract the dates, quantities, prices, species, origin, and vessel for daily catch
     for transaction in transactions:
-        labels.append(str(transaction.date))  # Convert date to string for chart labels
-        quantities.append(transaction.quantity)
         prices.append(transaction.price)
         species.append(transaction.species.species_name)
         origin_data = transaction.origin.origin if transaction.origin else None
@@ -133,34 +140,60 @@ def dataUnloadingDash(request):
 
     # Extract the months and quantities for monthly catch
     for entry in monthly_catch:
-        month = entry['month'].strftime('%Y-%m')
+        month = entry['month'].strftime('%b %Y')
+        labels_monthly.append(month)  # Add month labels for monthly chart
         quantities_monthly.append(entry['total_quantity'])
-        labels.append(month)  # Add month labels for Chart.js
 
     # Extract the years and quantities for yearly catch
     for entry in yearly_catch:
         year = entry['year'].strftime('%Y')
+        labels_yearly.append(year)  # Add year labels for yearly chart
         quantities_yearly.append(entry['total_quantity'])
-        labels.append(year)  # Add year labels for Chart.js
 
-    # Extract the daily catch quantities
-    for date, quantity in quantity_by_date.items():
-        quantities.append(quantity)
-        # Add date labels for Chart.js
-        labels.append(date)
+    # Add species quantities data to the response
+    species_data = []
+    for entry in species_quantities:
+        species_data.append({
+            'species_name': entry['species__species_name'],
+            'total_quantity': entry['total_quantity'],
+        })
+
+    # Add origin quantities data to the response
+    origin_data = []
+    for entry in origin_quantities:
+        origin_data.append({
+            'origin': entry['origin__origin'],
+            'total_quantity': entry['total_quantity'],
+        })
+
+    # Add vessel quantities data to the response
+    vessel_data = []
+    for entry in vessel_quantities:
+        vessel_data.append({
+            'vessel_name': entry['vessel__vessel_name'],
+            'total_quantity': entry['total_quantity'],
+        })
 
     data = {
-        'labels': labels,
+        'labels_daily': labels_daily,
         'quantities': quantities,
+        'labels_monthly': labels_monthly,
         'quantities_monthly': quantities_monthly,
+        'labels_yearly': labels_yearly,
         'quantities_yearly': quantities_yearly,
         'prices': prices,
         'species': species,
         'origin': origins,
         'vessel': vessels,
+        'species_data': species_data,
+        'origin_data': origin_data,  
+        'vessel_data': vessel_data,  
     }
 
     return JsonResponse(data)
+
+
+
 
 @login_required(login_url='Authentication:usertype')
 def  unloadingdash(request):
