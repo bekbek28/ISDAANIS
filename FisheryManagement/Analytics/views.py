@@ -271,7 +271,7 @@ def loadhistory(request):
             Q(price__icontains=search_query)
         )
     
-    paginator = Paginator(transactions, 4)
+    paginator = Paginator(transactions, 9)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     
@@ -293,7 +293,7 @@ def unloadhistory(request):
             Q(price__icontains=search_query)
         )
     
-    paginator = Paginator(transactions, 4)
+    paginator = Paginator(transactions, 9)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     
