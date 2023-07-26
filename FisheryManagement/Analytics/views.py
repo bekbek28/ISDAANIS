@@ -208,28 +208,20 @@ def  unloadingdash(request):
     return render(request, 'unloadingDash.html' )
 
 @login_required(login_url='Authentication:loginadmin')
-def  isadmindashboard(request):
-    # Fetch the 10 most recent transactions
-    recent_transactions = DailyTransaction.objects.order_by('-date')[:10]
+def isadmindashboard(request):
+    recent_transactions = DailyTransaction.objects.order_by('-date')[:4]
 
-    # Your existing code for filtering and pagination
     transactions = DailyTransaction.objects.all()
-    search_query = request.GET.get('q')
-    
-    if search_query:
-        transactions = transactions.filter(
-            Q(species__species_name__icontains=search_query) |
-            Q(quantity__icontains=search_query) |
-            Q(vessel__vessel_name__icontains=search_query) |
-            Q(origin__origin__icontains=search_query) |
-            Q(price__icontains=search_query)
-        )
-    
-    paginator = Paginator(transactions, 4)
-    page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
 
-    return render(request, 'admindash.html', {'transactions': page, 'search_query': search_query, 'recent_transactions': recent_transactions})
+    total_number_of_inputs = DailyTransaction.objects.count()
+
+    
+
+    return render(request, 'admindash.html', {
+        'transactions': transactions,
+        'recent_transactions': recent_transactions,
+        'total_number_of_inputs': total_number_of_inputs,
+    })
 
 @login_required(login_url='Authentication:loginadmin')
 def userstable(request):
@@ -268,18 +260,24 @@ def userstable(request):
     })
 
 @login_required(login_url='Authentication:loginadmin')
-def loadhistory(request,):
+def loadhistory(request):
     transactions = DailyTransaction.objects.all()
     search_query = request.GET.get('q')
+    
     if search_query:
         transactions = transactions.filter(
             Q(species__species_name__icontains=search_query) |
             Q(quantity__icontains=search_query) |
-            Q(origin__origin__icontains=search_query) |
             Q(price__icontains=search_query)
         )
+    
+    paginator = Paginator(transactions, 4)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+    
+    return render(request, 'loadhistory.html', {'transactions': page, 'search_query': search_query})
 
-    return render(request, 'loadhistory.html', {'transactions': transactions})
+
 
 @login_required(login_url='Authentication:loginadmin')
 def unloadhistory(request):
