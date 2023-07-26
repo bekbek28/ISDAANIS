@@ -119,17 +119,7 @@ text-decoration: none;
   width: 80%;
 }
 
-#user-table{
-  background-color: #FFEEB3;
-}
 
-.w3-modal-content .w3-container{
-  display: flex;
-  flex-direction: column ;
-  align-content: center;
-  align-items: center;
-  height: 150px;
-}
 
 .navbar{
   background-color: #57a1d3;
@@ -150,4 +140,8 @@ text-decoration: none;
 
   }
 
-  
+.content{
+  background-color: blue;
+  width: 40%;
+  margin-left: 60px;
+}

@@ -1,28 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const searchInput = document.getElementById("search-input");
-  const tableRows = document.querySelectorAll(".table tbody tr");
-  const searchBtn = document.getElementById("search-btn");
+// JavaScript code to handle form submission and reset search input value when it's empty
+const searchInput = document.getElementById('search-input');
+const searchForm = document.getElementById('search-form');
 
-  function filterTable() {
-    const searchQuery = searchInput.value.trim().toLowerCase();
-
-    tableRows.forEach(function(row) {
-      const rowData = row.textContent.trim().toLowerCase();
-      if (rowData.includes(searchQuery)) {
-        row.style.display = ""; // Show the row
-      } else {
-        row.style.display = "none"; // Hide the row
-      }
-    });
-  }
-
-  // Trigger search on button click
-  searchBtn.addEventListener("click", function() {
-    filterTable();
-  });
-
-  // Trigger search on keyup event in the search input
-  searchInput.addEventListener("keyup", function() {
-    filterTable();
-  });
+searchForm.addEventListener('submit', function(event) {
+    if (searchInput.value.trim() === '') {
+        searchInput.removeAttribute('name'); // Remove the search query parameter from the form submission
+    }
 });

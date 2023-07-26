@@ -164,26 +164,37 @@ new Chart(ctx3, {
 
     // Chart.js code for the second line chart (MonthlyCatch)
     const ctx5 = document.getElementById('MonthlyCatch').getContext('2d');
-    new Chart(ctx5, {
-      type: 'line',
-      data: {
-        labels: data.labels_monthly, // Use the 'labels' data from Django view
-        datasets: [{
-          label: 'Quantity',
-          data: data.quantities_monthly, // Use the 'quantities' data from Django view
-          borderColor: 'rgba(0, 2, 161, 1)',
-          backgroundColor: getRandomColor(1),
-          borderWidth: 2
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
+const monthlyChart = new Chart(ctx5, {
+  type: 'line',
+  data: {
+    labels: data.labels_monthly, // Use the 'labels' data from Django view
+    datasets: [{
+      label: 'Quantity',
+      data: data.quantities_monthly, // Use the 'quantities' data from Django view
+      borderColor: 'rgba(0, 2, 161, 1)',
+      backgroundColor: getRandomColor(1),
+      borderWidth: 2
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
       }
-    });
+    },
+    onClick: function (event, elements) {
+      if (elements.length > 0) {
+        const clickedIndex = elements[0].index; // Get the clicked index (representing the month)
+        const clickedMonthData = data.monthlyData[clickedIndex]; // Assuming you have a data structure with monthly data
+        
+        // Update Daily Chart with the data for the clicked month
+        dailyChart.data.labels = clickedMonthData.labels_daily;
+        dailyChart.data.datasets[0].data = clickedMonthData.quantities_daily;
+        dailyChart.update();
+      }
+    }
+  }
+});
 
     // Chart.js code for the third line chart (YearlyCatch)
     const ctx6 = document.getElementById('YearlyCatch').getContext('2d');
@@ -208,3 +219,13 @@ new Chart(ctx3, {
       }
     });
   });
+
+
+ 
+  
+  
+  
+  
+  
+  
+  

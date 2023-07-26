@@ -238,6 +238,7 @@ nav.close ~ .dashboard .top{
 .chart-container{
     margin-top:60px;
     padding: 15px;
+    width: 100%;
     background-color:var(--chart-color);
     border: solid 2px black;
     border-radius: 5px;
@@ -250,6 +251,7 @@ nav.close ~ .dashboard .top{
 .chart-container6{
     margin-top:30px;
     padding: 0;
+    width: 100%;
     background-color:var(--chart-color);
     border: solid 2px black;
     border-radius: 5px;

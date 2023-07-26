@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from collections import defaultdict
 from django.db.models import Sum
 from django.db.models.functions import TruncMonth, TruncYear
+from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
 
@@ -102,9 +103,6 @@ def  loadingdash(request):
 
 
 
-
-from collections import defaultdict
-
 def dataUnloadingDash(request):
     transactions = DailyTransaction.objects.all()
 
@@ -119,8 +117,8 @@ def dataUnloadingDash(request):
     origin_quantities = transactions.values('origin__origin').annotate(total_quantity=Sum('quantity'))
     vessel_quantities = transactions.values('vessel__vessel_name').annotate(total_quantity=Sum('quantity'))
 
-    labels_daily = list(quantity_by_date.keys())
-    quantities = list(quantity_by_date.values())
+    labels_daily = []
+    quantities = []
     prices = []
     species = []
     origins = []
@@ -130,27 +128,36 @@ def dataUnloadingDash(request):
     labels_yearly = []
     quantities_yearly = []
 
-    # Extract the dates, quantities, prices, species, origin, and vessel for daily catch
+    unique_dates_set = set()  
     for transaction in transactions:
+        date_str = transaction.date.strftime('%B %d, %Y')  
+        if date_str not in unique_dates_set: 
+            labels_daily.append(date_str) 
+            quantities.append(quantity_by_date[str(transaction.date)]) 
+            unique_dates_set.add(date_str) 
+
         prices.append(transaction.price)
         species.append(transaction.species.species_name)
         origin_data = transaction.origin.origin if transaction.origin else None
         origins.append(origin_data)
         vessels.append(transaction.vessel.vessel_name)
 
-    # Extract the months and quantities for monthly catch
+   
+    daily_data_sorted = sorted(zip(labels_daily, quantities, prices, species, origins, vessels), key=lambda x: datetime.strptime(x[0], '%B %d, %Y'))
+
+
+    labels_daily_sorted, quantities_sorted, prices_sorted, species_sorted, origins_sorted, vessels_sorted = zip(*daily_data_sorted)
+
     for entry in monthly_catch:
         month = entry['month'].strftime('%b %Y')
-        labels_monthly.append(month)  # Add month labels for monthly chart
+        labels_monthly.append(month)  
         quantities_monthly.append(entry['total_quantity'])
 
-    # Extract the years and quantities for yearly catch
     for entry in yearly_catch:
         year = entry['year'].strftime('%Y')
-        labels_yearly.append(year)  # Add year labels for yearly chart
+        labels_yearly.append(year)  
         quantities_yearly.append(entry['total_quantity'])
 
-    # Add species quantities data to the response
     species_data = []
     for entry in species_quantities:
         species_data.append({
@@ -158,7 +165,6 @@ def dataUnloadingDash(request):
             'total_quantity': entry['total_quantity'],
         })
 
-    # Add origin quantities data to the response
     origin_data = []
     for entry in origin_quantities:
         origin_data.append({
@@ -166,7 +172,7 @@ def dataUnloadingDash(request):
             'total_quantity': entry['total_quantity'],
         })
 
-    # Add vessel quantities data to the response
+  
     vessel_data = []
     for entry in vessel_quantities:
         vessel_data.append({
@@ -175,16 +181,16 @@ def dataUnloadingDash(request):
         })
 
     data = {
-        'labels_daily': labels_daily,
-        'quantities': quantities,
+        'labels_daily': labels_daily_sorted,
+        'quantities': quantities_sorted,
         'labels_monthly': labels_monthly,
         'quantities_monthly': quantities_monthly,
         'labels_yearly': labels_yearly,
         'quantities_yearly': quantities_yearly,
-        'prices': prices,
-        'species': species,
-        'origin': origins,
-        'vessel': vessels,
+        'prices': prices_sorted,
+        'species': species_sorted,
+        'origin': origins_sorted,
+        'vessel': vessels_sorted,
         'species_data': species_data,
         'origin_data': origin_data,  
         'vessel_data': vessel_data,  
@@ -195,13 +201,35 @@ def dataUnloadingDash(request):
 
 
 
+
+
 @login_required(login_url='Authentication:usertype')
 def  unloadingdash(request):
     return render(request, 'unloadingDash.html' )
 
 @login_required(login_url='Authentication:loginadmin')
 def  isadmindashboard(request):
-    return render(request, 'admindash.html' )
+    # Fetch the 10 most recent transactions
+    recent_transactions = DailyTransaction.objects.order_by('-date')[:10]
+
+    # Your existing code for filtering and pagination
+    transactions = DailyTransaction.objects.all()
+    search_query = request.GET.get('q')
+    
+    if search_query:
+        transactions = transactions.filter(
+            Q(species__species_name__icontains=search_query) |
+            Q(quantity__icontains=search_query) |
+            Q(vessel__vessel_name__icontains=search_query) |
+            Q(origin__origin__icontains=search_query) |
+            Q(price__icontains=search_query)
+        )
+    
+    paginator = Paginator(transactions, 4)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+
+    return render(request, 'admindash.html', {'transactions': page, 'search_query': search_query, 'recent_transactions': recent_transactions})
 
 @login_required(login_url='Authentication:loginadmin')
 def userstable(request):
@@ -242,13 +270,22 @@ def userstable(request):
 @login_required(login_url='Authentication:loginadmin')
 def loadhistory(request,):
     transactions = DailyTransaction.objects.all()
+    search_query = request.GET.get('q')
+    if search_query:
+        transactions = transactions.filter(
+            Q(species__species_name__icontains=search_query) |
+            Q(quantity__icontains=search_query) |
+            Q(origin__origin__icontains=search_query) |
+            Q(price__icontains=search_query)
+        )
+
     return render(request, 'loadhistory.html', {'transactions': transactions})
 
 @login_required(login_url='Authentication:loginadmin')
-
 def unloadhistory(request):
     transactions = DailyTransaction.objects.all()
     search_query = request.GET.get('q')
+    
     if search_query:
         transactions = transactions.filter(
             Q(species__species_name__icontains=search_query) |
@@ -257,13 +294,12 @@ def unloadhistory(request):
             Q(origin__origin__icontains=search_query) |
             Q(price__icontains=search_query)
         )
+    
     paginator = Paginator(transactions, 4)
-
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
-
-    return render(request, 'unloadhistory.html', {'transactions': page})
-
+    
+    return render(request, 'unloadhistory.html', {'transactions': page, 'search_query': search_query})
 
 
 def logout_view(request):

@@ -56,6 +56,35 @@
       </div>
     </div>
     
+     <div class="content">
+        <h2>Recent Transactions</h2>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <!-- Table Contents -->
+            <tr class="bg-info">
+                <th scope="col">Load Date</th>
+                <th scope="col">Type of fish</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Vessel</th>
+                <th scope="col">Location</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <!-- Table Data -->
+            <tbody>
+            {% for transaction in recent_transactions %}
+            <tr>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.species.species_name }}</td>
+                <td>{{ transaction.quantity }}</td>
+                <td>{{ transaction.vessel.vessel_name }}</td>
+                <td>{{ transaction.origin.origin }}</td>
+                <td>{{ transaction.price }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     
   </div>
   
