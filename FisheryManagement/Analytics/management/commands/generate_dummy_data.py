@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 origin_id=fake.random_element(origin_ids),
                 vessel_id=fake.random_element(vessel_ids),
                 quantity=fake.random_int(min=1, max=300),
-                price=fake.random_int(min=10, max=1000),
+                price=fake.random_int(min=800, max=1000),
                 date=fake.date_between(start_date='-4y', end_date='today'),
             )
 

@@ -222,7 +222,7 @@ span.page-numbers a:hover {
   border-radius: 12px;
   width: calc(100% / 3 - 15px);
   padding: 15px 20px;
-  background-color: red;
+  background-color: grey;
 }
 .boxes .box i{
   font-size: 35px;
@@ -240,12 +240,26 @@ span.page-numbers a:hover {
   color: white;
 }
 .boxes .box.box2{
-  background-color: blue;
-}
-.boxes .box.box3{
-  background-color: green;
+  background-color: grey;
 }
 
+
+.top3{
+  background-color: grey;
+  opacity: 95%;
+  height: 200px;
+  width: 30%;
+  border: 2px solid rgba(255, 255, 255,.10);
+  border-radius: 8%;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  margin-left: 80px;
+  margin-top: 40px;
+}
+
+.top3 h2{
+ text-align: center;
+}
 
 
 

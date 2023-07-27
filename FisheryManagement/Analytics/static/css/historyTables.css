@@ -323,9 +323,6 @@ span.page-numbers a:hover {
     width: 80%;
   }
   
-  #user-table{
-    background-color: #FFEEB3;
-  }
   
   .w3-modal-content .w3-container{
     display: flex;
@@ -352,7 +349,7 @@ span.page-numbers a:hover {
       justify-content: flex-end;
       align-items: center;
       background-color: #57a1d3;
-      margin-right: 50px;
+      margin-left: 50px;
     }
   
     .search-bar .btn{
@@ -364,5 +361,11 @@ span.page-numbers a:hover {
       font-size: 25px;
       border-radius: 10%;
       height: 10px;
+    }
+  
+    .topbar{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
     }
 } 
