@@ -31,7 +31,7 @@ body {
 .card{
   background-color: rgba(238, 233, 233, 0.836);
   opacity: 95%;
-  height: 450px;
+  height: 200px;
   width: 80%;
   border: 2px solid rgba(255, 255, 255,.10);
   border-radius: 8%;

@@ -48,6 +48,10 @@
               <i class='bx bx-line-chart'></i>Unload History</a>
           </li>
           <li>
+            <a href="#">
+              <i class='bx bx-line-chart'></i> Reports</a>
+          </li>
+          <li>
             
             <a href="{% url 'Analytics:logout' %}">
               <i class='bx bx-exit'></i>Logout</a>
@@ -56,7 +60,7 @@
       </div>
     </div>
     <div class="boxes">
-      <div class="box box1">
+      <div class="box box2">
           <i class="uil uil-thumbs-up"></i>
           <span class="text">Total Unloading Input</span>
           <span class="number">{{ total_number_of_inputs }}</span>
@@ -66,15 +70,44 @@
           <span class="text">Total Loading Input</span>
           <span class="number">{{ total_number_of_inputs }}</span>
       </div>
+
+    <div class="box box2">
+      <i class="uil uil-thumbs-up"></i>
+      <span class="text">Top 3 Fishes</span>
+      <span class="number"><ul>
+        {% for fish in top_fishes %}
+        <li>{{ fish.species__species_name }} - {{ fish.total_quantity }}</li>
+    {% endfor %}
+    </ul></span>
       
   </div>
+  
+  
 
-  <div class="top3">
-    <h2>Top 3 Fishes</h2>
+    <div class="box box2">
+        <i class="uil uil-comments"></i>
+        <span class="text">Top 3 Vessels</span>
+        <span class="number"><ul>
+          {% for vessel in top_vessels %}
+              <li>{{ vessel.vessel__vessel_name }} - {{ vessel.total_quantity }}</li>
+          {% endfor %}
+      </ul>
+    </span>
   </div>
- 
 
+
+  <div class="box box2">
+    <i class="uil uil-comments"></i>
+    <span class="text">Top 3 Fishes origins</span>
+    <span class="number"> 
+       <ul>
+      {% for origin in top_origins %}
+          <li>{{ origin.origin__origin }} - {{ origin.total_quantity }}</li>
+      {% endfor %}
+  </ul>
+</span>
 </div>
+
 
   
   </body>

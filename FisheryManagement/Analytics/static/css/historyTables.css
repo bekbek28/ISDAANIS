@@ -10,7 +10,7 @@
 .main_box{
   position: relative;
   background-color:whitesmoke;
-  height: 100vh;
+  height: 110vh;
   width: 100%;
 }
 .main_box .sidebar_menu{
@@ -130,15 +130,18 @@ text-decoration: none;
 }
 
 .navbar{
-background-color: #57a1d3;
-height: 90px;
-display: flex;
-flex-direction:row-reverse;
-}
-
-.navbar .btn_one{
-  margin-bottom: 80px;
-}
+  background-color: #57a1d3;
+  height: 90px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  }
+  
+ .navbar .btn_one{
+    margin-bottom: 60px;
+  }
 
 .search-bar{
   font-size: 20px;

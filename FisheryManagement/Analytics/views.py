@@ -12,11 +12,10 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 
-
+""" TO GET DATA FROM THE FORMS """
 @login_required(login_url='Authentication:usertype')
 def isforms(request):
     origins = Origin.objects.all()
-
     if request.method == 'POST':
         fishtype = request.POST['fishtype']
         quantity = request.POST['quantity']
@@ -60,6 +59,7 @@ def isforms(request):
         'origins': origins
     })
 
+""" FOR EDITING USER INFORMATION """
 @login_required(login_url='Authentication:loginadmin')
 def edit_user(request, id):
     user = get_object_or_404(User, id=id)
@@ -90,7 +90,7 @@ def edit_user(request, id):
         'user': user
     })
 
-
+""" TO DELETE USER IN USER'S TABLE """
 def delete_user(request, id):
     user = get_object_or_404(User, id=id)
     user.delete()
@@ -102,7 +102,7 @@ def  loadingdash(request):
     return render(request, 'loadingDash.html' )
 
 
-
+""" API FOR DATA COLLECTION AND GRAPHS """
 def dataUnloadingDash(request):
     transactions = DailyTransaction.objects.all()
 
@@ -207,6 +207,7 @@ def dataUnloadingDash(request):
 def  unloadingdash(request):
     return render(request, 'unloadingDash.html' )
 
+""" CONTENTS OF ADMIN DASHBOARD """
 @login_required(login_url='Authentication:loginadmin')
 def isadmindashboard(request):
     recent_transactions = DailyTransaction.objects.order_by('-date')[:4]
@@ -215,14 +216,24 @@ def isadmindashboard(request):
 
     total_number_of_inputs = DailyTransaction.objects.count()
 
-    
+    top_fishes = DailyTransaction.objects.values('species__species_name').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:3]
+
+    top_vessels = DailyTransaction.objects.values('vessel__vessel_name').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:3]
+
+    top_origins = DailyTransaction.objects.values('origin__origin').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:3]
+
+
 
     return render(request, 'admindash.html', {
         'transactions': transactions,
         'recent_transactions': recent_transactions,
         'total_number_of_inputs': total_number_of_inputs,
+        'top_fishes': top_fishes,
+        'top_vessels': top_vessels,
+        'top_origins': top_origins,
     })
 
+""" USER'S TABLE """
 @login_required(login_url='Authentication:loginadmin')
 def userstable(request):
     market_checker = Group.objects.get(name='Market Checker').user_set.all()
@@ -259,6 +270,8 @@ def userstable(request):
         'search_query':search_query
     })
 
+
+""" LOADING HISTORY TABLES """
 @login_required(login_url='Authentication:loginadmin')
 def loadhistory(request):
     transactions = DailyTransaction.objects.all()
@@ -278,7 +291,7 @@ def loadhistory(request):
     return render(request, 'loadhistory.html', {'transactions': page, 'search_query': search_query})
 
 
-
+""" UNLOADING HISTORY TABLE """
 @login_required(login_url='Authentication:loginadmin')
 def unloadhistory(request):
     transactions = DailyTransaction.objects.all()

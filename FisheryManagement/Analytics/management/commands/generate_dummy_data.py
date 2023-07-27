@@ -9,7 +9,7 @@ class Command(BaseCommand):
         fake = Faker()
 
         # Number of records you want to create
-        num_records = 300
+        num_records = 200
 
         # Get the IDs of existing Species, Origin, and Vessel instances to use in ForeignKeys
         species_ids = Species.objects.values_list('id', flat=True)
@@ -24,8 +24,8 @@ class Command(BaseCommand):
                 species_id=fake.random_element(species_ids),
                 origin_id=fake.random_element(origin_ids),
                 vessel_id=fake.random_element(vessel_ids),
-                quantity=fake.random_int(min=1, max=300),
-                price=fake.random_int(min=800, max=1000),
+                quantity=fake.random_int(min=100, max=300),
+                price=fake.random_int(min=100, max=200),
                 date=fake.date_between(start_date='-4y', end_date='today'),
             )
 

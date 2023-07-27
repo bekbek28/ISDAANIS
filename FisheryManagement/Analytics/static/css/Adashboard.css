@@ -9,8 +9,8 @@
 
 .main_box{
   position: relative;
-  background-color:whitesmoke;
-  height: 100%;
+  background-color:lightgray;
+  height: 100vh;
   width: 100%;
 }
 .main_box .sidebar_menu{
@@ -113,94 +113,20 @@ text-decoration: none;
   opacity: 1;
 }
 
-.table-responsive {
-  margin-left: 100px;
-  margin-top: 30px;
-  width: 80%;
-}
-
-.table-responsive .topbar{
-  display: flex;
-  align-items: center;
-  justify-content:space-between;
-}
-
-#user-table{
-  background-color: #FFEEB3;
-}
-
 .navbar{
 background-color: #57a1d3;
 height: 90px;
 display: flex;
-flex-direction:row-reverse;
+flex-direction: column-reverse;
+align-content: center;
+justify-content: center;
+align-items: center;
 }
 
 .navbar .btn_one{
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
-.search-bar{
-  font-size: 20px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: #57a1d3;
-  margin-right: 50px;
-}
-
-.search-bar .btn{
-  background-color: #FFEEB3;
-  height: 33px;
-}
-
-.search-bar i{
-  font-size: 20px;
-  border-radius: 10%;
-}
-
-/* Basic styling for the paginator container */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-/* Styling for the Previous and Next buttons */
-a.prev, a.next {
-  padding: 8px 12px;
-  background-color: #f2f2f2;
-  color: #000;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin: 0 5px;
-}
-
-a.prev:hover, a.next:hover {
-  background-color: #ddd;
-}
-
-/* Styling for the page numbers */
-span.page-numbers a {
-  padding: 8px 12px;
-  background-color: #f2f2f2;
-  color: #000;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin: 0 5px;
-}
-
-span.page-numbers a.active {
-  background-color: #4CAF50;
-  color: #fff;
-}
-
-span.page-numbers a:hover {
-  background-color: #ddd;
-}
 
 .content{
   margin-top: 50px;
@@ -210,7 +136,10 @@ span.page-numbers a:hover {
 
 .main_box .boxes{
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
+  
   margin-top: 30px;
 }
 
@@ -235,30 +164,17 @@ span.page-numbers a:hover {
   color: white;
 }
 .boxes .box .number{
-  font-size: 40px;
+  font-size: 20px;
   font-weight: 500;
   color: white;
 }
+
+
 .boxes .box.box2{
   background-color: grey;
-}
-
-
-.top3{
-  background-color: grey;
-  opacity: 95%;
-  height: 200px;
-  width: 30%;
-  border: 2px solid rgba(255, 255, 255,.10);
-  border-radius: 8%;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-  margin-left: 80px;
-  margin-top: 40px;
-}
-
-.top3 h2{
- text-align: center;
+  margin-top: 20px;
+  margin: 10px;
+  
 }
 
 
@@ -273,7 +189,7 @@ span.page-numbers a:hover {
 
 
 
-@media (max-width:850px) {
+/* @media (max-width:850px) {
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
   *{
     margin: 0;
@@ -437,4 +353,4 @@ span.page-numbers a:hover {
       border-radius: 10%;
       height: 10px;
     }
-} 
+}  */
