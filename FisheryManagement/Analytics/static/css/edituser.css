@@ -6,11 +6,11 @@
 }
 
 body{
-  background-color: beige;
+  background-color: grey;
 }
 
 #editUserModal{
-  background-color: rgba(238, 233, 233, 0.836);
+  background-color: lightgray;
   opacity: 95%;
   border: 2px solid rgba(255, 255, 255,.10);
   border-radius: 8%;
@@ -30,7 +30,6 @@ body{
 
 
 #input-form{
-  background-color: aquamarine;
   margin-top: 20px;
   font-size: 20px;
 }
@@ -38,11 +37,11 @@ body{
 .btn{
   margin-top: 20px;
   border: none;
-color: blue;
+color: black;
 padding: 15px 32px;
 text-align: center;
 text-decoration: none;
 display: inline-block;
 font-size: 16px;
-background-color: aliceblue;
+background-color: grey
 }

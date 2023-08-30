@@ -9,7 +9,7 @@
 
 .main_box{
   position: relative;
-  background-color:whitesmoke;
+  background-color:rgb(212, 208, 208);
   height: 110vh;
   width: 100%;
 }
@@ -125,9 +125,6 @@ text-decoration: none;
   justify-content:space-between;
 }
 
-#user-table{
-  background-color: #FFEEB3;
-}
 
 .navbar{
   background-color: #57a1d3;

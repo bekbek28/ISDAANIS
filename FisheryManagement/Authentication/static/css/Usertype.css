@@ -72,14 +72,14 @@ align-items: center;
   background: #0a800a;
 }
 .content-1:hover a{
-  color: #1DA1F2;
+  color: black;
 }
 .content-2:hover{
   border-color: #eff3d6;
   background: #eecc0a;
 }
 .content-2:hover a{
-  color: #E1306C;
+  color: black;
 }
 
 .content h2{
@@ -105,7 +105,7 @@ align-items: center;
 }
 
 .footer-container{
-  background-color: aqua;
+  background-color: darkgray;
   margin-top: 20px;
   height: 40px;  
 }
@@ -172,14 +172,14 @@ align-items: center;
     background: #0a800a;
   }
   .content-1:hover a{
-    color: #1DA1F2;
+    color: black;
   }
   .content-2:hover{
     border-color: #eff3d6;
     background: #eecc0a;
   }
   .content-2:hover a{
-    color: #E1306C;
+    color: black;
   }
   
   .content h2{
@@ -205,7 +205,7 @@ align-items: center;
   }
   
   .footer-container{
-    background-color: aqua;
+    background-color: darkgray;
     margin-top: 20px;
     height: 40px;  
   }

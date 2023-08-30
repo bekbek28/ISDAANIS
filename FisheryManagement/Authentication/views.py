@@ -148,7 +148,6 @@ def isadminreghtml(request):
                 return redirect('Authentication:loginadmin') 
             
             except IntegrityError:
-                messages.error(request, 'Username or email already exist!')
-
+                messages.error(request, 'Username or email already exist!') 
     return render(request, 'adminreg.html')
 
