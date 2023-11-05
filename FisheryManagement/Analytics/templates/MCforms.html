@@ -31,6 +31,39 @@
   <form class="row g-3" method="POST">
     {% csrf_token %}
 
+    <!-- for date of catch function -->
+    <div class="row-6">
+      <label for="date" class="form-label">Date of Catch:</label>
+      <input type="date" class="form-control" id="dateofCatch" name="dateofCatch">
+    </div>
+
+    <!-- for place of catch function -->
+    <div class="row-6">
+      <label for="placeofcatch" class="form-label">Place of catch:</label>
+      <input type="text" class="form-control" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch">
+      <datalist id="placeofcatch">
+        <option value="Origins" disabled></option>
+        {% for origin in origins %}
+          <option value={{origin.id}}>{{origin.origin}}</option>
+        {% endfor %}
+      </datalist>
+    </div> 
+
+    <!-- for type of vessel input -->
+    <div class="row-6">
+      <label for="vessel" class="form-label">Vessel:</label>
+      <input type="text" class="form-control" id="vessel" name="vessel" placeholder="ex. Name Of Boat" list="vesselOptions">
+      <datalist id="vesselOptions">
+        <option value="St Mary">
+        <option value="St Francis">
+        <option value="2 Brothers">
+        <option value="King">
+        <option value="4R">
+        <option value="3 Sisters">
+      </datalist>
+    </div>
+
+
     <!-- for fishtype input -->
     <div class="row-6" id="fishtype">
       <label for="fishtype" class="form-label">Type of Fish:</label>
@@ -50,40 +83,7 @@
     </div>
 
 
-    <!-- for type of vessel input -->
-    <div class="row-6">
-      <label for="vessel" class="form-label">Vessel:</label>
-      <input type="text" class="form-control" id="vessel" name="vessel" placeholder="ex. Name Of Boat" list="vesselOptions">
-      <datalist id="vesselOptions">
-        <option value="St Mary">
-        <option value="St Francis">
-        <option value="2 Brothers">
-        <option value="King">
-        <option value="4R">
-        <option value="3 Sisters">
-      </datalist>
-    </div>
-    <!-- for place of catch function -->
-    <div class="row-6">
-      <label for="placeofcatch" class="form-label">Place of catch:</label>
-      <input type="text" class="form-control" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch">
-      <datalist id="placeofcatch">
-        <option value="Origins" disabled></option>
-        {% for origin in origins %}
-          <option value={{origin.id}}>{{origin.origin}}</option>
-        {% endfor %}
-      </datalist>
-    </div> 
-    <!-- for date of catch function -->
-    <div class="row-6">
-      <label for="date" class="form-label">Date of Catch:</label>
-      <input type="date" class="form-control" id="dateofCatch" name="dateofCatch">
-    </div>
 
-    <div class="row-6">
-      <label for="text" class="form-label">Price:</label>
-      <input class="form-control" type="number" name="price" aria-label="fish_prize">
-    </div>
 
     <div class="d-flex justify-content-center">
       <button type="submit" class="btn btn-primary">Submit</button>
