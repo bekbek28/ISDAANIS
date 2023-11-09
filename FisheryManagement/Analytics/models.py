@@ -3,7 +3,6 @@ from django.db import models
 class Species(models.Model):
     species_name = models.CharField(max_length=30)
     quantity = models.IntegerField()
-    price = models.IntegerField()
 
     def __str__(self):
         return self.species_name
@@ -30,7 +29,6 @@ class DailyTransaction(models.Model):
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE, null=True)
     vessel = models.ForeignKey(Vessel, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    price = models.IntegerField()
     date = models.DateField()
 
     def __str__(self):

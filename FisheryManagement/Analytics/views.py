@@ -22,11 +22,12 @@ def isforms(request):
         vessel = request.POST['vessel']
         placeofcatch = request.POST['placeofcatch']
         dateofCatch = request.POST['dateofCatch']
-        price = request.POST['price']
 
         origin = placeofcatch.capitalize()
         print(origin)
         try:
+            dateofCatch = datetime.strptime(dateofCatch, '%Y-%m-%d')
+
             origin_instance = Origin.objects.get(origin=origin, date=dateofCatch)
         except Origin.DoesNotExist:
             origin_instance = Origin.objects.create(
@@ -37,7 +38,6 @@ def isforms(request):
         species_instance, _ = Species.objects.get_or_create(
             species_name=fishtype,
             quantity=quantity,
-            price=price,
         )
 
         vessel_instance, _ = Vessel.objects.get_or_create(
@@ -51,7 +51,6 @@ def isforms(request):
             vessel=vessel_instance,
             origin=origin_instance,
             date=dateofCatch,
-            price=price,
         )
         new_transaction.save()
 
@@ -119,7 +118,6 @@ def dataUnloadingDash(request):
 
     labels_daily = []
     quantities = []
-    prices = []
     species = []
     origins = []
     vessels = []
@@ -135,15 +133,13 @@ def dataUnloadingDash(request):
             labels_daily.append(date_str) 
             quantities.append(quantity_by_date[str(transaction.date)]) 
             unique_dates_set.add(date_str) 
-
-        prices.append(transaction.price)
         species.append(transaction.species.species_name)
         origin_data = transaction.origin.origin if transaction.origin else None
         origins.append(origin_data)
         vessels.append(transaction.vessel.vessel_name)
 
    
-    daily_data_sorted = sorted(zip(labels_daily, quantities, prices, species, origins, vessels), key=lambda x: datetime.strptime(x[0], '%B %d, %Y'))
+    daily_data_sorted = sorted(zip(labels_daily, quantities, species, origins, vessels), key=lambda x: datetime.strptime(x[0], '%B %d, %Y'))
 
 
     labels_daily_sorted, quantities_sorted, prices_sorted, species_sorted, origins_sorted, vessels_sorted = zip(*daily_data_sorted)
@@ -187,7 +183,6 @@ def dataUnloadingDash(request):
         'quantities_monthly': quantities_monthly,
         'labels_yearly': labels_yearly,
         'quantities_yearly': quantities_yearly,
-        'prices': prices_sorted,
         'species': species_sorted,
         'origin': origins_sorted,
         'vessel': vessels_sorted,
@@ -280,8 +275,7 @@ def loadhistory(request):
     if search_query:
         transactions = transactions.filter(
             Q(species__species_name__icontains=search_query) |
-            Q(quantity__icontains=search_query) |
-            Q(price__icontains=search_query)
+            Q(quantity__icontains=search_query)
         )
     
     paginator = Paginator(transactions, 9)
@@ -302,8 +296,8 @@ def unloadhistory(request):
             Q(species__species_name__icontains=search_query) |
             Q(quantity__icontains=search_query) |
             Q(vessel__vessel_name__icontains=search_query) |
-            Q(origin__origin__icontains=search_query) |
-            Q(price__icontains=search_query)
+            Q(origin__origin__icontains=search_query) 
+
         )
     
     paginator = Paginator(transactions, 9)
