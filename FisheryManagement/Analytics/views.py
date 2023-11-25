@@ -10,6 +10,7 @@ from django.db.models.functions import TruncMonth, TruncYear
 from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.utils import timezone
 
 
 """ TO GET DATA FROM THE FORMS """
@@ -26,7 +27,7 @@ def isforms(request):
         origin = placeofcatch.capitalize()
         print(origin)
         try:
-            dateofCatch = datetime.strptime(dateofCatch, '%Y-%m-%d')
+            dateofCatch = timezone.now().strftime('%Y-%m-%d')
 
             origin_instance = Origin.objects.get(origin=origin, date=dateofCatch)
         except Origin.DoesNotExist:
@@ -142,7 +143,7 @@ def dataUnloadingDash(request):
     daily_data_sorted = sorted(zip(labels_daily, quantities, species, origins, vessels), key=lambda x: datetime.strptime(x[0], '%B %d, %Y'))
 
 
-    labels_daily_sorted, quantities_sorted, prices_sorted, species_sorted, origins_sorted, vessels_sorted = zip(*daily_data_sorted)
+    labels_daily_sorted, quantities_sorted,species_sorted, origins_sorted, vessels_sorted = zip(*daily_data_sorted)
 
     for entry in monthly_catch:
         month = entry['month'].strftime('%b %Y')

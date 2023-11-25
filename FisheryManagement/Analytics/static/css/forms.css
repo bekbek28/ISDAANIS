@@ -40,6 +40,21 @@ ul {
   
 }
 
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Style the form select */
+.form-select {
+  width: 100%; /* Make the select box fill its container */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 
 
 /* for mobile view of the application */
