@@ -14,3 +14,5 @@ document.addEventListener("DOMContentLoaded", function () {
   datepicker(dateField);
 });
 
+document.getElementById('dateofCatch').valueAsDate = new Date();
+

@@ -16,8 +16,8 @@ pmanager_group, _ = Group.objects.get_or_create(name='PManager')
 ISadmin_group, _ = Group.objects.get_or_create(name='ISAdmin')
 
 
-def usertype(request):
-    return render(request, 'usertype.html')
+def isLandingPage(request):
+    return render(request, 'ISlandingPage.html')
 
 
 def islogin(request):
@@ -150,4 +150,3 @@ def isadminreghtml(request):
             except IntegrityError:
                 messages.error(request, 'Username or email already exist!') 
     return render(request, 'adminreg.html')
-

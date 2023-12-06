@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> IsdaanIS</title> 
+    <link rel="stylesheet" href="{% static 'css/landingPage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+   </head>
+<body>
+  <nav>
+    <div class="menu">
+      <div class="logo">
+        <img src="{% static 'img/pfda.png' %}" alt="pfda">
+        <a href="#">IsdaanIS</a>
+  </nav>
+  <div class="img"></div>
+  <div class="center">
+    <img align="right" src="{% static 'img/fish.png' %}" alt="Fish">
+    <div class="title">Welcome to IsdaanIS</div>
+    <h3>A system made for Philippine Fisheries Development Authority</h3>
+    <div class="btns">
+      <a href="{% url 'Authentication:pmlogin' %}">
+        <button>Login</button>
+      </a>
+      
+      <button>Register</button>
+    </div>
+  </div>
+</body>
+</html>

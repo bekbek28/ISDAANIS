@@ -14,6 +14,9 @@ from django.utils import timezone
 
 
 """ TO GET DATA FROM THE FORMS """
+
+
+
 @login_required(login_url='Authentication:usertype')
 def isforms(request):
     origins = Origin.objects.all()
@@ -22,7 +25,6 @@ def isforms(request):
         quantity = request.POST['quantity']
         vessel = request.POST['vessel']
         placeofcatch = request.POST['placeofcatch']
-        dateofCatch = request.POST['dateofCatch']
 
         origin = placeofcatch.capitalize()
         print(origin)
@@ -310,4 +312,4 @@ def unloadhistory(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('Authentication:usertype')
+    return redirect('Authentication:landingPage')

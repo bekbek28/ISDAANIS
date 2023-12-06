@@ -32,11 +32,13 @@
     {% csrf_token %}
 
     <!-- for date of catch function -->
-    <div class="row-6">
-      <label for="dateofCatch">Date of Catch:</label>
-    <input type="date" name="dateofCatch" id="dateofCatch" value="{{ dateofCatch }}" required>
+<!-- for date of catch function -->
+<div class="row-6">
+  <label for="dateofCatch">Date of Catch:</label>
+  <input type="date" name="dateofCatch" id="dateofCatch" required readonly>
+</div>
 
-    </div>
+
 
     <!-- for place of catch function -->
     <div class="row-6">
@@ -51,9 +53,22 @@
     </div> 
 
     <!-- for type of vessel input -->
+
+    <div class="row-6" id="fishtype">
+      <label for="typeofUnload" class="form-label">Type of Unloading:</label>
+      
+      <select name="typeofUnload" id="typeofUnloadOptions">
+        <option value="salmon">Commercial</option>
+        <option value="trout">Municipal</option>
+        <option value="tuna">Inland</option>
+      </select>
+    </div>
+
+
+
     <div class="row-6">
       <label for="vessel" class="form-label">Vessel:</label>
-      <input type="text" class="form-control" id="vessel" name="vessel" placeholder="ex. Name Of Boat" list="vesselOptions">
+      <input type="text" class="form-control" id="vessel" name="vessel" placeholder="ex. Name Of Boat/Truck/Cargo" list="vesselOptions">
       <datalist id="vesselOptions">
         <option value="St Mary">
         <option value="St Francis">
