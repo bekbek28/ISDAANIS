@@ -53,30 +53,7 @@ fetch('http://127.0.0.1:8000/analytics/unloadingDashData/')
   .then(data => {
 
     // Chart.js code for the first bar chart (Fishtype)
-    var ctx = document.getElementById('Fishtype').getContext('2d');
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: data.species_data.map(item => item.species_name), // Use the 'species' data from Django view
-        datasets: [{
-          label: 'Quantity',
-          data: data.species_data.map(item => item.total_quantity), // Use the 'total_quantity' from the 'species_data'
-          borderColor: getRandomColor(data.species.length), // Use random colors for each species
-          backgroundColor: getRandomColor(data.species.length),
-          borderWidth: 1.5
-        }]
-      },
-      options: {
-        legend: {
-          display: true,
-        },
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+
 
     // Chart.js code for the second bar chart (Vessel)
     const ctx2 = document.getElementById('Vessel').getContext('2d');
@@ -132,29 +109,6 @@ fetch('http://127.0.0.1:8000/analytics/unloadingDashData/')
       }
       return color;
     }
-
-    // Chart.js code for the first line chart (DailyCatch)
-    const ctx4 = document.getElementById('DailyCatch').getContext('2d');
-    new Chart(ctx4, {
-      type: 'bar',
-      data: {
-        labels: data.labels_daily, // Use the 'labels' data from Django view
-        datasets: [{
-          label: 'Quantity',
-          data: data.quantities, // Use the 'quantities' data from Django view
-          borderColor: 'rgba(0, 2, 161, 1)',
-          backgroundColor: getRandomColor(1),
-          borderWidth: 2
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
 
     // Chart.js code for the second line chart (MonthlyCatch)
     const ctx5 = document.getElementById('MonthlyCatch').getContext('2d');

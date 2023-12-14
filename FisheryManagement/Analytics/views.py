@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
-from .models import Species, DailyTransaction, Vessel, Origin
+from .models import Species, Province, City, Origin, Vessel, DailyTransaction
 from django.http import JsonResponse
 from collections import defaultdict
 from django.db.models import Sum
@@ -16,26 +16,42 @@ from django.utils import timezone
 """ TO GET DATA FROM THE FORMS """
 
 
-
-@login_required(login_url='Authentication:usertype')
+@login_required(login_url='Authentication:MClandingPage')
 def isforms(request):
     origins = Origin.objects.all()
+    provinces = Province.objects.all()
+    cities = City.objects.all()
+
     if request.method == 'POST':
         fishtype = request.POST['fishtype']
         quantity = request.POST['quantity']
         vessel = request.POST['vessel']
         placeofcatch = request.POST['placeofcatch']
+        province_name = request.POST['province']
+        city_name = request.POST['city']
+
+        # Create or get Province
+        province_instance, _ = Province.objects.get_or_create(ProvinceName=province_name)
+
+        # Create or get City
+        city_instance, _ = City.objects.get_or_create(CityName=city_name, Province=province_instance)
 
         origin = placeofcatch.capitalize()
         print(origin)
         try:
             dateofCatch = timezone.now().strftime('%Y-%m-%d')
 
-            origin_instance = Origin.objects.get(origin=origin, date=dateofCatch)
+            # Create or get Origin
+            origin_instance, _ = Origin.objects.get_or_create(
+                origin=origin,
+                date=dateofCatch,
+                City=city_instance,
+            )
         except Origin.DoesNotExist:
             origin_instance = Origin.objects.create(
                 origin=origin,
                 date=dateofCatch,
+                City=city_instance,
             )
 
         species_instance, _ = Species.objects.get_or_create(
@@ -58,8 +74,11 @@ def isforms(request):
         new_transaction.save()
 
     return render(request, 'MCforms.html', {
-        'origins': origins
+        'origins': origins,
+        'provinces': provinces,
+        'cities': cities,
     })
+
 
 """ FOR EDITING USER INFORMATION """
 @login_required(login_url='Authentication:loginadmin')
@@ -99,9 +118,9 @@ def delete_user(request, id):
     return redirect('Analytics:userstable')  
 
 
-@login_required(login_url='Authentication:usertype')
+@login_required(login_url='Authentication:landingPage')
 def  loadingdash(request):
-    return render(request, 'loadingDash.html' )
+    return render(request, 'OCDash.html' )
 
 
 """ API FOR DATA COLLECTION AND GRAPHS """
@@ -201,9 +220,9 @@ def dataUnloadingDash(request):
 
 
 
-@login_required(login_url='Authentication:usertype')
+@login_required(login_url='Authentication:landingPage')
 def  unloadingdash(request):
-    return render(request, 'unloadingDash.html' )
+    return render(request, 'FCDash.html' )
 
 """ CONTENTS OF ADMIN DASHBOARD """
 @login_required(login_url='Authentication:loginadmin')
@@ -253,6 +272,10 @@ def userstable(request):
             Q(email__icontains=search_query) |
             Q(username__icontains=search_query)
         )
+
+        paginator = Paginator(userstable, 9)
+        page_number = request.GET.get('page')
+        page = paginator.get_page(page_number)
 
         is_admin = is_admin.filter(
             Q(first_name__icontains=search_query) |
@@ -309,7 +332,3 @@ def unloadhistory(request):
     
     return render(request, 'unloadhistory.html', {'transactions': page, 'search_query': search_query})
 
-
-def logout_view(request):
-    logout(request)
-    return redirect('Authentication:landingPage')

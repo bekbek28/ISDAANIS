@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> IsdaanIS: Port Manager</title> 
+    <title> IsdaanIS: Market Checker</title> 
     <link rel="stylesheet" href="{% static 'css/landingPage.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
    </head>
@@ -12,7 +12,7 @@
   <nav>
     <div class="menu">
       <div class="logo">
-        <img src="{% static 'img/pfda.png' %}" alt="pfda">
+        <img src="{% static 'img/pfda.png' %}" alt="pfda"> 
         <a href="#">IsdaanIS</a>
   </nav>
   <div class="img"></div>
@@ -21,10 +21,10 @@
     <div class="title">Welcome to IsdaanIS</div>
     <h3>A system made for Philippine Fisheries Development Authority</h3>
     <div class="btns">
-      <a href="{% url 'Authentication:pmlogin' %}">
+      <a href="{% url 'Authentication:login' %}">
         <button>Login</button>
       </a>
-      <a href="{% url 'Authentication:pmregister' %}">
+      <a href="{% url 'Authentication:register' %}">
       <button>Register</button>
       </a>
     </div>

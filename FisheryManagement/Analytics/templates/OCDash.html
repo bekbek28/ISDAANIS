@@ -26,19 +26,19 @@
     <div class="menu-items">
         <ul class="nav-links">
             <li>
-                <a href="{% url 'Analytics:loadingdash' %}">
-                  <i class="uil uil-chart-bar"></i>
-                  <span class="link-name">Loading</span>
-              </a>
-            </li>
-            <li><a href="{% url 'Analytics:unloadingdash' %}">
-              <i class="uil uil-ship"></i>
-                <span class="link-name">Unloading</span>
-            </a></li>
+              <a href="{% url 'Analytics:OverallCatchdash' %}">
+                <i class="uil uil-chart-bar"></i>
+                <span class="link-name">Overall Catch</span>
+            </a>
+          </li>
+          <li><a href="{% url 'Analytics:FishCatchdash' %}">
+            <i class="uil uil-ship"></i>
+              <span class="link-name">Fish Catch Rate</span>
+          </a></li>
           </ul>    
           <ul class="logout-mode">
             <li>
-                <a href="{% url 'Analytics:logout' %}">
+                <a href="{% url 'Authentication:landingPage' %}">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a>  

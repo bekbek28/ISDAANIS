@@ -36,13 +36,14 @@ width: 60px;
 }
   
 .img {
-  background: url('{% static "ocean.jpg" %}') no-repeat;
+  background: url('/static/img/ocean.jpg') no-repeat;
   width: 100%;
   height: 100vh;
   background-size: cover;
   background-position: center;
   position: relative;
 }
+
 
 .img::before{
   content: '';

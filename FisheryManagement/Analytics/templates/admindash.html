@@ -40,10 +40,6 @@
               <i class='bx bxs-user'></i>Users</a>
           </li>
           <li>
-            <a href="{% url 'Analytics:loadhistory'%}">
-              <i class='bx bx-line-chart'></i> Load History</a>
-          </li>
-          <li>
             <a href="{% url 'Analytics:unloadhistory'%}">
               <i class='bx bx-line-chart'></i>Unload History</a>
           </li>
@@ -63,11 +59,6 @@
       <div class="box box2">
           <i class="uil uil-thumbs-up"></i>
           <span class="text">Total Unloading Input</span>
-          <span class="number">{{ total_number_of_inputs }}</span>
-      </div>
-      <div class="box box2">
-          <i class="uil uil-comments"></i>
-          <span class="text">Total Loading Input</span>
           <span class="number">{{ total_number_of_inputs }}</span>
       </div>
 

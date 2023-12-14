@@ -19,6 +19,9 @@ ISadmin_group, _ = Group.objects.get_or_create(name='ISAdmin')
 def isLandingPage(request):
     return render(request, 'ISlandingPage.html')
 
+def isMCLandingPage(request):
+    return render(request, 'MCLandingPage.html')
+
 
 def islogin(request):
     if request.method == 'POST':
@@ -56,9 +59,11 @@ def isreghtml(request):
                 messages.success(request, 'User Account Created')
 
                 if not my_user.groups.filter(name='PManager').exists() and not my_user.groups.filter(name='ISAdmin').exists():
-                    market_checker_group.user_set.add(my_user)  # Add the user to the Market Checker group
+                    market_checker_group.user_set.add(my_user) 
 
-                return redirect('Authentication:login')  # Update this with the correct URL
+                messages.success(request, 'User Account Created successfully!')
+                print("Success message set.")
+                return redirect('Authentication:login')  
             except IntegrityError:
                  messages.error(request, 'Username or email already exist!')
 
@@ -76,7 +81,7 @@ def ispmloginhtml(request):
                  messages.error(request, 'You are not a Port Manager!')
             else:
                 login(request, user)
-                return redirect('Analytics:loadingdash')
+                return redirect('Analytics:OverallCatchdash')
         else:
              messages.error(request, 'Username and Password are Invalid!')
 
@@ -102,6 +107,7 @@ def ispmreghtml(request):
                 if not my_user.groups.filter(name='ISAdmin').exists() and not my_user.groups.filter(name='Market Checker').exists():
                     pmanager_group.user_set.add(my_user)  # Add the user to the PManager group
 
+                messages.success(request, 'User Account Created successfully!')
                 return redirect('Authentication:pmlogin')
             except IntegrityError:
                 messages.error(request, 'Username or email already exist!')
@@ -144,7 +150,8 @@ def isadminreghtml(request):
 
                 if not my_user.groups.filter(name='PManager').exists() and not my_user.groups.filter(name='Market Checker').exists():
                     ISadmin_group.user_set.add(my_user)  # Add the user to the ISAdmin group
-
+                
+                messages.success(request, 'User Account Created successfully!')
                 return redirect('Authentication:loginadmin') 
             
             except IntegrityError:

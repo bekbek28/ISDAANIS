@@ -17,7 +17,7 @@
     <nav>
       <h2>MARKET CHECKER INPUT FORM</h2>
       <ul>
-        <li class="logout-link"><a href="{% url 'Analytics:logout' %}" class="text-decoration-none fs-4 text-dark">LOGOUT</a></li>
+        <li class="logout-link"><a href="{% url 'Authentication:MClandingPage' %}" class="text-decoration-none fs-4 text-dark">LOGOUT</a></li>
       
       </ul>
     </nav>
@@ -54,15 +54,19 @@
 
     <!-- for type of vessel input -->
 
-    <div class="row-6" id="fishtype">
+    <div class="row-6" id="UnloadingType">
       <label for="typeofUnload" class="form-label">Type of Unloading:</label>
-      
-      <select name="typeofUnload" id="typeofUnloadOptions">
-        <option value="salmon">Commercial</option>
-        <option value="trout">Municipal</option>
-        <option value="tuna">Inland</option>
-      </select>
+    
+      <div class="mb-3">
+        <select class="form-select" name="typeofUnload" id="typeofUnloadOptions">
+          <option value="Commercial">Commercial</option>
+          <option value="Municipal">Municipal</option>
+          <option value="Saltwater">Inland(Saltwater)</option>
+          <option value="FishPond">Inland(Fish Pond)</option>
+        </select>
+      </div>
     </div>
+    
 
 
 
@@ -83,30 +87,33 @@
     <!-- for fishtype input -->
     <div class="row-6" id="fishtype">
       <label for="fishtype" class="form-label">Type of Fish:</label>
-      
-      <select name="fishtype" id="fishtypeOptions">
-        <option value="salmon">Salmon</option>
-        <option value="trout">Trout</option>
-        <option value="tuna">Tuna</option>
-        <option value="catfish">Catfish</option>
-        <option value="bass">Bass</option>
-        <option value="cod">Cod</option>
-        <option value="halibut">Halibut</option>
-        <option value="perch">Perch</option>
-        <option value="mackerel">Mackerel</option>
-        <option value="swordfish">Swordfish</option>
-        <option value="snapper">Snapper</option>
-        <option value="grouper">Grouper</option>
-        <option value="mahi-mahi">Mahi-mahi</option>
-        <option value="pike">Pike</option>
-        <option value="haddock">Haddock</option>
-        <option value="flounder">Flounder</option>
-        <option value="sole">Sole</option>
-        <option value="anchovy">Anchovy</option>
-        <option value="sardine">Sardine</option>
-        <option value="herring">Herring</option>
-      </select>
+    
+      <div class="mb-3">
+        <select class="form-select" name="fishtype" id="fishtypeOptions">
+          <option value="salmon">Salmon</option>
+          <option value="trout">Trout</option>
+          <option value="tuna">Tuna</option>
+          <option value="catfish">Catfish</option>
+          <option value="bass">Bass</option>
+          <option value="cod">Cod</option>
+          <option value="halibut">Halibut</option>
+          <option value="perch">Perch</option>
+          <option value="mackerel">Mackerel</option>
+          <option value="swordfish">Swordfish</option>
+          <option value="snapper">Snapper</option>
+          <option value="grouper">Grouper</option>
+          <option value="mahi-mahi">Mahi-mahi</option>
+          <option value="pike">Pike</option>
+          <option value="haddock">Haddock</option>
+          <option value="flounder">Flounder</option>
+          <option value="sole">Sole</option>
+          <option value="anchovy">Anchovy</option>
+          <option value="sardine">Sardine</option>
+          <option value="herring">Herring</option>
+        </select>
+      </div>
     </div>
+    
 
     <div class="row-6">
       <label for="quantity" class="form-label">Quantity:</label>
