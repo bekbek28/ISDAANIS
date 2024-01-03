@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
-from .models import Species, Province, City, Origin, Vessel, DailyTransaction
+from .models import Species, Province, City,unloadType, Origin, Vessel, DailyTransaction
 from django.http import JsonResponse
 from collections import defaultdict
 from django.db.models import Sum
@@ -18,24 +17,14 @@ from django.utils import timezone
 
 @login_required(login_url='Authentication:MClandingPage')
 def isforms(request):
-    origins = Origin.objects.all()
-    provinces = Province.objects.all()
-    cities = City.objects.all()
+    origins = Origin.objects.all() 
 
     if request.method == 'POST':
         fishtype = request.POST['fishtype']
         quantity = request.POST['quantity']
         vessel = request.POST['vessel']
         placeofcatch = request.POST['placeofcatch']
-        province_name = request.POST['province']
-        city_name = request.POST['city']
-
-        # Create or get Province
-        province_instance, _ = Province.objects.get_or_create(ProvinceName=province_name)
-
-        # Create or get City
-        city_instance, _ = City.objects.get_or_create(CityName=city_name, Province=province_instance)
-
+        unload_type_name = request.POST['typeofUnload']
         origin = placeofcatch.capitalize()
         print(origin)
         try:
@@ -45,13 +34,13 @@ def isforms(request):
             origin_instance, _ = Origin.objects.get_or_create(
                 origin=origin,
                 date=dateofCatch,
-                City=city_instance,
+            
             )
         except Origin.DoesNotExist:
             origin_instance = Origin.objects.create(
                 origin=origin,
                 date=dateofCatch,
-                City=city_instance,
+                
             )
 
         species_instance, _ = Species.objects.get_or_create(
@@ -64,19 +53,20 @@ def isforms(request):
             origin=origin_instance,
         )
 
+        unload_type_instance, _ = unloadType.objects.get_or_create(unloadTypeName=unload_type_name)
+
         new_transaction = DailyTransaction(
             species=species_instance,
             quantity=quantity,
             vessel=vessel_instance,
             origin=origin_instance,
             date=dateofCatch,
+            unloadType=unload_type_instance,
         )
         new_transaction.save()
 
     return render(request, 'MCforms.html', {
         'origins': origins,
-        'provinces': provinces,
-        'cities': cities,
     })
 
 

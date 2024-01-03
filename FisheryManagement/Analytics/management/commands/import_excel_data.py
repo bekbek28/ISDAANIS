@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
             # Iterate through rows and create/update model instances
             for index, row in df.iterrows():
-                YourModel.objects.update_or_create(
+                DailyTransaction.objects.update_or_create(
                     unique_field=row['unique_field'],  # Replace with the actual unique field
                     defaults={
                         'field1': row['field1'],

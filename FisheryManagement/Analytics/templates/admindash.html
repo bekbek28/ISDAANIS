@@ -48,13 +48,14 @@
               <i class='bx bx-line-chart'></i> Reports</a>
           </li>
           <li>
-            
-            <a href="{% url 'Analytics:logout' %}">
+            <a href="#" onclick="openLogoutModal()">
               <i class='bx bx-exit'></i>Logout</a>
           </li>
         </ul>
       </div>
     </div>
+
+    
     <div class="boxes">
       <div class="box box2">
           <i class="uil uil-thumbs-up"></i>
@@ -99,8 +100,18 @@
 </span>
 </div>
 
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeLogoutModal()">&times;</span>
+    <p>Are you sure you want to logout?</p>
+    <button onclick="cancelLogout()">Cancel</button>
+    <a id="logoutLink" href="{% url 'Authentication:loginadmin' %}">Logout</a>
+  </div>
+</div>
+</div>
 
-  
+
+<script src="{% static 'js/adminDash.js' %}"></script>
   </body>
 
 </html>

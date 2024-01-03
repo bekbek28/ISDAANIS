@@ -26,4 +26,24 @@ document.addEventListener("DOMContentLoaded", function() {
       filterTable();
     });
   });
+
+  // JavaScript for the modal
+function openModal() {
+  document.getElementById("logoutModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("logoutModal").style.display = "none";
+}
+
+function cancelLogout() {
+  closeModal();
+  // Additional logic for canceling logout
+}
+
+// Update the logout link in the modal before opening it
+document.getElementById("logoutLink").addEventListener("click", function() {
+  closeModal();
+});
+
   

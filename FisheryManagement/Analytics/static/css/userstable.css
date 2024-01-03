@@ -170,7 +170,7 @@ text-decoration: none;
 /* Styling for the Previous and Next buttons */
 a.prev, a.next {
   padding: 8px 12px;
-  background-color: #f2f2f2;
+  background-color: #f2f2f2; 
   color: #000;
   text-decoration: none;
   border: 1px solid #ddd;
@@ -201,6 +201,9 @@ span.page-numbers a.active {
 span.page-numbers a:hover {
   background-color: #ddd;
 }
+
+
+
 @media (max-width:850px) {
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
   *{

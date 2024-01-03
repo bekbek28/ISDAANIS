@@ -14,3 +14,20 @@ sidebarBtn.addEventListener("click", ()=>{
 });
 
 
+function openLogoutModal() {
+  document.getElementById("logoutModal").style.display = "block";
+}
+
+function closeLogoutModal() {
+  document.getElementById("logoutModal").style.display = "none";
+}
+
+function cancelLogout() {
+  closeLogoutModal();
+  // Additional logic for canceling logout
+}
+
+// Update the logout link in the modal before opening it
+document.getElementById("logoutLink").addEventListener("click", function () {
+  closeLogoutModal();
+});

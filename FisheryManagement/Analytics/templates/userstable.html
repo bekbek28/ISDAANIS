@@ -46,10 +46,20 @@
               <i class='bx bx-arrow-back'></i>Back</a>
           </li>
           <li>
-            <a href="{% url 'Analytics:logout' %}">
-              <i class='bx bx-exit'></i>Logout</a>
+            <a href="#" onclick="openModal()">
+              <i class='bx bx-exit'></i>Logout
+            </a>
           </li>
         </ul>
+      </div>
+    </div>
+
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>Are you sure you want to logout?</p>
+        <button onclick="cancelLogout()">Cancel</button>
+        <a id="logoutLink" href="{% url 'Authentication:loginadmin' %}">Logout</a>
       </div>
     </div>
     
