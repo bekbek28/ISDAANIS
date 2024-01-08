@@ -6,73 +6,56 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/forms.css' %}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-  rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datepicker/datepicker.min.css">
   <title>Information Forms</title>
 </head>
 <body style="background-color: #57a1d3;">
-<!-- start of the navbar -->
+
   <div class="navbar">
-    <nav>
-      <h2>MARKET CHECKER INPUT FORM</h2>
-      <ul>
-        <li class="logout-link"><a href="{% url 'Authentication:MClandingPage' %}" class="text-decoration-none fs-4 text-dark">LOGOUT</a></li>
-      
-      </ul>
-    </nav>
-  </div>
-  <!-- end of navbar -->
-  
-  <!-- start of form creation -->
+        <h2>MARKET CHECKER INPUT FORM</h2>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <!-- Add other menu items if needed -->
+                <a href="#">Recent List</a>
+                <a href="{% url 'Authentication:MClandingPage' %}" class="text-decoration-none fs-4 text-dark">LOGOUT</a>
+            </div>
+        </div>
 </div>
+
 <div class="container-sm" id="container"> 
-  
   <form class="row g-3" method="POST">
     {% csrf_token %}
 
-    <!-- for date of catch function -->
-<!-- for date of catch function -->
-<div class="row-6">
-  <label for="dateofCatch">Date of Catch:</label>
-  <input type="date" name="dateofCatch" id="dateofCatch" required readonly>
-</div>
+    <div class="date">
+      <label for="dateofCatch">Date of Catch:</label>
+      <input type="date" name="dateofCatch" id="dateofCatch" required readonly>
+    </div>
 
-
-
-    <!-- for place of catch function -->
-    <div class="row-6">
-      <label for="placeofcatch" class="form-label">Place of catch:</label>
-      <input type="text" class="form-control" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch">
+    <div class="place">
+      <label for="placeofcatch">Place of catch:</label>
+      <input type="text" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch">
       <datalist id="placeofcatch">
         <option value="Origins" disabled></option>
         {% for origin in origins %}
-          <option value={{origin.id}}>{{origin.origin}}</option>
+          <option value="{{ origin.id }}">{{ origin.origin }}</option>
         {% endfor %}
       </datalist>
-    </div> 
-
-    <!-- for type of vessel input -->
-
-    <div class="row-6" id="UnloadingType">
-      <label for="typeofUnload" class="form-label">Type of Unloading:</label>
-    
-      <div class="mb-3">
-        <select class="form-select" name="typeofUnload" id="typeofUnloadOptions">
-          <option value="Commercial">Commercial</option>
-          <option value="Municipal">Municipal</option>
-          <option value="Saltwater">Inland(Saltwater)</option>
-          <option value="FishPond">Inland(Fish Pond)</option>
-        </select>
-      </div>
     </div>
-    
 
+    <div class="Utype" id="UnloadingType">
+      <label for="typeofUnload">Type of Unloading:</label>
+      <select name="typeofUnload" id="typeofUnloadOptions">
+        <option value="Commercial">Commercial</option>
+        <option value="Municipal">Municipal</option>
+        <option value="Saltwater">Inland(Saltwater)</option>
+        <option value="FishPond">Inland(Fish Pond)</option>
+      </select>
+    </div>
 
-
-    <div class="row-6">
-      <label for="vessel" class="form-label">Vessel:</label>
-      <input type="text" class="form-control" id="vessel" name="vessel" placeholder="ex. Name Of Boat/Truck/Cargo" list="vesselOptions">
+    <div class="vessel">
+      <label for="vessel">Vessel:</label>
+      <input type="text" id="vessel" name="vessel" placeholder="ex. Name Of Boat/Truck/Cargo" list="vesselOptions">
       <datalist id="vesselOptions">
         <option value="St Mary">
         <option value="St Francis">
@@ -83,52 +66,40 @@
       </datalist>
     </div>
 
+    <div class="fish" id="fishtype">
+      <label for="fishtype">Type of Fish:</label>
+      <select name="fishtype" id="fishtypeOptions">
+          {% for species in species_list %}
+              <option value="{{ species.species_name }}">{{ species.species_name }}</option>
+          {% endfor %}
+      </select>
+  </div>
 
-    <!-- for fishtype input -->
-    <div class="row-6" id="fishtype">
-      <label for="fishtype" class="form-label">Type of Fish:</label>
-    
-      <div class="mb-3">
-        <select class="form-select" name="fishtype" id="fishtypeOptions">
-          <option value="salmon">Salmon</option>
-          <option value="trout">Trout</option>
-          <option value="tuna">Tuna</option>
-          <option value="catfish">Catfish</option>
-          <option value="bass">Bass</option>
-          <option value="cod">Cod</option>
-          <option value="halibut">Halibut</option>
-          <option value="perch">Perch</option>
-          <option value="mackerel">Mackerel</option>
-          <option value="swordfish">Swordfish</option>
-          <option value="snapper">Snapper</option>
-          <option value="grouper">Grouper</option>
-          <option value="mahi-mahi">Mahi-mahi</option>
-          <option value="pike">Pike</option>
-          <option value="haddock">Haddock</option>
-          <option value="flounder">Flounder</option>
-          <option value="sole">Sole</option>
-          <option value="anchovy">Anchovy</option>
-          <option value="sardine">Sardine</option>
-          <option value="herring">Herring</option>
-        </select>
+    <div class="volume">
+      <label for="quantity">Volume:</label>
+      <input type="number" id="quantity" name="quantity" placeholder="In Tons">
+    </div>
+
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center">
+        <button type="button" onclick="openModal()">Submit</button>
       </div>
     </div>
     
-
-    <div class="row-6">
-      <label for="quantity" class="form-label">Quantity:</label>
-      <input type="number" class="form-control" id="quantity" name="quantity" placeholder="In Kilos or Tons">
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>Are you sure you want to submit the form?</p>
+        <div class="modal-buttons">
+          <button onclick="submitForm()">Submit</button>
+          <button onclick="goBack()">Cancel</button>
+        </div>
+      </div>
     </div>
 
-
-
-
-    <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
   </form>
 </div>
-<!-- end of form creation -->
+
 <script src="https://cdn.jsdelivr.net/npm/datepicker/datepicker.min.js"></script>
 <script src="{% static 'js/forms.js' %}"></script>
 

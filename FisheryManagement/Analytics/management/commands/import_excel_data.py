@@ -2,29 +2,34 @@ import pandas as pd
 from django.core.management.base import BaseCommand
 from Analytics.models import DailyTransaction, Species, Origin, Vessel
 
-class Command(BaseCommand):
-    help = 'Import data from multiple Excel files to Django models'
 
-    def add_arguments(self, parser):
-        parser.add_argument('excel_files', nargs='+', type=str, help='Paths to the Excel files')
+class Command(BaseCommand):
+    help = 'Load data from Excel file into Django database'
 
     def handle(self, *args, **options):
-        excel_file_paths = options['excel_files']
+        excel_files = ['VOLUME and PRICE of Fish Unloading per SPECIE 2022.xlsx']
+        sheet_name = 'Sheet1'  
+        start_row = 4  
+        for file in excel_files:
+            df = pd.read_excel(file, sheet_name, skiprows=start_row)
+            print(f"Data from {file}, Sheet: {sheet_name}:\n{df}")
 
-        for excel_file_path in excel_file_paths:
-            # Read the Excel file into a pandas DataFrame
-            df = pd.read_excel(excel_file_path)
+            print("Column Names:", df.columns)
 
-            # Iterate through rows and create/update model instances
-            for index, row in df.iterrows():
-                DailyTransaction.objects.update_or_create(
-                    unique_field=row['unique_field'],  # Replace with the actual unique field
-                    defaults={
-                        'field1': row['field1'],
-                        'field2': row['field2'],
-                        # Add other fields as needed
-                    }
-                )
+            self.import_species_data(df)
 
-        self.stdout.write(self.style.SUCCESS('Data imported successfully'))
+    def import_species_data(self, df):
+        fish_names = df['SPECIES'].unique()
 
+        for fish_name in fish_names:
+            # Try to get an existing species with the same name
+            existing_species = Species.objects.filter(species_name=fish_name).first()
+
+            if existing_species:
+                # Update the quantity if the species already exists
+                existing_species.quantity += 1  # You might need to adjust this based on your data
+                existing_species.save()
+            else:
+                # Create a new species if it doesn't exist
+                species_instance = Species(species_name=fish_name, quantity=1)  # You might need to adjust this based on your data
+                species_instance.save()

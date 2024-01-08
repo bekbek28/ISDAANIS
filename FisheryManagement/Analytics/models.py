@@ -1,7 +1,7 @@
 from django.db import models
 
 class Species(models.Model):
-    species_name = models.CharField(max_length=30)
+    species_name = models.CharField(max_length=30, unique = True)
     quantity = models.IntegerField()
 
     def __str__(self):

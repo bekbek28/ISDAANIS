@@ -10,6 +10,7 @@ from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.utils import timezone
+from django.db import IntegrityError
 
 
 """ TO GET DATA FROM THE FORMS """
@@ -17,7 +18,8 @@ from django.utils import timezone
 
 @login_required(login_url='Authentication:MClandingPage')
 def isforms(request):
-    origins = Origin.objects.all() 
+    origins = Origin.objects.all()
+    species_list = Species.objects.all()
 
     if request.method == 'POST':
         fishtype = request.POST['fishtype']
@@ -26,7 +28,7 @@ def isforms(request):
         placeofcatch = request.POST['placeofcatch']
         unload_type_name = request.POST['typeofUnload']
         origin = placeofcatch.capitalize()
-        print(origin)
+
         try:
             dateofCatch = timezone.now().strftime('%Y-%m-%d')
 
@@ -34,19 +36,27 @@ def isforms(request):
             origin_instance, _ = Origin.objects.get_or_create(
                 origin=origin,
                 date=dateofCatch,
-            
             )
         except Origin.DoesNotExist:
             origin_instance = Origin.objects.create(
                 origin=origin,
                 date=dateofCatch,
-                
             )
 
-        species_instance, _ = Species.objects.get_or_create(
-            species_name=fishtype,
-            quantity=quantity,
-        )
+        # Check if the species already exists
+        existing_species = Species.objects.filter(species_name=fishtype).first()
+
+        if existing_species:
+            # Use the existing species instead of creating a new one
+            species_instance = existing_species
+        else:
+            try:
+                species_instance, _ = Species.objects.get_or_create(
+                    species_name=fishtype,
+                    quantity=quantity,
+                )
+            except IntegrityError:
+                species_instance = Species.objects.get(species_name=fishtype)
 
         vessel_instance, _ = Vessel.objects.get_or_create(
             vessel_name=vessel,
@@ -67,6 +77,7 @@ def isforms(request):
 
     return render(request, 'MCforms.html', {
         'origins': origins,
+        'species_list': species_list,
     })
 
 
