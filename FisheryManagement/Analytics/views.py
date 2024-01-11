@@ -16,7 +16,7 @@ from django.db import IntegrityError
 """ TO GET DATA FROM THE FORMS """
 
 
-@login_required(login_url='Authentication:MClandingPage')
+@login_required(login_url='Authentication:MarketChecker')
 def isforms(request):
     origins = Origin.objects.all()
     species_list = Species.objects.all()
@@ -113,14 +113,15 @@ def edit_user(request, id):
     })
 
 """ TO DELETE USER IN USER'S TABLE """
+@login_required(login_url='Authentication:loginadmin')
 def delete_user(request, id):
     user = get_object_or_404(User, id=id)
     user.delete()
     return redirect('Analytics:userstable')  
 
 
-@login_required(login_url='Authentication:landingPage')
-def  loadingdash(request):
+@login_required(login_url='Authentication:PortManager')
+def  OCdash(request):
     return render(request, 'OCDash.html' )
 
 
@@ -221,9 +222,21 @@ def dataUnloadingDash(request):
 
 
 
-@login_required(login_url='Authentication:landingPage')
-def  unloadingdash(request):
-    return render(request, 'FCDash.html' )
+@login_required(login_url='Authentication:PortManager')
+def FCdash(request):
+    species_list = Species.objects.all()
+    
+    # Get distinct years from the database
+    years = DailyTransaction.objects.dates('date', 'year').order_by('-date').distinct()
+
+    # Extract unique years using a set
+    unique_years_set = set(year.year for year in years)
+
+    # Convert the set back to a list for iteration in the template
+    unique_years = list(unique_years_set)
+
+    return render(request, 'FCDash.html', {'species_list': species_list, 'unique_years': unique_years})
+
 
 """ CONTENTS OF ADMIN DASHBOARD """
 @login_required(login_url='Authentication:loginadmin')

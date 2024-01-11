@@ -37,6 +37,8 @@ function showLogoutMessage() {
   logoutMessage.textContent = 'You have been logged out.';
 }
 
+
+
 /* to get random colors for the bar chart */
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
@@ -51,7 +53,7 @@ function getRandomColor() {
 fetch('http://127.0.0.1:8000/analytics/unloadingDashData/')
   .then(response => response.json())
   .then(data => {
-
+    
     // Chart.js code for the first bar chart (Fishtype)
 
 
@@ -118,7 +120,7 @@ fetch('http://127.0.0.1:8000/analytics/unloadingDashData/')
         labels: data.labels_monthly, // Use the 'labels' data from Django view
         datasets: [{
           label: 'Quantity',
-          data: data.quantities_monthly, // Use the 'quantities' data from Django view
+          data: data.quantities_monthly, 
           borderColor: 'rgba(0, 2, 161, 1)',
           backgroundColor: getRandomColor(1),
           borderWidth: 2

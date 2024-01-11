@@ -18,9 +18,20 @@
             <div class="dropdown-content">
                 <!-- Add other menu items if needed -->
                 <a href="#">Recent List</a>
-                <a href="{% url 'Authentication:MClandingPage' %}" class="text-decoration-none fs-4 text-dark">LOGOUT</a>
+                <a href="#" id="logoutButton" data-logout-url="{% url 'Authentication:MClandingPage' %}" class="text-decoration-none fs-4 text-dark">LOGOUT</a>
+              </div>
             </div>
+            <div id="logoutModal" class="modal">
+              <div class="modal-content">
+                  <span class="close" onclick="closeModal()">&times;</span>
+                  <p>Are you sure you want to logout?</p>
+                  <button id="confirmLogout" onclick="performLogout()">Logout</button>
+                  <button id="cancelLogout" onclick="closeModal()">Cancel</button>
+              </div>
+          </div>
+          
         </div>
+        
 </div>
 
 <div class="container-sm" id="container"> 

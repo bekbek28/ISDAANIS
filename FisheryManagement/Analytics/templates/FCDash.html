@@ -94,6 +94,38 @@
       <!-- code for sidebar toggle -->
     <div class="top">
         <i class="uil uil-bars sidebar-toggle"></i>
+        <label for="fishtype">Type of Fish:</label>
+            <select name="fishtype" id="fishtypeOptions">
+                {% for species in species_list %}
+                    <option value="{{ species.species_name }}">{{ species.species_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="months">Choose a month:</label>
+                <select name="months" id="months">
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+
+
+            <label for="year">Choose Year:</label>
+              <select name="year" id="year">
+                  {% for year in unique_years %}
+                      <option value="{{ year }}">{{ year }}</option>
+                  {% endfor %}
+              </select>
+
+
     </section>
 
   
