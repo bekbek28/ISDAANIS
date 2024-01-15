@@ -34,7 +34,7 @@ def islogin(request):
                 messages.error(request, 'You are not a Market Checker!')
             else:
                 login(request, user)
-                return redirect('Analytics:forms')
+                return redirect('Analytics:recentlist')
         else:
             messages.error(request, 'Username and Password are Invalid!')
 

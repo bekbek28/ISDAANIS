@@ -4,9 +4,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Recent List</title>
+  <link rel="stylesheet" href="{% static 'css/recentlist.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
   
+  <div class="navbar">
+    <h2>MARKET CHECKER RECENT DATA INPUT</h2>
+    <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+            <!-- Add other menu items if needed -->
+            <a href="{% url 'Analytics:forms' %}">Add New Data</a>
+            <a href="#" id="logoutButton" data-logout-url="{% url 'Authentication:MClandingPage' %}" class="text-decoration-none fs-4 text-dark">LOGOUT</a>
+          </div>
+        </div>
+        <div id="logoutModal" class="modal">
+          <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <p>Are you sure you want to logout?</p>
+              <button id="confirmLogout" onclick="performLogout()">Logout</button>
+              <button id="cancelLogout" onclick="closeModal()">Cancel</button>
+          </div>
+      </div>
+      
+      
+    </div>
+
+    
+    <div class="table-responsive bg-secondary">
+      <div class="topbar">
+        <form id="search-form" method="get">
+            <div class="search-bar">
+                <input type="text" id="search-input" name="q" placeholder="Search.." {% if search_query %}value="{{ search_query }}"{% endif %}>
+                <button type="submit" id="search-btn" class="btn">
+                    <i class='bx bx-search-alt-2'></i>
+                </button>
+            </div>
+        </form>
+       
+    </div>
+        <table class="table table-bordered table-hover ">
+            <thead>
+              <!-- Table Contents -->
+              <tr class="bg-secondary">
+                <th scope="col">Load Date</th>
+                <th scope="col">Type of fish</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Vessel</th>
+                <th scope="col">Type of Unloading</th>
+                <th scope="col">Location</th>
+
+            
+              </tr>
+            </thead>
+            <!-- Table Data -->
+            <tbody>
+              {% for transaction in transactions %}
+              <tr> 
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.species.species_name }}</td>
+                <td>{{ transaction.quantity }}</td>
+                <td>{{ transaction.vessel.vessel_name }}</td>
+                <td>{{ transaction.unloadType.unloadTypeName }}</td> 
+                <td>{{ transaction.origin.origin }}</td>
+                
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+  </div>
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if transactions.has_previous %}
+            <a href="?page=1{% if search_query %}&q={{ search_query }}{% endif %}">&laquo; first</a>
+            <a href="?page={{ transactions.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ transactions.number }} of {{ transactions.paginator.num_pages }}.
+        </span>
+
+        {% if transactions.has_next %}
+            <a href="?page={{ transactions.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}">next</a>
+            <a href="?page={{ transactions.paginator.num_pages }}{% if search_query %}&q={{ search_query }}{% endif %}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+  <script src="{% static 'js/recentlist.js' %}"></script>
 </body>
 </html>

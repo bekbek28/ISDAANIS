@@ -11,6 +11,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from django.utils import timezone
 from django.db import IntegrityError
+from django.db.models import Max
 
 
 """ TO GET DATA FROM THE FORMS """
@@ -80,7 +81,28 @@ def isforms(request):
         'species_list': species_list,
     })
 
+@login_required(login_url='Authentication:PortManager')
+def recentList(request):
+ 
+    most_recent_date = DailyTransaction.objects.aggregate(max_date=Max('date'))['max_date']
 
+    transactions = DailyTransaction.objects.filter(date=most_recent_date)
+
+    search_query = request.GET.get('q')
+
+    if search_query:
+        transactions = transactions.filter(
+            Q(species__species_name__icontains=search_query) |
+            Q(quantity__icontains=search_query) |
+            Q(vessel__vessel_name__icontains=search_query) |
+            Q(origin__origin__icontains=search_query)
+        )
+
+    paginator = Paginator(transactions, 9)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+
+    return render(request, 'recentlist.html', {'transactions': page, 'search_query': search_query})
 """ FOR EDITING USER INFORMATION """
 @login_required(login_url='Authentication:loginadmin')
 def edit_user(request, id):
@@ -306,23 +328,6 @@ def userstable(request):
     })
 
 
-""" LOADING HISTORY TABLES """
-@login_required(login_url='Authentication:loginadmin')
-def loadhistory(request):
-    transactions = DailyTransaction.objects.all()
-    search_query = request.GET.get('q')
-    
-    if search_query:
-        transactions = transactions.filter(
-            Q(species__species_name__icontains=search_query) |
-            Q(quantity__icontains=search_query)
-        )
-    
-    paginator = Paginator(transactions, 9)
-    page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
-    
-    return render(request, 'loadhistory.html', {'transactions': page, 'search_query': search_query})
 
 
 """ UNLOADING HISTORY TABLE """
