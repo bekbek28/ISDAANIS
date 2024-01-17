@@ -43,7 +43,7 @@
               <i class='bx bx-arrow-back'></i>Back</a>
           </li>
           <li>
-            <a href="#" onclick="openModal()">
+            <a href="#" id="logoutButton" data-logout-url="{% url 'Authentication:loginadmin' %}">
               <i class='bx bx-exit'></i>Logout
             </a>
           </li>
@@ -51,14 +51,7 @@
       </div>
     </div>
 
-    <div id="logoutModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <p>Are you sure you want to logout?</p>
-        <button onclick="cancelLogout()">Cancel</button>
-        <a id="logoutLink" href="{% url 'Authentication:loginadmin' %}">Logout</a>
-      </div>
-    </div>
+    
     <!-- Codes For Load History Table -->
     <div class="table-responsive bg-secondary">
       <div class="topbar">
@@ -121,8 +114,17 @@
         {% endif %}
     </span>
 </div>
-
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>Are you sure you want to logout?</p>
+      <button id="confirmLogout" onclick="performLogout()">Logout</button>
+      <button id="cancelLogout" onclick="closeModal()">Cancel</button>
+  </div>
 </div>
+</div>
+
+
   
 <script src="{% static 'js/unloadhistory.js' %}"></script>
   </body>

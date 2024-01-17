@@ -118,42 +118,64 @@
   cursor: pointer;
 }
 
+/* Modal container */
 .modal {
-  display: none;
+  display: none; /* Hide the modal by default */
   position: fixed;
   top: 0;
   left: 0;
-  margin-top: 70px;
-  margin-left: 300px;
-  width: 40%;
+  width: 60%;
   height: 100%;
- 
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
 }
 
+/* Modal content */
 .modal-content {
-  background-color: skyblue;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+/* Close button */
 .close {
   position: absolute;
   top: 10px;
   right: 10px;
+  font-size: 20px;
   cursor: pointer;
 }
 
-.modal-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
+/* Logout and Cancel buttons */
+button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
 }
 
-.modal-buttons button {
-  margin-left: 10px;
-  background-color:black
+/* Style for Logout button */
+#confirmLogout {
+  background-color: #dc3545; /* Red color for logout */
+  color: #fff;
+  border: none;
 }
+
+/* Style for Cancel button */
+#cancelLogout {
+  background-color: #6c757d; /* Gray color for cancel */
+  color: #fff;
+  border: none;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
 
 
 .pagination {

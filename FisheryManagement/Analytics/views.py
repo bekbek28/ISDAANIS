@@ -222,6 +222,8 @@ def dataUnloadingDash(request):
             'total_quantity': entry['total_quantity'],
         })
 
+
+
     data = {
         'labels_daily': labels_daily_sorted,
         'quantities': quantities_sorted,
@@ -235,7 +237,9 @@ def dataUnloadingDash(request):
         'species_data': species_data,
         'origin_data': origin_data,  
         'vessel_data': vessel_data,  
+
     }
+    
 
     return JsonResponse(data)
 

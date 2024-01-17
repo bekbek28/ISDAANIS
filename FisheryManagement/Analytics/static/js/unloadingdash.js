@@ -32,10 +32,36 @@ sidebarToggle.addEventListener("click", () => {
   }
 });
 
-function showLogoutMessage() {
-  const logoutMessage = document.getElementById('logout-message');
-  logoutMessage.textContent = 'You have been logged out.';
+
+function openLogoutModal() {
+  document.getElementById('logoutModal').style.display = 'block';
 }
+
+function closeLogoutModal() {
+  document.getElementById('logoutModal').style.display = 'none';
+}
+
+function showLogoutSuccessMessage() {
+  var logoutSuccessMessage = document.getElementById('logoutSuccessMessage');
+  logoutSuccessMessage.style.display = 'block';
+
+  // Hide the message after a certain duration (e.g., 3 seconds)
+  setTimeout(function () {
+    logoutSuccessMessage.style.display = 'none';
+  }, 3000);
+}
+
+function logout() {
+  // Add your logout logic here
+  // For example, redirecting to the logout URL
+  var logoutUrl = document.querySelector('[data-logout-url]').dataset.logoutUrl;
+  window.location.href = logoutUrl;
+
+  // Display logout success message
+  showLogoutSuccessMessage();
+}
+
+
 
 
 
@@ -101,25 +127,34 @@ const placeOfCatchChart = new Chart(ctx3, {
     }
 });
 
+
 // Add an event listener to the fish type select element
 const fishtypeSelect = document.getElementById('fishtypeOptions');
 fishtypeSelect.addEventListener('change', function () {
     // Get the selected fish name
     const selectedFish = fishtypeSelect.value;
+    console.log('Selected Fish:', selectedFish);
 
     // Filter data based on the selected fish
     const filteredVesselData = data.vessel_data.filter(item => item.species_name === selectedFish);
     const filteredOriginData = data.origin_data.filter(item => item.species_name === selectedFish);
 
+    // Log filtered data
+    console.log('Filtered Vessel Data:', filteredVesselData);
+    console.log('Filtered Origin Data:', filteredOriginData);
+
     // Update the charts with the filtered data
+    console.log('Updating Vessel Chart');
     vesselChart.data.labels = filteredVesselData.map(item => item.vessel_name);
     vesselChart.data.datasets[0].data = filteredVesselData.map(item => item.total_quantity);
     vesselChart.update();
 
+    console.log('Updating PlaceOfCatch Chart');
     placeOfCatchChart.data.labels = filteredOriginData.map(item => item.origin);
     placeOfCatchChart.data.datasets[0].data = filteredOriginData.map(item => item.total_quantity);
     placeOfCatchChart.update();
 });
+
 
 
 

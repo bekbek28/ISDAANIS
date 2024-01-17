@@ -32,9 +32,22 @@ sidebarToggle.addEventListener("click", () => {
   }
 });
 
-function showLogoutMessage() {
-  const logoutMessage = document.getElementById('logout-message');
-  logoutMessage.textContent = 'You have been logged out.';
+function openLogoutModal() {
+  document.getElementById('logoutModal').style.display = 'block';
+}
+
+function closeLogoutModal() {
+  document.getElementById('logoutModal').style.display = 'none';
+}
+
+function logout() {
+  // Add your logout logic here
+  // Retrieve the logout URL from the data attribute
+  var logoutUrl = document.querySelector('[data-logout-url]').dataset.logoutUrl;
+  // Redirect to the logout URL
+  window.location.href = logoutUrl;
+  // Close the modal after redirect (optional)
+  closeLogoutModal();
 }
 
 /* to get random colors for the bar chart */

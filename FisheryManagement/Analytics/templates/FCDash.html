@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% csrf_token %}
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,12 +40,12 @@
           </ul>    
           <ul class="logout-mode">
             <li>
-              <a href="{% url 'Authentication:landingPage' %}">
-                  <i class="uil uil-signout"></i>
-                  <span class="link-name">Logout</span>
-              </a>  
-          </li>
-        </ul>
+              <a href="#" onclick="openLogoutModal()" data-logout-url="{% url 'Authentication:landingPage' %}">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+              </a>
+            </li>
+          </ul>
         
 
             <li class="mode">
@@ -58,8 +59,23 @@
             </div>
         </li>
         </ul>
+        
     </div>
+
+   
 </nav>
+
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeLogoutModal()">&times;</span>
+    <p>Do you really want to log out?</p>
+    <button onclick="logout()">Logout</button>
+    <button onclick="closeLogoutModal()">Cancel</button>
+  </div>
+</div>
+<div id="logoutSuccessMessage" class="logout-success-message" style="display:none;">
+  Logout successful! <!-- You can customize this message -->
+</div>
             <!-- Code for the graphs -->
 <section class="dashboard">
       
@@ -95,6 +111,7 @@
         <i class="uil uil-bars sidebar-toggle"></i>
         <label for="fishtype">Type of Fish:</label>
             <select name="fishtype" id="fishtypeOptions">
+              <option value="">Select Fish </option>
                 {% for species in species_list %}
                     <option value="{{ species.species_name }}">{{ species.species_name }}</option>
                 {% endfor %}
@@ -102,6 +119,7 @@
 
             <label for="months">Choose a month:</label>
                 <select name="months" id="months">
+                  <option value="">Select Month</option>
                   <option value="01">January</option>
                   <option value="02">February</option>
                   <option value="03">March</option>
@@ -119,6 +137,7 @@
 
             <label for="year">Choose Year:</label>
               <select name="year" id="year">
+                <option value="">Select Year </option>
                   {% for year in unique_years %}
                       <option value="{{ year }}">{{ year }}</option>
                   {% endfor %}
