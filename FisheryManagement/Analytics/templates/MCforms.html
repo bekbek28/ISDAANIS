@@ -44,18 +44,19 @@
 
     <div class="place">
       <label for="placeofcatch">Place of catch:</label>
-      <input type="text" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch">
-      <datalist id="placeofcatch">
-        <option value="Origins" disabled></option>
-        {% for origin in origins %}
-          <option value="{{ origin.id }}">{{ origin.origin }}</option>
-        {% endfor %}
-      </datalist>
+        <select id="placeofcatch" name="placeofcatch">
+          <option value="">Select a place</option>
+          {% for origin in origins %}
+            <option value="{{ origin.id }}">{{ origin.origin }}</option>
+          {% endfor %}
+        </select>
+
     </div>
 
     <div class="Utype" id="UnloadingType">
       <label for="typeofUnload">Type of Unloading:</label>
       <select name="typeofUnload" id="typeofUnloadOptions">
+        <option value="">-Select Type of Unloading- </option>
         <option value="Commercial">Commercial</option>
         <option value="Municipal">Municipal</option>
         <option value="Saltwater">Inland(Saltwater)</option>
@@ -78,7 +79,9 @@
 
     <div class="fish" id="fishtype">
       <label for="fishtype">Type of Fish:</label>
+
       <select name="fishtype" id="fishtypeOptions">
+        <option value="">-Select Fish-</option>
           {% for species in species_list %}
               <option value="{{ species.species_name }}">{{ species.species_name }}</option>
           {% endfor %}

@@ -9,7 +9,7 @@ class Command(BaseCommand):
         fake = Faker()
 
         # Number of records you want to create
-        num_records = 40
+        num_records = 200
 
         # Check if the lists are not empty before proceeding
         species_ids = Species.objects.values_list('id', flat=True)
@@ -34,8 +34,8 @@ class Command(BaseCommand):
                 origin_id=origin_id,
                 vessel_id=vessel_id,
                 unloadType_id=unload_type_id,  # Use the correct field name
-                quantity=fake.random_int(min=100, max=300),
-                date=fake.date_between(start_date='-4y', end_date='today'),
+                quantity=fake.random_int(min=50, max=200),
+                date=fake.date_between(start_date='-5y', end_date='today'),
             )
 
         self.stdout.write(self.style.SUCCESS(f'{num_records} DailyTransaction records created successfully.'))

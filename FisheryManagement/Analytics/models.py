@@ -7,12 +7,6 @@ class Species(models.Model):
     def __str__(self):
         return self.species_name
 
-class Province(models.Model):
-    ProvinceName = models.CharField(max_length=30)
-
-class City(models.Model):
-    CityName = models.CharField(max_length=30)
-    Province = models.ForeignKey(Province,on_delete=models.CASCADE)
 
 class unloadType(models.Model):
     unloadTypeName = models.CharField(max_length=30)
@@ -21,7 +15,6 @@ class unloadType(models.Model):
 class Origin(models.Model):
     origin = models.CharField(max_length=30)
     date = models.DateTimeField()
-    City = models.ForeignKey(City,on_delete=models.CASCADE,null=True)
     
 
     def __str__(self):

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
-from .models import Species, Province, City,unloadType, Origin, Vessel, DailyTransaction
+from .models import Species,unloadType, Origin, Vessel, DailyTransaction
 from django.http import JsonResponse
 from collections import defaultdict
 from django.db.models import Sum
@@ -12,6 +12,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from django.db import IntegrityError
 from django.db.models import Max
+from django.views.decorators.http import require_GET
 
 
 """ TO GET DATA FROM THE FORMS """
@@ -143,34 +144,58 @@ def delete_user(request, id):
 
 
 @login_required(login_url='Authentication:PortManager')
-def  OCdash(request):
-    return render(request, 'OCDash.html' )
+def OCdash(request):
+    # Get unique origins directly from the database using distinct()
+    unique_origins = Origin.objects.values('origin').distinct()
+
+    # Rest of your code
+    years = DailyTransaction.objects.dates('date', 'year').order_by('-date').distinct()
+    unique_years_set = set(year.year for year in years)
+    unique_years = list(unique_years_set)
+
+    return render(request, 'OCDash.html', {'origins': unique_origins, 'unique_years': unique_years})
+
+
 
 
 """ API FOR DATA COLLECTION AND GRAPHS """
+@require_GET
 def dataUnloadingDash(request):
-    transactions = DailyTransaction.objects.all()
+    selected_fish_type = request.GET.get('fish_type', None)
+    selected_month = request.GET.get('month', None)
+    selected_year = request.GET.get('year', None)
+    selected_origin = request.GET.get('origin', None)
 
+    transactions = DailyTransaction.objects.filter(species__species_name=selected_fish_type) if selected_fish_type else DailyTransaction.objects.all()
+    if selected_month:
+        transactions = transactions.filter(date__month=selected_month)  
+    if selected_year:
+        transactions = transactions.filter(date__year=selected_year)
+    if selected_origin:
+        transactions = transactions.filter(origin__origin=selected_origin)
+
+    # Calculate quantity by date
     quantity_by_date = defaultdict(int)
     for transaction in transactions:
         quantity_by_date[str(transaction.date)] += transaction.quantity
 
+        
+
+    # Calculate monthly and yearly catch
     monthly_catch = transactions.annotate(month=TruncMonth('date')).values('month').annotate(total_quantity=Sum('quantity'))
     yearly_catch = transactions.annotate(year=TruncYear('date')).values('year').annotate(total_quantity=Sum('quantity'))
 
+    # Calculate quantities by species, origin, and vessel
     species_quantities = transactions.values('species__species_name').annotate(total_quantity=Sum('quantity'))
     origin_quantities = transactions.values('origin__origin').annotate(total_quantity=Sum('quantity'))
     vessel_quantities = transactions.values('vessel__vessel_name').annotate(total_quantity=Sum('quantity'))
 
+    # Prepare data for labels and quantities
     labels_daily = []
     quantities = []
     species = []
     origins = []
     vessels = []
-    labels_monthly = []
-    quantities_monthly = []
-    labels_yearly = []
-    quantities_yearly = []
 
     unique_dates_set = set()  
     for transaction in transactions:
@@ -184,11 +209,15 @@ def dataUnloadingDash(request):
         origins.append(origin_data)
         vessels.append(transaction.vessel.vessel_name)
 
-   
+    # Sort daily data based on date
     daily_data_sorted = sorted(zip(labels_daily, quantities, species, origins, vessels), key=lambda x: datetime.strptime(x[0], '%B %d, %Y'))
+    labels_daily_sorted, quantities_sorted, species_sorted, origins_sorted, vessels_sorted = zip(*daily_data_sorted)
 
-
-    labels_daily_sorted, quantities_sorted,species_sorted, origins_sorted, vessels_sorted = zip(*daily_data_sorted)
+    # Prepare data for monthly and yearly catch
+    labels_monthly = []
+    quantities_monthly = []
+    labels_yearly = []
+    quantities_yearly = []
 
     for entry in monthly_catch:
         month = entry['month'].strftime('%b %Y')
@@ -200,6 +229,7 @@ def dataUnloadingDash(request):
         labels_yearly.append(year)  
         quantities_yearly.append(entry['total_quantity'])
 
+    # Prepare data for species, origin, and vessel quantities
     species_data = []
     for entry in species_quantities:
         species_data.append({
@@ -214,7 +244,6 @@ def dataUnloadingDash(request):
             'total_quantity': entry['total_quantity'],
         })
 
-  
     vessel_data = []
     for entry in vessel_quantities:
         vessel_data.append({
@@ -222,8 +251,7 @@ def dataUnloadingDash(request):
             'total_quantity': entry['total_quantity'],
         })
 
-
-
+    # Construct the response data
     data = {
         'labels_daily': labels_daily_sorted,
         'quantities': quantities_sorted,
@@ -236,10 +264,8 @@ def dataUnloadingDash(request):
         'vessel': vessels_sorted,
         'species_data': species_data,
         'origin_data': origin_data,  
-        'vessel_data': vessel_data,  
-
+        'vessel_data': vessel_data,
     }
-    
 
     return JsonResponse(data)
 

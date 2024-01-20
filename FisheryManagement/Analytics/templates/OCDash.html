@@ -10,7 +10,7 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <title>ISdaanIS: Fish Loading</title>
+  <title>ISdaanIS: Overall Catch</title>
 </head>
 <body>
 
@@ -93,6 +93,39 @@
       <!-- code for sidebar toggle -->
     <div class="top">
         <i class="uil uil-bars sidebar-toggle"></i>
+        <label for="placeofcatch">Place of catch:</label>
+        <select id="placeofcatch" name="placeofcatch">
+          <option value="">Select a place</option>
+          {% for origin in origins %}
+            <option value="{{ origin.id }}">{{ origin.origin }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="months">Choose a month:</label>
+                <select name="months" id="months">
+                  <option value="">Select Month</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+
+
+            <label for="year">Choose Year:</label>
+              <select name="year" id="year">
+                <option value="">Select Year </option>
+                  {% for year in unique_years %}
+                      <option value="{{ year }}">{{ year }}</option>
+                  {% endfor %}
+              </select>
     </div>
     
     </section>
