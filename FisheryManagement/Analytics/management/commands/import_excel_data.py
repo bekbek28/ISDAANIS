@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = 'Load data from Excel file into Django database'
 
     def handle(self, *args, **options):
-        excel_files = ['VOLUME and PRICE of Fish Unloading per SPECIE 2022.xlsx','FISH UNLOADING per ORIGIN 2022.xlsx']
+        excel_files = ['VOLUME and PRICE of Fish Unloading per SPECIE 2022.xlsx']
         sheet_name = 'Sheet1'  
         start_row = 4  
         for file in excel_files:

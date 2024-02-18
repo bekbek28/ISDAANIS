@@ -76,7 +76,8 @@
                 <th scope="col">Vessel</th>
                 <th scope="col">Type of Unloading</th>
                 <th scope="col">Location</th>
-
+                <th scope="col">Actions</th>
+                
             
               </tr>
             </thead>
@@ -90,6 +91,13 @@
                 <td>{{ transaction.vessel.vessel_name }}</td>
                 <td>{{ transaction.unloadType.unloadTypeName }}</td> 
                 <td>{{ transaction.origin.origin }}</td>
+                <td class="table-info">
+                  <a href="{% url 'Analytics:edit_unloading' transaction.id %}"><button class="btn btn-primary">Edit</button></a>
+                  <a onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger">Delete</a>
+
+                
+              </td>
+
                 
               </tr>
               {% endfor %}

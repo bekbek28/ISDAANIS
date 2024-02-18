@@ -93,13 +93,6 @@
       <!-- code for sidebar toggle -->
     <div class="top">
         <i class="uil uil-bars sidebar-toggle"></i>
-        <label for="placeofcatch">Place of catch:</label>
-        <select id="placeofcatch" name="placeofcatch">
-          <option value="">Select a place</option>
-          {% for origin in origins %}
-            <option value="{{ origin.id }}">{{ origin.origin }}</option>
-          {% endfor %}
-        </select>
 
         <label for="months">Choose a month:</label>
                 <select name="months" id="months">

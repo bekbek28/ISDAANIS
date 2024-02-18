@@ -4,24 +4,15 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
 
-
-
-# Create the 'Market Checker' group if it doesn't exist
 market_checker_group, _ = Group.objects.get_or_create(name='Market Checker')
-
-# Create the 'PManager' group if it doesn't exist
 pmanager_group, _ = Group.objects.get_or_create(name='PManager')
-
-# Create the 'ISAdmin' group if it doesn't exist
 ISadmin_group, _ = Group.objects.get_or_create(name='ISAdmin')
-
 
 def isLandingPage(request):
     return render(request, 'ISlandingPage.html')
 
 def isMCLandingPage(request):
     return render(request, 'MCLandingPage.html')
-
 
 def islogin(request):
     if request.method == 'POST':
@@ -38,8 +29,7 @@ def islogin(request):
         else:
             messages.error(request, 'Username and Password are Invalid!')
 
-    return render(request, 'index.html')
-
+    return render(request, 'index.html', {'password_reset_url': 'password_reset'})
 
 def isreghtml(request):
     if request.method == 'POST':
@@ -54,21 +44,18 @@ def isreghtml(request):
             messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
-                my_user = User.objects.create_user(first_name=firstname,last_name=lastname,email=email,username=uname, password=password)
+                my_user = User.objects.create_user(first_name=firstname, last_name=lastname, email=email, username=uname, password=password)
                 my_user.save()
-                messages.success(request, 'User Account Created')
+                messages.success(request, 'User Account Created successfully!')
 
                 if not my_user.groups.filter(name='PManager').exists() and not my_user.groups.filter(name='ISAdmin').exists():
-                    market_checker_group.user_set.add(my_user) 
+                    market_checker_group.user_set.add(my_user)
 
-                messages.success(request, 'User Account Created successfully!')
-                print("Success message set.")
                 return redirect('Authentication:login')  
             except IntegrityError:
-                 messages.error(request, 'Username or email already exist!')
+                messages.error(request, 'Username or email already exist!')
 
     return render(request, 'register.html')
-
 
 def ispmloginhtml(request): 
     if request.method == 'POST':
@@ -87,7 +74,6 @@ def ispmloginhtml(request):
 
     return render(request, 'PManager.html')
 
-
 def ispmreghtml(request):
     if request.method == 'POST':
         firstname = request.POST.get('fname')
@@ -101,11 +87,11 @@ def ispmreghtml(request):
             messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
-                my_user = User.objects.create_user(first_name=firstname,last_name=lastname,email=email,username=uname, password=password)
+                my_user = User.objects.create_user(first_name=firstname, last_name=lastname, email=email, username=uname, password=password)
                 my_user.save()
 
                 if not my_user.groups.filter(name='ISAdmin').exists() and not my_user.groups.filter(name='Market Checker').exists():
-                    pmanager_group.user_set.add(my_user)  # Add the user to the PManager group
+                    pmanager_group.user_set.add(my_user)
 
                 messages.success(request, 'User Account Created successfully!')
                 return redirect('Authentication:pmlogin')
@@ -122,7 +108,7 @@ def isadminloginhtml(request):
 
         if user is not None:
             if user.groups.filter(name='Market Checker').exists() or user.groups.filter(name='PManager').exists():
-                 messages.error(request, 'You are not a Admin!')
+                 messages.error(request, 'You are not an Admin!')
             else:
                 login(request, user)
                 return redirect('Analytics:admindashboard')
@@ -130,7 +116,6 @@ def isadminloginhtml(request):
              messages.error(request, 'Username and Password are Invalid!')
 
     return render(request, 'admin.html')
-
 
 def isadminreghtml(request):
     if request.method == 'POST':
@@ -145,15 +130,17 @@ def isadminreghtml(request):
              messages.error(request, 'Your password and confirm password are not match')
         else:
             try:
-                my_user = User.objects.create_user(first_name=firstname,last_name=lastname,email=email,username=uname, password=password)
+                my_user = User.objects.create_user(first_name=firstname, last_name=lastname, email=email, username=uname, password=password)
                 my_user.save()
 
                 if not my_user.groups.filter(name='PManager').exists() and not my_user.groups.filter(name='Market Checker').exists():
-                    ISadmin_group.user_set.add(my_user)  # Add the user to the ISAdmin group
-                
+                    ISadmin_group.user_set.add(my_user)
+
                 messages.success(request, 'User Account Created successfully!')
                 return redirect('Authentication:loginadmin') 
             
             except IntegrityError:
                 messages.error(request, 'Username or email already exist!') 
+
     return render(request, 'adminreg.html')
+

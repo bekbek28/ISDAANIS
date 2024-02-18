@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
-from .models import Species,unloadType, Origin, Vessel, DailyTransaction
+from .models import Species, unloadType, Origin, Vessel, DailyTransaction
 from django.http import JsonResponse
 from collections import defaultdict
 from django.db.models import Sum
@@ -13,22 +13,36 @@ from django.utils import timezone
 from django.db import IntegrityError
 from django.db.models import Max
 from django.views.decorators.http import require_GET
+from django.http import HttpResponse
+from django.core.exceptions import ValidationError
+from django.contrib import messages
+
+from django.core.exceptions import MultipleObjectsReturned
 
 
 """ TO GET DATA FROM THE FORMS """
 
 
-@login_required(login_url='Authentication:MarketChecker')
+@login_required(login_url='Authentication:MClandingPage')
 def isforms(request):
     origins = Origin.objects.all()
     species_list = Species.objects.all()
 
     if request.method == 'POST':
-        fishtype = request.POST['fishtype']
-        quantity = request.POST['quantity']
-        vessel = request.POST['vessel']
-        placeofcatch = request.POST['placeofcatch']
-        unload_type_name = request.POST['typeofUnload']
+        fishtype = request.POST.get('fishtype')
+        quantity = request.POST.get('quantity')
+        vessel = request.POST.get('vessel')
+        placeofcatch = request.POST.get('placeofcatch')
+        unload_type_name = request.POST.get('typeofUnload')
+
+        # Check for completeness of form data
+        if not all([fishtype, quantity, vessel, placeofcatch, unload_type_name]):
+            return render(request, 'MCforms.html', {
+                'origins': origins,
+                'species_list': species_list,
+                'error_message': 'Please fill in all the required fields.'
+            })
+
         origin = placeofcatch.capitalize()
 
         try:
@@ -36,13 +50,11 @@ def isforms(request):
 
             # Create or get Origin
             origin_instance, _ = Origin.objects.get_or_create(
-                origin=origin,
-                date=dateofCatch,
+                origin=origin
             )
         except Origin.DoesNotExist:
             origin_instance = Origin.objects.create(
                 origin=origin,
-                date=dateofCatch,
             )
 
         # Check if the species already exists
@@ -77,14 +89,15 @@ def isforms(request):
         )
         new_transaction.save()
 
+        return HttpResponse('Form submitted successfully.')  # You can modify this as needed
+
     return render(request, 'MCforms.html', {
         'origins': origins,
         'species_list': species_list,
     })
 
-@login_required(login_url='Authentication:PortManager')
+@login_required(login_url='Authentication:MClandingPage')
 def recentList(request):
- 
     most_recent_date = DailyTransaction.objects.aggregate(max_date=Max('date'))['max_date']
 
     transactions = DailyTransaction.objects.filter(date=most_recent_date)
@@ -104,6 +117,7 @@ def recentList(request):
     page = paginator.get_page(page_number)
 
     return render(request, 'recentlist.html', {'transactions': page, 'search_query': search_query})
+
 """ FOR EDITING USER INFORMATION """
 @login_required(login_url='Authentication:loginadmin')
 def edit_user(request, id):
@@ -142,7 +156,6 @@ def delete_user(request, id):
     user.delete()
     return redirect('Analytics:userstable')  
 
-
 @login_required(login_url='Authentication:PortManager')
 def OCdash(request):
     # Get unique origins directly from the database using distinct()
@@ -154,9 +167,6 @@ def OCdash(request):
     unique_years = list(unique_years_set)
 
     return render(request, 'OCDash.html', {'origins': unique_origins, 'unique_years': unique_years})
-
-
-
 
 """ API FOR DATA COLLECTION AND GRAPHS """
 @require_GET
@@ -178,8 +188,6 @@ def dataUnloadingDash(request):
     quantity_by_date = defaultdict(int)
     for transaction in transactions:
         quantity_by_date[str(transaction.date)] += transaction.quantity
-
-        
 
     # Calculate monthly and yearly catch
     monthly_catch = transactions.annotate(month=TruncMonth('date')).values('month').annotate(total_quantity=Sum('quantity'))
@@ -269,11 +277,6 @@ def dataUnloadingDash(request):
 
     return JsonResponse(data)
 
-
-
-
-
-
 @login_required(login_url='Authentication:PortManager')
 def FCdash(request):
     species_list = Species.objects.all()
@@ -289,7 +292,6 @@ def FCdash(request):
 
     return render(request, 'FCDash.html', {'species_list': species_list, 'unique_years': unique_years})
 
-
 """ CONTENTS OF ADMIN DASHBOARD """
 @login_required(login_url='Authentication:loginadmin')
 def isadmindashboard(request):
@@ -304,8 +306,6 @@ def isadmindashboard(request):
     top_vessels = DailyTransaction.objects.values('vessel__vessel_name').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:3]
 
     top_origins = DailyTransaction.objects.values('origin__origin').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:3]
-
-
 
     return render(request, 'admindash.html', {
         'transactions': transactions,
@@ -359,7 +359,6 @@ def userstable(request):
 
 
 
-
 """ UNLOADING HISTORY TABLE """
 @login_required(login_url='Authentication:loginadmin')
 def unloadhistory(request):
@@ -381,3 +380,63 @@ def unloadhistory(request):
     
     return render(request, 'unloadhistory.html', {'transactions': page, 'search_query': search_query})
 
+
+""" FOR EDITING UNLOADING HISTORY """
+
+
+@login_required(login_url='Authentication:loginadmin')
+def edit_unloading(request, id):
+    transaction = get_object_or_404(DailyTransaction, id=id)
+
+    if request.method == 'POST':
+        origin_name = request.POST.get('placeofcatch')
+        try:
+            # Attempt to get the origin from the database
+            origin = Origin.objects.get(origin=origin_name)
+        except Origin.DoesNotExist:
+            # Handle the case when the origin does not exist
+            return HttpResponse(f"Origin '{origin_name}' does not exist. Please select a valid origin.")
+
+        try:
+            # Attempt to get the vessel from the database
+            vessel_name = request.POST.get('vessel')
+            vessel = Vessel.objects.filter(vessel_name=vessel_name).first()
+            if not vessel:
+                raise Vessel.DoesNotExist
+        except Vessel.DoesNotExist:
+            # Handle the case when the vessel does not exist
+            return HttpResponse(f"Vessel '{vessel_name}' does not exist. Please select a valid vessel.")
+        except MultipleObjectsReturned:
+            # Handle the case when multiple vessels with the same name exist
+            return HttpResponse(f"Multiple vessels with the name '{vessel_name}' exist. Please contact support.")
+
+        # Update the transaction with the new data from the form
+        transaction.species = Species.objects.get(species_name=request.POST.get('fishtype'))
+        transaction.quantity = request.POST.get('quantity')
+        transaction.vessel = vessel
+        transaction.origin = origin
+        transaction.unloadType = unloadType.objects.get(unloadTypeName=request.POST.get('typeofUnload'))
+        
+        transaction.save()
+        
+        # Redirect to the unload history page after editing
+        return redirect('Analytics:unloadhistory') 
+
+    # Pass the transaction details to the template
+    return render(request, 'editunloading.html', {
+        'transaction': transaction,
+        'origins': Origin.objects.all(),  # Pass origins for the dropdown
+        'species_list': Species.objects.all(),  # Pass species for the dropdown
+    })
+
+
+""" FOR DELETING UNLOADING HISTORY """
+@login_required(login_url='Authentication:loginadmin')
+def delete_unload_history(request, id):
+    try:
+        transaction = get_object_or_404(DailyTransaction, id=id)
+        transaction.delete()
+        messages.success(request, 'Transaction deleted successfully.')
+    except IntegrityError as e:
+        messages.error(request, f'Error deleting transaction: {e}')
+    return redirect('Analytics:unloadhistory')

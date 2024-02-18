@@ -112,20 +112,20 @@
             <td class="table-info">{{ user.username }}</td>
             <td class="table-info">{{ user.groups.first }}</td>
             <td class="table-info">
-              <a href="{% url 'Analytics:edituser' id=user.id %}"><button class="btn btn-primary">Edit</button></a>
-              
-                <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger">Delete</button>
-              
-                <div id="id01" class="w3-modal" style="z-index: 1000;">
-                  <div class="w3-modal-content">
-                    <div class="w3-container">
-                      <h2>ARE YOU SURE YOU WANT TO DELETE THIS USER??</h2>
-                      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                      <a href="{% url 'Analytics:delete_user' id=user.id%}" class="btn btn-danger">Confirm</a>
-                      <a onclick="document.getElementById('id01').style.display='none'" class="btn btn-primary w3-button w3-display-topright">Cancel</a>
+                <a href="{% url 'Analytics:edituser' id=user.id %}"><button class="btn btn-primary">Edit</button></a>
+                
+                  <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger">Delete</button>
+                
+                  <div id="id01" class="w3-modal" style="z-index: 1000;">
+                    <div class="w3-modal-content">
+                      <div class="w3-container">
+                        <h2>ARE YOU SURE YOU WANT TO DELETE THIS USER??</h2>
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <a href="{% url 'Analytics:delete_user' id=user.id%}" class="btn btn-danger">Confirm</a>
+                        <a onclick="document.getElementById('id01').style.display='none'" class="btn btn-primary w3-button w3-display-topright">Cancel</a>
+                      </div>
                     </div>
-                  </div>
-              </div>
+                </div>
 
             </td>
           </tr>

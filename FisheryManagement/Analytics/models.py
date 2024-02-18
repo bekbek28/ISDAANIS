@@ -1,11 +1,15 @@
 from django.db import models
 
+
+    
 class Species(models.Model):
-    species_name = models.CharField(max_length=30, unique = True)
+    species_name = models.CharField(max_length=30, unique=True)
     quantity = models.IntegerField()
 
     def __str__(self):
         return self.species_name
+
+
 
 
 class unloadType(models.Model):
@@ -14,8 +18,6 @@ class unloadType(models.Model):
 
 class Origin(models.Model):
     origin = models.CharField(max_length=30)
-    date = models.DateTimeField()
-    
 
     def __str__(self):
         return self.origin

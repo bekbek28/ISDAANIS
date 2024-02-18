@@ -7,31 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/forms.css' %}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datepicker/datepicker.min.css">
-  <title>Information Forms</title>
+  <title>Edit Unload History</title>
 </head>
 <body style="background-color: #57a1d3;">
 
-  <div class="navbar">
-        <h2>MARKET CHECKER INPUT FORM</h2>
-        <div class="dropdown">
-            <button class="dropbtn">Menu</button>
-            <div class="dropdown-content">
-                <!-- Add other menu items if needed -->
-                <a href="{% url 'Analytics:recentlist' %}">Recent List</a>
-                <a href="#" id="logoutButton" data-logout-url="{% url 'Authentication:MClandingPage' %}" class="text-decoration-none fs-4 text-dark">LOGOUT</a>
-              </div>
-            </div>
-            <div id="logoutModal" class="modal">
-              <div class="modal-content">
-                  <span class="close" onclick="closeModal()">&times;</span>
-                  <p>Are you sure you want to logout?</p>
-                  <button id="confirmLogout" onclick="performLogout()">Logout</button>
-                  <button id="cancelLogout" onclick="closeModal()">Cancel</button>
-              </div>
-          </div>
-          
-       </div>
-        
+<div class="navbar">
+  <h2>Edit Unload History</h2>
+</div>
 
 <div class="container-sm" id="container"> 
   <form class="row g-3" method="POST">
@@ -39,41 +21,44 @@
 
     <div class="error-message">
       {% if error_message %}
-          <p>{{ error_message }}</p>
+      <p>{{ error_message }}</p>
       {% endif %}
-  </div>
-
-    <div class="date">
-      <label for="dateofCatch">Date of Entry:</label>
-      <input type="date" name="dateofCatch" id="dateofCatch" required readonly>
     </div>
 
+    <!-- Date of Entry -->
+    <div class="date">
+      <label for="dateofCatch">Date of Entry:</label>
+      <input type="date" name="dateofCatch" id="dateofCatch" value="{{ transaction.date }}" required readonly>
+    </div>
+
+    <!-- Place of Catch -->
     <div class="place">
       <label for="placeofcatch">Place of catch:</label>
-      <input type="text" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch">
+      <input type="text" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch" value="{{ transaction.origin.origin }}">
       <datalist id="placeofcatch">
         <option value="Origins" disabled></option>
         {% for origin in origins %}
-          <option value="{{ origin.id }}">{{ origin.origin }}</option>
+        <option value="{{ origin.origin }}">{{ origin.origin }}</option>
         {% endfor %}
       </datalist>
-
     </div>
 
+    <!-- Type of Unloading -->
     <div class="Utype" id="UnloadingType">
       <label for="typeofUnload">Type of Unloading:</label>
       <select name="typeofUnload" id="typeofUnloadOptions">
         <option value="">-Select Type of Unloading- </option>
-        <option value="Commercial">Commercial</option>
-        <option value="Municipal">Municipal</option>
-        <option value="Saltwater">Inland(Saltwater)</option>
-        <option value="FishPond">Inland(Fish Pond)</option>
+        <option value="Commercial" {% if transaction.unloadType.unloadTypeName == 'Commercial' %} selected {% endif %}>Commercial</option>
+        <option value="Municipal" {% if transaction.unloadType.unloadTypeName == 'Municipal' %} selected {% endif %}>Municipal</option>
+        <option value="Saltwater" {% if transaction.unloadType.unloadTypeName == 'Saltwater' %} selected {% endif %}>Inland(Saltwater)</option>
+        <option value="FishPond" {% if transaction.unloadType.unloadTypeName == 'FishPond' %} selected {% endif %}>Inland(Fish Pond)</option>
       </select>
     </div>
 
+    <!-- Vessel -->
     <div class="vessel">
       <label for="vessel">Vessel:</label>
-      <input type="text" id="vessel" name="vessel" placeholder="ex. Name Of Boat/Truck/Cargo" list="vesselOptions">
+      <input type="text" id="vessel" name="vessel" placeholder="ex. Name Of Boat/Truck/Cargo" list="vesselOptions" value="{{ transaction.vessel.vessel_name }}">
       <datalist id="vesselOptions">
         <option value="St Mary">
         <option value="St Francis">
@@ -84,30 +69,31 @@
       </datalist>
     </div>
 
-    <input type="hidden" id="vesselInputDisabled" name="vesselInputDisabled" value="0">
-
+    <!-- Type of Fish -->
     <div class="fish" id="fishtype">
       <label for="fishtype">Type of Fish:</label>
-
       <select name="fishtype" id="fishtypeOptions">
         <option value="">-Select Fish-</option>
-          {% for species in species_list %}
-              <option value="{{ species.species_name }}">{{ species.species_name }}</option>
-          {% endfor %}
+        {% for species in species_list %}
+        <option value="{{ species.species_name }}" {% if transaction.species.species_name == species.species_name %} selected {% endif %}>{{ species.species_name }}</option>
+        {% endfor %}
       </select>
-  </div>
-
-    <div class="volume">
-      <label for="quantity">Volume:</label>
-      <input type="number" id="quantity" name="quantity" placeholder="In Tons">
     </div>
 
+    <!-- Volume -->
+    <div class="volume">
+      <label for="quantity">Volume:</label>
+      <input type="number" id="quantity" name="quantity" placeholder="In Tons" value="{{ transaction.quantity }}">
+    </div>
+
+    <!-- Submit Button -->
     <div class="container mt-5">
       <div class="d-flex justify-content-center">
         <button type="button" onclick="openModal()">Submit</button>
       </div>
     </div>
-    
+
+    <!-- Modal for Confirmation -->
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeModals()">&times;</span>
@@ -117,8 +103,10 @@
         </div>
       </div>
     </div>
+
+    <!-- Success Message -->
     <div id="successMessage" style="display: none; color: green;"></div>
-    
+
   </form>
 </div>
 
