@@ -15,6 +15,9 @@ urlpatterns = [
     path('edituser/<int:id>/', views.edit_user, name="edituser"),
     path('delete_user/<int:id>/', views.delete_user, name='delete_user'),
     path('edit/<int:id>/', views.edit_unloading, name='edit_unloading'),
-   path('analytics/delete/<int:id>/', views.delete_unload_history, name='delete_unload_history')
+    path('delete-transaction/<int:id>/', views.delete_transaction, name='delete_transaction'),
+    path('edit/recent/<int:id>/', views.edit_recent_transaction, name='edit_recent_transaction'),
+    path('delete/<int:id>/', views.delete_recent, name='delete_recent')
+
 
 ]

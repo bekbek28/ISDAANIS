@@ -93,8 +93,10 @@
                 <td>{{ transaction.origin.origin }}</td>
                 <td class="table-info">
                   <a href="{% url 'Analytics:edit_unloading' transaction.id %}"><button class="btn btn-primary">Edit</button></a>
-                  <a onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger">Delete</a>
-
+                  <a href="{% url 'Analytics:delete_recent' transaction.id %}" onclick="return confirm('Are you sure you want to delete this transaction?');">
+                    <button class="btn btn-danger">Delete</button>
+                </a>
+                
                 
               </td>
 
