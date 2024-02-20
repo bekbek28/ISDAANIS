@@ -298,17 +298,17 @@ def FCdash(request):
 """ CONTENTS OF ADMIN DASHBOARD """
 @login_required(login_url='Authentication:loginadmin')
 def isadmindashboard(request):
-    recent_transactions = DailyTransaction.objects.order_by('-date')[:4]
+    recent_transactions = DailyTransaction.objects.order_by('-date')[:10]
 
     transactions = DailyTransaction.objects.all()
 
     total_number_of_inputs = DailyTransaction.objects.count()
 
-    top_fishes = DailyTransaction.objects.values('species__species_name').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:3]
+    top_fishes = DailyTransaction.objects.values('species__species_name').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:10]
 
-    top_vessels = DailyTransaction.objects.values('vessel__vessel_name').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:3]
+    top_vessels = DailyTransaction.objects.values('vessel__vessel_name').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:10]
 
-    top_origins = DailyTransaction.objects.values('origin__origin').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:3]
+    top_origins = DailyTransaction.objects.values('origin__origin').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:10]
 
     return render(request, 'admindash.html', {
         'transactions': transactions,
