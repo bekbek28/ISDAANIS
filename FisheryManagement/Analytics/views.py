@@ -37,10 +37,10 @@ def isforms(request):
 
         # Check for completeness of form data
         if not all([fishtype, quantity, vessel, placeofcatch, unload_type_name]):
-            messages.error(request, 'Please fill in all the required fields.')
             return render(request, 'MCforms.html', {
                 'origins': origins,
                 'species_list': species_list,
+                'error_message': 'Please fill in all the required fields.'
             })
 
         origin = placeofcatch.capitalize()
@@ -89,15 +89,12 @@ def isforms(request):
         )
         new_transaction.save()
 
-        messages.success(request, 'Form submitted successfully.')
-
-        return redirect('Analytics:forms')  # Redirect to a success URL
+        return HttpResponse('Form submitted successfully.')  # You can modify this as needed
 
     return render(request, 'MCforms.html', {
         'origins': origins,
         'species_list': species_list,
     })
-
 
 @login_required(login_url='Authentication:MClandingPage')
 def recentList(request):
@@ -397,8 +394,8 @@ def edit_unloading(request, id):
             # Attempt to get the origin from the database
             origin = Origin.objects.get(origin=origin_name)
         except Origin.DoesNotExist:
-            # Create a new origin if it doesn't exist
-            origin = Origin.objects.create(origin=origin_name)
+            # Handle the case when the origin does not exist
+            return HttpResponse(f"Origin '{origin_name}' does not exist. Please select a valid origin.")
 
         try:
             # Attempt to get the vessel from the database
@@ -435,7 +432,7 @@ def edit_unloading(request, id):
 
 """ FOR DELETING UNLOADING HISTORY """
 @login_required(login_url='Authentication:loginadmin')
-def delete_transaction(request, id):
+def delete_unload_history(request, id):
     try:
         transaction = get_object_or_404(DailyTransaction, id=id)
         transaction.delete()
@@ -443,52 +440,3 @@ def delete_transaction(request, id):
     except IntegrityError as e:
         messages.error(request, f'Error deleting transaction: {e}')
     return redirect('Analytics:unloadhistory')
-
-
-
-@login_required(login_url='Authentication:MClandingPage')
-def edit_recent_transaction(request, id):
-    transaction = get_object_or_404(DailyTransaction, id=id)
-
-    if request.method == 'POST':
-        origin_name = request.POST.get('placeofcatch')
-        try:
-            origin = Origin.objects.get(origin=origin_name)
-        except Origin.DoesNotExist:
-            origin = Origin.objects.create(origin=origin_name)
-
-        try:
-            vessel_name = request.POST.get('vessel')
-            vessel = Vessel.objects.filter(vessel_name=vessel_name).first()
-            if not vessel:
-                raise Vessel.DoesNotExist
-        except Vessel.DoesNotExist:
-            return HttpResponse(f"Vessel '{vessel_name}' does not exist. Please select a valid vessel.")
-        except MultipleObjectsReturned:
-            return HttpResponse(f"Multiple vessels with the name '{vessel_name}' exist. Please contact support.")
-
-        transaction.species = Species.objects.get(species_name=request.POST.get('fishtype'))
-        transaction.quantity = request.POST.get('quantity')
-        transaction.vessel = vessel
-        transaction.origin = origin
-        transaction.unloadType = unloadType.objects.get(unloadTypeName=request.POST.get('typeofUnload'))
-        
-        transaction.save()
-        
-        return redirect('Analytics:recentlist')
-
-    return render(request, 'editrecentlist.html', {
-        'transaction': transaction,
-        'origins': Origin.objects.all(),
-        'species_list': Species.objects.all(),
-    })
-
- 
-def delete_recent(request, id):
-    try:
-        transaction = get_object_or_404(DailyTransaction, id=id)
-        transaction.delete()
-        messages.success(request, 'Transaction deleted successfully.')
-    except IntegrityError as e:
-        messages.error(request, f'Error deleting transaction: {e}')
-    return redirect('Analytics:recentlist')

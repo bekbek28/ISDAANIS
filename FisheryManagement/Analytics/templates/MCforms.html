@@ -31,20 +31,17 @@
           </div>
           
        </div>
-      
-       
+        
+
 <div class="container-sm" id="container"> 
-  <!-- <div id="successMessage" style="display: none; color: green;"></div> -->
   <form class="row g-3" method="POST">
     {% csrf_token %}
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+    <div class="error-message">
+      {% if error_message %}
+          <p>{{ error_message }}</p>
+      {% endif %}
+  </div>
 
     <div class="date">
       <label for="dateofCatch">Date of Entry:</label>
@@ -120,7 +117,7 @@
         </div>
       </div>
     </div>
-    
+    <div id="successMessage" style="display: none; color: green;"></div>
     
   </form>
 </div>
