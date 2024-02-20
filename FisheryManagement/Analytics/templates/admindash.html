@@ -19,6 +19,7 @@
         <i class='bx bx-menu'></i>
       </label>
     </div>
+
   </div>
     <div class="sidebar_menu">
       <div class="logo">
@@ -44,10 +45,6 @@
               <i class='bx bx-line-chart'></i>Unload History</a>
           </li>
           <li>
-            <a href="#">
-              <i class='bx bx-line-chart'></i>Reports</a>
-          </li>
-          <li>
             <a href="#" onclick="openLogoutModal()">
               <i class='bx bx-exit'></i>Logout</a>
           </li>
@@ -56,49 +53,52 @@
     </div>
 
     
+      <div class="boxes">
+        <div class="box box2 tui">
+            <i class="uil uil-thumbs-up"></i>
+            <span class="text">Total Unloading Input</span>
+            <span class="number">{{ total_number_of_inputs }}</span>
+        </div>
+    </div>
+    
     <div class="boxes">
-      <div class="box box2">
-          <i class="uil uil-thumbs-up"></i>
-          <span class="text">Total Unloading Input</span>
-          <span class="number">{{ total_number_of_inputs }}</span>
-      </div>
-
-    <div class="box box2">
-      <i class="uil uil-thumbs-up"></i>
-      <span class="text">Top 3 Fishes</span>
-      <span class="number"><ul>
-        {% for fish in top_fishes %}
-        <li>{{ fish.species__species_name }} - {{ fish.total_quantity }}</li>
-    {% endfor %}
-    </ul></span>
-      
-  </div>
+        <div class="box box2 tf">
+            <i class="uil uil-thumbs-up"></i>
+            <span class="text">Top 10 Fishes</span>
+            <span class="number">
+                <ul>
+                    {% for fish in top_fishes %}
+                    <li>{{ fish.species__species_name }} - {{ fish.total_quantity }}</li>
+                    {% endfor %}
+                </ul>
+            </span>
+        </div>
+    
+        <div class="box box2 tv">
+            <i class="uil uil-comments"></i>
+            <span class="text">Top 10 Vessels</span>
+            <span class="number">
+                <ul>
+                    {% for vessel in top_vessels %}
+                    <li>{{ vessel.vessel__vessel_name }} - {{ vessel.total_quantity }}</li>
+                    {% endfor %}
+                </ul>
+            </span>
+        </div>
+    
+        <div class="box box2 tfo">
+            <i class="uil uil-comments"></i>
+            <span class="text">Top 10 Fishes origins</span>
+            <span class="number">
+                <ul>
+                    {% for origin in top_origins %}
+                    <li>{{ origin.origin__origin }} - {{ origin.total_quantity }}</li>
+                    {% endfor %}
+                </ul>
+            </span>
+        </div>
+    </div>
   
-  
-
-    <div class="box box2">
-        <i class="uil uil-comments"></i>
-        <span class="text">Top 3 Vessels</span>
-        <span class="number"><ul>
-          {% for vessel in top_vessels %}
-              <li>{{ vessel.vessel__vessel_name }} - {{ vessel.total_quantity }}</li>
-          {% endfor %}
-      </ul>
-    </span>
-  </div>
-
-
-  <div class="box box2">
-    <i class="uil uil-comments"></i>
-    <span class="text">Top 3 Fishes origins</span>
-    <span class="number"> 
-       <ul>
-      {% for origin in top_origins %}
-          <li>{{ origin.origin__origin }} - {{ origin.total_quantity }}</li>
-      {% endfor %}
-  </ul>
-</span>
-</div>
 
 <div id="logoutModal" class="modal">
   <div class="modal-content">

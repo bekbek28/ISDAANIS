@@ -66,19 +66,3 @@ window.onclick = function(event) {
     }
 }
 
-var userIdToDelete;
-
-function showConfirmationModal(userId) {
-    userIdToDelete = userId;
-    document.getElementById('confirmationModal').style.display = 'block';
-}
-
-function hideConfirmationModal() {
-    document.getElementById('confirmationModal').style.display = 'none';
-}
-
-function confirmDelete() {
-    // Send the delete request with the user ID
-    window.location.href = "{% url 'Analytics:delete_user' id=user.id %}".replace('user.id', userIdToDelete);
-    hideConfirmationModal(); // Hide the modal after sending the request
-}

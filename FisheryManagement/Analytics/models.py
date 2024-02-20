@@ -1,10 +1,16 @@
 from django.db import models
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name 
     
 class Species(models.Model):
     species_name = models.CharField(max_length=30, unique=True)
     quantity = models.IntegerField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='species')
+
 
     def __str__(self):
         return self.species_name
