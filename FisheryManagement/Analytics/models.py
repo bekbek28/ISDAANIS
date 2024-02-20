@@ -30,7 +30,7 @@ class Vessel(models.Model):
 
     def __str__(self):
         return self.vessel_name
-
+ 
 class DailyTransaction(models.Model):
     species = models.ForeignKey(Species, on_delete=models.CASCADE)
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE, null=True)
