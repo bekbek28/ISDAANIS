@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datepicker/datepicker.min.css">
+  <title>Edit Recent List</title>
+</head>
+<body style="background-color: #57a1d3;">
+
+<div class="navbar">
+  <h2>Edit Recent List</h2>
+</div>
+
+<div class="container-sm" id="container"> 
+  <form class="row g-3" method="POST">
+    {% csrf_token %}
+
+    <div class="error-message">
+      {% if error_message %}
+      <p>{{ error_message }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Date of Entry -->
+    <div class="date">
+      <label for="dateofCatch">Date of Entry:</label>
+      <input type="date" name="dateofCatch" id="dateofCatch" value="{{ transaction.date }}" required readonly>
+    </div>
+
+    <!-- Place of Catch -->
+    <div class="place">
+      <label for="placeofcatch">Place of catch:</label>
+      <input type="text" id="placeofcatch" name="placeofcatch" placeholder="ex. Polilio" list="placeofcatch" value="{{ transaction.origin.origin }}">
+      <datalist id="placeofcatch">
+        <option value="Origins" disabled></option>
+        {% for origin in origins %}
+        <option value="{{ origin.origin }}">{{ origin.origin }}</option>
+        {% endfor %}
+      </datalist>
+    </div>
+
+    <!-- Type of Unloading -->
+    <div class="Utype" id="UnloadingType">
+      <label for="typeofUnload">Type of Unloading:</label>
+      <select name="typeofUnload" id="typeofUnloadOptions">
+        <option value="">-Select Type of Unloading- </option>
+        <option value="Commercial" {% if transaction.unloadType.unloadTypeName == 'Commercial' %} selected {% endif %}>Commercial</option>
+        <option value="Municipal" {% if transaction.unloadType.unloadTypeName == 'Municipal' %} selected {% endif %}>Municipal</option>
+        <option value="Saltwater" {% if transaction.unloadType.unloadTypeName == 'Saltwater' %} selected {% endif %}>Inland(Saltwater)</option>
+        <option value="FishPond" {% if transaction.unloadType.unloadTypeName == 'FishPond' %} selected {% endif %}>Inland(Fish Pond)</option>
+      </select>
+    </div>
+
+    <!-- Vessel -->
+    <div class="vessel">
+      <label for="vessel">Vessel:</label>
+      <input type="text" id="vessel" name="vessel" placeholder="ex. Name Of Boat/Truck/Cargo" list="vesselOptions" value="{{ transaction.vessel.vessel_name }}">
+      <datalist id="vesselOptions">
+        <option value="St Mary">
+        <option value="St Francis">
+        <option value="2 Brothers">
+        <option value="King">
+        <option value="4R">
+        <option value="3 Sisters">
+      </datalist>
+    </div>
+
+    <!-- Type of Fish -->
+    <div class="fish" id="fishtype">
+      <label for="fishtype">Type of Fish:</label>
+      <select name="fishtype" id="fishtypeOptions">
+        <option value="">-Select Fish-</option>
+        {% for species in species_list %}
+        <option value="{{ species.species_name }}" {% if transaction.species.species_name == species.species_name %} selected {% endif %}>{{ species.species_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Volume -->
+    <div class="volume">
+      <label for="quantity">Volume:</label>
+      <input type="number" id="quantity" name="quantity" placeholder="In Tons" value="{{ transaction.quantity }}">
+    </div>
+
+    <!-- Submit Button -->
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center">
+        <button type="button" onclick="openModal()">Submit</button>
+      </div>
+    </div>
+
+    <!-- Modal for Confirmation -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModals()">&times;</span>
+        <p>Are you sure you want to submit the form?</p>
+        <div class="modal-buttons">
+          <button onclick="submitForm()">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" style="display: none; color: green;"></div>
+
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/datepicker/datepicker.min.js"></script>
+<script src="{% static 'js/forms.js' %}"></script>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ from . import views
 
 app_name = "Authentication"
 
+
 urlpatterns = [
     path('PortManager', views.isLandingPage, name='landingPage'),
     path('MarketChecker', views.isMCLandingPage, name='MClandingPage'),

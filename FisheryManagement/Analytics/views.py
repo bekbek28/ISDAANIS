@@ -440,3 +440,61 @@ def delete_unload_history(request, id):
     except IntegrityError as e:
         messages.error(request, f'Error deleting transaction: {e}')
     return redirect('Analytics:unloadhistory')
+
+
+
+def edit_recentlist(request, id):
+    transaction = get_object_or_404(DailyTransaction, id=id)
+
+    if request.method == 'POST':
+        origin_name = request.POST.get('placeofcatch')
+        try:
+            # Attempt to get the origin from the database
+            origin = Origin.objects.get(origin=origin_name)
+        except Origin.DoesNotExist:
+            # Handle the case when the origin does not exist
+            return HttpResponse(f"Origin '{origin_name}' does not exist. Please select a valid origin.")
+
+        try:
+            # Attempt to get the vessel from the database
+            vessel_name = request.POST.get('vessel')
+            vessel = Vessel.objects.filter(vessel_name=vessel_name).first()
+            if not vessel:
+                raise Vessel.DoesNotExist
+        except Vessel.DoesNotExist:
+            # Handle the case when the vessel does not exist
+            return HttpResponse(f"Vessel '{vessel_name}' does not exist. Please select a valid vessel.")
+        except MultipleObjectsReturned:
+            # Handle the case when multiple vessels with the same name exist
+            return HttpResponse(f"Multiple vessels with the name '{vessel_name}' exist. Please contact support.")
+
+        # Update the transaction with the new data from the form
+        transaction.species = Species.objects.get(species_name=request.POST.get('fishtype'))
+        transaction.quantity = request.POST.get('quantity')
+        transaction.vessel = vessel
+        transaction.origin = origin
+        transaction.unloadType = unloadType.objects.get(unloadTypeName=request.POST.get('typeofUnload'))
+        
+        transaction.save()
+        
+        # Redirect to the unload history page after editing
+        return redirect('Analytics:recentlist') 
+
+    # If the request method is not POST, render the edit form
+    return render(request, 'edit_recentlist.html', {
+        'transaction': transaction,
+        'origins': Origin.objects.all(),  # Pass origins for the dropdown
+        'species_list': Species.objects.all(),  # Pass species for the dropdown
+    })
+
+
+
+
+def delete_recentlist(request, id):
+    try:
+        transaction = get_object_or_404(DailyTransaction, id=id)
+        transaction.delete()
+        messages.success(request, 'Transaction deleted successfully.')
+    except IntegrityError as e:
+        messages.error(request, f'Error deleting transaction: {e}')
+    return redirect('Analytics:recentlist')

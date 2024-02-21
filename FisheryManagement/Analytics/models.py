@@ -1,21 +1,19 @@
 from django.db import models
 
-class Category(models.Model):
+class Categories(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name 
     
-class Species(models.Model):
-    species_name = models.CharField(max_length=30, unique=True)
-    quantity = models.IntegerField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='species')
 
+class Species(models.Model):
+    species_name = models.CharField(max_length=50, unique=True)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='species')
+    quantity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.species_name
-
-
 
 
 class unloadType(models.Model):
@@ -42,15 +40,9 @@ class DailyTransaction(models.Model):
     origin = models.ForeignKey(Origin, on_delete=models.CASCADE, null=True)
     vessel = models.ForeignKey(Vessel, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    percentage = models.DecimalField(max_digits=10, decimal_places=2,null=True)
     date = models.DateField()
     unloadType = models.ForeignKey(unloadType,on_delete=models.CASCADE,null=True)
 
+
     def __str__(self):
         return f'{self.species}'
-
-
-
-    
-
-
